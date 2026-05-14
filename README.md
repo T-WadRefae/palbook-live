@@ -1,7 +1,7 @@
 # 🇵🇸 PalBook Live
 
 > **Interactive English Learning Platform for Palestinian Students**
-> Created by **T. Wad Refae** — Surda Basic Mixed School
+> Created by **T. Wad Refae** 
 
 [![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react)](https://react.dev)
 [![Vite](https://img.shields.io/badge/Vite-5.2-646CFF?logo=vite)](https://vitejs.dev)
@@ -324,7 +324,7 @@ A lesson document in the `lessons` collection looks like:
   "filePath": "lessons/palbook/grade-7/unit-16/lesson-3/...html",
   "fileName": "unit16-period3.html",
   "teacher": "T. Wad Refae",
-  "school": "Surda Basic Mixed School",
+
   "createdAt": "2026-05-01T...",
   "updatedAt": "2026-05-01T..."
 }
@@ -353,5 +353,5 @@ Built with love for Palestinian students learning English. The platform's conten
 ---
 
 **Created by T. Wad Refae** 👩‍🏫
-🏫 Surda Basic Mixed School • Birzeit Education Directorate
+
 🇵🇸 Palestine

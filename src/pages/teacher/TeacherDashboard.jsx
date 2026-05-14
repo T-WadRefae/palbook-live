@@ -79,7 +79,7 @@ const TeacherDashboard = () => {
           <h1 className="text-3xl md:text-4xl font-extrabold mt-1">
             {profile?.displayName || 'T. Wad Refae'}
           </h1>
-          <p className="text-white/90 mt-2 text-sm">🇵🇸 Surda Basic Mixed School</p>
+          <p className="text-white/90 mt-2 text-sm">🇵🇸 PalBook Live</p>
 
           <div className="flex flex-wrap gap-2 mt-4">
             <Link to="/teacher/upload" className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-white text-primary-600 font-bold text-sm hover:scale-105 transition-transform">

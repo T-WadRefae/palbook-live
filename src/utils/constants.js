@@ -1,10 +1,9 @@
 // =========================================================
 // PalBook Live constants
-// Created by T. Wad Refae - Surda Basic Mixed School
+// Created by T. Wad Refae 
 // =========================================================
 
 export const TEACHER_NAME = 'T. Wad Refae';
-export const SCHOOL_NAME = 'Surda Basic Mixed School';
 
 // Sections of the platform
 export const SECTIONS = {

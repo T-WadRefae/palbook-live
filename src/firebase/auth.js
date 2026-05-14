@@ -27,7 +27,7 @@ export const registerUser = async ({ email, password, displayName, role = 'stude
     achievements: [],
     progress: {},
     createdAt: serverTimestamp(),
-    school: 'Surda Basic Mixed School',
+    
   });
 
   return user;

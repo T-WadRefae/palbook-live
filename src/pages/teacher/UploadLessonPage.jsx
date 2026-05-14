@@ -84,7 +84,7 @@ const UploadLessonPage = () => {
         filePath: storedPath,
         fileName: file.name,
         teacher: 'T. Wad Refae',
-        school: 'Surda Basic Mixed School',
+       
       };
 
       if (form.section === SECTIONS.PALBOOK) {

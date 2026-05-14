@@ -38,7 +38,7 @@ const Sidebar = ({ open = true, onClose }) => {
         <div className="mb-6 p-4 rounded-2xl bg-gradient-pal text-white">
           <p className="text-xs opacity-80">👩‍🏫 Teacher Panel</p>
           <p className="font-bold text-lg">T. Wad Refae</p>
-          <p className="text-xs opacity-80 mt-1">Surda Basic Mixed School</p>
+          
         </div>
 
         <nav className="flex flex-col gap-1">

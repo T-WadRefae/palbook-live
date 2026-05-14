@@ -85,7 +85,7 @@ const StudentDashboard = () => {
             {profile?.displayName || user?.email?.split('@')[0]}
           </h1>
           <p className="text-white/90 mt-2 text-sm">
-            🇵🇸 Surda Basic Mixed School • T. Wad Refae
+           🇵🇸 T. Wad Refae
           </p>
         </div>
       </motion.div>

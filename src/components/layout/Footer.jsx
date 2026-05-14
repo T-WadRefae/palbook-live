@@ -25,7 +25,7 @@ const Footer = () => {
             <p className="text-xs mt-3 text-accent-400 font-bold">
               👩‍🏫 {t('app.teacher')}
             </p>
-            <p className="text-xs mt-1 text-slate-500">🏫 {t('app.school')}</p>
+           
           </div>
 
           <div>
