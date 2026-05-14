@@ -57,7 +57,7 @@ const UploadLessonPage = () => {
     }
 
     if (!isValidUrl(form.fileUrl)) {
-      toast.error('Please enter a valid URL (starting with https://)');
+      toast.error('Please enter a valid URL');
       return;
     }
 
@@ -87,7 +87,6 @@ const UploadLessonPage = () => {
       }
 
       await addLesson(lessonData);
-
       toast.success('Lesson added successfully!');
       setForm(initialForm);
       navigate('/teacher/lessons');
@@ -116,7 +115,6 @@ const UploadLessonPage = () => {
       </motion.div>
 
       <form onSubmit={handleSubmit} className="card space-y-5">
-        {/* Section */}
         <div>
           <label className="label">Section</label>
           <div className="grid grid-cols-2 gap-3">
@@ -130,8 +128,8 @@ const UploadLessonPage = () => {
                 onClick={() => setForm({ ...form, section: s.v })}
                 className={`p-4 rounded-2xl border-2 font-bold text-sm transition-all ${
                   form.section === s.v
-                    ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 shadow-kid'
-                    : 'border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800'
+                    ? 'border-primary-500 bg-primary-50 text-primary-700 shadow-kid'
+                    : 'border-slate-200 bg-white'
                 }`}
               >
                 <div className="text-3xl mb-1">{s.emoji}</div>
@@ -141,7 +139,6 @@ const UploadLessonPage = () => {
           </div>
         </div>
 
-        {/* PalBook fields */}
         {form.section === SECTIONS.PALBOOK && (
           <div className="grid grid-cols-3 gap-3">
             <div>
@@ -171,7 +168,6 @@ const UploadLessonPage = () => {
           </div>
         )}
 
-        {/* General subsection */}
         {form.section === SECTIONS.GENERAL && (
           <div>
             <label className="label">Sub-section</label>
@@ -186,8 +182,8 @@ const UploadLessonPage = () => {
                   onClick={() => setForm({ ...form, subsection: s.v })}
                   className={`p-3 rounded-2xl border-2 font-bold text-sm transition-all ${
                     form.subsection === s.v
-                      ? 'border-secondary-500 bg-secondary-50 dark:bg-secondary-900/30 text-secondary-700 dark:text-secondary-300'
-                      : 'border-slate-200 dark:border-slate-700'
+                      ? 'border-secondary-500 bg-secondary-50 text-secondary-700'
+                      : 'border-slate-200'
                   }`}
                 >
                   <span className="text-2xl me-2">{s.emoji}</span>
@@ -198,7 +194,6 @@ const UploadLessonPage = () => {
           </div>
         )}
 
-        {/* Title */}
         <div className="grid md:grid-cols-2 gap-4">
           <div>
             <label className="label">Lesson Title (EN)</label>
@@ -218,13 +213,12 @@ const UploadLessonPage = () => {
               value={form.titleAr}
               onChange={update('titleAr')}
               className="input"
-              placeholder="التواصل والتكنولوجيا"
+              placeholder="عنوان الدرس بالعربي"
               dir="rtl"
             />
           </div>
         </div>
 
-        {/* Description */}
         <div>
           <label className="label">Description</label>
           <textarea
@@ -236,7 +230,6 @@ const UploadLessonPage = () => {
           />
         </div>
 
-        {/* Emoji picker */}
         <div>
           <label className="label">Thumbnail Emoji</label>
           <div className="flex flex-wrap gap-2">
@@ -248,7 +241,7 @@ const UploadLessonPage = () => {
                 className={`w-12 h-12 rounded-xl text-2xl transition-all ${
                   form.thumbnail === e
                     ? 'bg-gradient-pal scale-110 shadow-kid'
-                    : 'bg-slate-100 dark:bg-slate-800 hover:scale-105'
+                    : 'bg-slate-100 hover:scale-105'
                 }`}
               >
                 {e}
@@ -257,7 +250,6 @@ const UploadLessonPage = () => {
           </div>
         </div>
 
-        {/* URL Field - THE NEW APPROACH */}
         <div>
           <label className="label flex items-center gap-2">
             <FiLink className="text-primary-500" />
@@ -273,22 +265,20 @@ const UploadLessonPage = () => {
             dir="ltr"
           />
 
-          {/* Instructions card */}
-          <div className="mt-3 p-4 rounded-2xl bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-slate-800 dark:to-slate-700 border-2 border-blue-200 dark:border-slate-600">
-            <p className="text-sm font-bold text-blue-800 dark:text-blue-300 mb-2 flex items-center gap-2">
+          <div className="mt-3 p-4 rounded-2xl bg-blue-50 border-2 border-blue-200">
+            <p className="text-sm font-bold text-blue-800 mb-2">
               💡 How to get the URL:
             </p>
-            <ol className="text-xs text-slate-700 dark:text-slate-300 space-y-1 list-decimal list-inside">
-              <li>Upload your HTML lesson to <a href="https://github.com/T-WadRefae/palbook-lessons" target="_blank" rel="noreferrer" className="font-bold text-primary-600 hover:underline inline-flex items-center gap-1">palbook-lessons repo <FiExternalLink size={12} /></a></li>
+            <ol className="text-xs text-slate-700 space-y-1 list-decimal list-inside">
+              <li>Upload your HTML lesson to palbook-lessons repo on GitHub</li>
               <li>Wait 2-3 minutes for GitHub Pages to publish</li>
-              <li>Copy the GitHub Pages URL (format: <code className="bg-slate-200 dark:bg-slate-900 px-1 rounded">https://t-wadrefae.github.io/palbook-lessons/...</code>)</li>
+              <li>Copy the GitHub Pages URL</li>
               <li>Paste it above</li>
             </ol>
           </div>
 
-          {/* Preview link */}
           {form.fileUrl && isValidUrl(form.fileUrl) && (
-            
+             <a
               href={form.fileUrl}
               target="_blank"
               rel="noreferrer"
@@ -299,7 +289,6 @@ const UploadLessonPage = () => {
           )}
         </div>
 
-        {/* Submit */}
         <div className="flex gap-3">
           <button
             type="button"
