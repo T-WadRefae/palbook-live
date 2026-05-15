@@ -1,10 +1,11 @@
 {
   "app": {
     "name": "PalBook Live",
-    "tagline": "Interactive English Learning Platform",
-    "teacher": "T. Wad Refae",
-    "school": "",
-    "footer": "© 2026 PalBook Live • Created by T. Wad Refae"
+    "tagline": "by T. Wad Refae 🇵🇸"
+  },
+  "footer": {
+    "palestineTitle": "Palestine",
+    "palestineDesc": "Educational content honoring Palestinian heritage, culture, and the English for Palestine curriculum."
   },
   "nav": {
     "home": "Home",

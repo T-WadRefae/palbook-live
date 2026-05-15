@@ -38,11 +38,11 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-bold text-white mb-3">🇵🇸 Palestine</h4>
-            <p className="text-sm text-slate-400 leading-relaxed">
-              Educational content honoring Palestinian heritage, culture, and the English for Palestine curriculum.
-            </p>
-          </div>
+              <h4 className="font-bold text-white mb-3">🇵🇸 {t('footer.palestineTitle')}</h4>
+             <p className="text-sm text-slate-400 leading-relaxed">
+      {t('footer.palestineDesc')}
+    </p>
+</div>
         </div>
 
         <div className="pt-6 border-t border-slate-700 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-slate-400">
