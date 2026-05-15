@@ -18,6 +18,7 @@ import GamesPage from './pages/public/GamesPage';
 import NotFoundPage from './pages/public/NotFoundPage';
 import UnauthorizedPage from './pages/public/UnauthorizedPage';
 
+
 // Auth pages
 import LoginPage from './pages/auth/LoginPage';
 
