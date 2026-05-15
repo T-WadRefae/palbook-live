@@ -37,8 +37,7 @@ const GamesPage = () => {
               className={`block relative overflow-hidden rounded-3xl bg-gradient-to-br ${g.gradient} text-white p-8 shadow-kid h-full`}
             >
               <div className="absolute -top-10 -end-10 w-40 h-40 bg-white/10 rounded-full" />
-              <div className="a
-              bsolute -bottom-10 -start-10 w-32 h-32 bg-white/10 rounded-full" />
+              <div className="absolute -bottom-10 -start-10 w-32 h-32 bg-white/10 rounded-full" />
 
               <div className="relative">
                 <div className="text-7xl mb-4 transform group-hover:scale-110 transition-transform">
