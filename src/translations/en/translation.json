@@ -68,11 +68,16 @@
   },
   "general": {
     "title": "General Lessons",
-    "subtitle": "Master grammar and pronunciation",
+    "subtitle": "Master grammar, pronunciation, and reading",
+    "chooseSection": "Choose a Category",
+    "lesson": "lesson",
+    "lessons": "lessons",
     "grammar": "Grammar Lessons",
     "grammarDesc": "Learn English grammar rules step by step",
     "pronunciation": "Pronunciation Rules",
     "pronunciationDesc": "Master English pronunciation with audio guides",
+    "reading": "Reading",
+    "readingDesc": "Engaging reading texts with comprehension activities",
     "openLesson": "Open Lesson",
     "noLessons": "No lessons available yet"
   },
