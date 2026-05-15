@@ -31,8 +31,10 @@ import PronunciationGame from './pages/student/PronunciationGame';
 import TeacherDashboard from './pages/teacher/TeacherDashboard';
 import UploadLessonPage from './pages/teacher/UploadLessonPage';
 import ManageLessonsPage from './pages/teacher/ManageLessonsPage';
+import ManageLessonsPage from './pages/teacher/AnalyticsPage';
 
 import { ROLES } from './utils/constants';
+import AnalyticsPage from './pages/teacher/AnalyticsPage';
 
 function App() {
   const location = useLocation();
@@ -90,6 +92,14 @@ function App() {
             element={
               <ProtectedRoute role={ROLES.TEACHER}>
                 <ManageLessonsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/teacher/analytics"
+            element={
+              <ProtectedRoute role={ROLES.TEACHER}>
+                <AnalyticsPage />
               </ProtectedRoute>
             }
           />

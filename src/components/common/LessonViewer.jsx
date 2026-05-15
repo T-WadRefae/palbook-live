@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { FiX, FiMaximize2, FiMinimize2, FiExternalLink } from 'react-icons/fi';
+import { trackLessonView } from '../../firebase/lessons';
 
 const LessonViewer = ({ lesson, onClose }) => {
   const { t, i18n } = useTranslation();
@@ -11,10 +12,14 @@ const LessonViewer = ({ lesson, onClose }) => {
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
+    // Track view when lesson opens
+    if (lesson?.id) {
+      trackLessonView(lesson.id);
+    }
     return () => {
       document.body.style.overflow = '';
     };
-  }, []);
+  }, [lesson?.id]);
 
   if (!lesson) return null;
   const title = isAr && lesson.titleAr ? lesson.titleAr : lesson.title;
@@ -33,7 +38,6 @@ const LessonViewer = ({ lesson, onClose }) => {
           fullscreen ? 'w-full h-full' : 'w-full max-w-6xl h-[90vh]'
         }`}
       >
-        {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-700 bg-gradient-pal text-white">
           <div className="flex items-center gap-3 min-w-0">
             <div className="text-3xl shrink-0">{lesson.thumbnail || '📚'}</div>
@@ -69,7 +73,6 @@ const LessonViewer = ({ lesson, onClose }) => {
           </div>
         </div>
 
-        {/* Iframe */}
         <div className="flex-1 relative bg-slate-50 dark:bg-slate-800">
           {loading && (
             <div className="absolute inset-0 flex items-center justify-center">

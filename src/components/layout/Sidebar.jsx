@@ -1,15 +1,16 @@
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiHome, FiUpload, FiBookOpen, FiX } from 'react-icons/fi';
+import { FiHome, FiUpload, FiBookOpen, FiBarChart2, FiX } from 'react-icons/fi';
 
 const Sidebar = ({ open = true, onClose }) => {
   const { t } = useTranslation();
 
   const links = [
-    { to: '/teacher', icon: <FiHome />, label: t('dashboard.teacherDashboard'), end: true },
-    { to: '/teacher/upload', icon: <FiUpload />, label: t('dashboard.uploadLesson') },
-    { to: '/teacher/lessons', icon: <FiBookOpen />, label: t('dashboard.myLessons') },
+    { to: '/teacher', icon: <FiHome />, label: 'Dashboard', end: true },
+    { to: '/teacher/upload', icon: <FiUpload />, label: 'Add Lesson' },
+    { to: '/teacher/lessons', icon: <FiBookOpen />, label: 'My Lessons' },
+    { to: '/teacher/analytics', icon: <FiBarChart2 />, label: 'Analytics' },
   ];
 
   const linkClass = ({ isActive }) =>
@@ -21,7 +22,7 @@ const Sidebar = ({ open = true, onClose }) => {
 
   return (
     <>
-      {/* Mobile overlay - clicking closes sidebar */}
+      {/* Mobile overlay */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -34,19 +35,14 @@ const Sidebar = ({ open = true, onClose }) => {
         )}
       </AnimatePresence>
 
-      {/* Sidebar */}
+      {/* Sidebar - sticky on desktop, fixed on mobile */}
       <aside
-        className={`fixed lg:sticky top-0 lg:top-20 start-0 z-40 h-full lg:h-auto w-72 bg-white dark:bg-slate-900 border-e border-slate-200 dark:border-slate-800 p-4 transition-transform duration-300 ease-in-out lg:transform-none ${
-          open ? 'translate-x-0' : '-translate-x-full lg:translate-x-0 rtl:translate-x-0'
+        className={`fixed lg:sticky top-0 lg:top-16 start-0 z-40 h-screen lg:h-[calc(100vh-4rem)] w-64 bg-white dark:bg-slate-900 border-e border-slate-200 dark:border-slate-800 p-3 transition-transform duration-300 ease-in-out overflow-y-auto ${
+          open ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         }`}
-        style={{
-          transform: open
-            ? 'translateX(0)'
-            : (document.documentElement.dir === 'rtl' ? 'translateX(100%)' : 'translateX(-100%)'),
-        }}
       >
         {/* Mobile close button */}
-        <div className="flex items-center justify-between mb-4 lg:hidden">
+        <div className="flex items-center justify-between mb-3 lg:hidden">
           <span className="font-bold text-slate-700 dark:text-slate-200">Menu</span>
           <button
             onClick={onClose}
@@ -56,9 +52,9 @@ const Sidebar = ({ open = true, onClose }) => {
           </button>
         </div>
 
-        <div className="mb-6 p-4 rounded-2xl bg-gradient-pal text-white">
+        <div className="mb-4 p-3 rounded-2xl bg-gradient-pal text-white">
           <p className="text-xs opacity-80">👩‍🏫 Teacher Panel</p>
-          <p className="font-bold text-lg">T. Wad Refae</p>
+          <p className="font-bold">T. Wad Refae</p>
         </div>
 
         <nav className="flex flex-col gap-1">
@@ -76,9 +72,9 @@ const Sidebar = ({ open = true, onClose }) => {
           ))}
         </nav>
 
-        <div className="mt-6 p-4 rounded-2xl bg-gradient-to-br from-accent-100 to-accent-200 border border-accent-300/50">
-          <div className="text-2xl mb-1">🎯</div>
-          <p className="text-xs font-bold text-accent-800">
+        <div className="mt-4 p-3 rounded-2xl bg-gradient-to-br from-accent-100 to-accent-200 border border-accent-300/50">
+          <div className="text-xl mb-1">🎯</div>
+          <p className="text-xs font-bold text-accent-800 leading-snug">
             Tip: Upload HTML lessons to GitHub Pages first
           </p>
         </div>

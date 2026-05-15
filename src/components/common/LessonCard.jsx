@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { FiPlayCircle, FiEdit2, FiTrash2 } from 'react-icons/fi';
+import { FiPlayCircle, FiEdit2, FiTrash2, FiEye } from 'react-icons/fi';
 
 const LessonCard = ({
   lesson,
@@ -14,6 +14,7 @@ const LessonCard = ({
   const isAr = i18n.language === 'ar';
 
   const title = isAr && lesson.titleAr ? lesson.titleAr : lesson.title;
+  const views = lesson.views || 0;
 
   return (
     <motion.div
@@ -24,10 +25,15 @@ const LessonCard = ({
       className="card group cursor-pointer relative overflow-hidden"
       onClick={() => onOpen?.(lesson)}
     >
-      {/* Accent corner */}
       <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-primary-100 to-transparent rounded-bl-full opacity-50" />
 
-      {/* Emoji thumbnail */}
+      {/* Views badge */}
+      {views > 0 && (
+        <div className="absolute top-3 end-3 bg-white/90 dark:bg-slate-700/90 backdrop-blur px-2 py-1 rounded-lg flex items-center gap-1 text-xs font-bold text-slate-700 dark:text-slate-200 shadow-sm">
+          <FiEye size={12} /> {views}
+        </div>
+      )}
+
       <div className="relative">
         <div className="w-20 h-20 rounded-2xl bg-gradient-kid flex items-center justify-center text-5xl mb-4 shadow-kid group-hover:scale-110 transition-transform duration-300">
           {lesson.thumbnail || '📚'}
@@ -56,7 +62,6 @@ const LessonCard = ({
         </p>
       )}
 
-      {/* Metadata */}
       <div className="flex flex-wrap gap-2 text-xs text-slate-500 dark:text-slate-400 mb-4">
         {lesson.grade && (
           <span className="px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded-lg">
@@ -75,7 +80,6 @@ const LessonCard = ({
         )}
       </div>
 
-      {/* Actions */}
       <div className="flex items-center gap-2 mt-auto pt-3 border-t border-slate-100 dark:border-slate-700">
         <button
           onClick={(e) => {

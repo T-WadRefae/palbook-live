@@ -2,69 +2,64 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { FiUpload, FiBookOpen, FiUsers, FiBarChart2, FiPlus } from 'react-icons/fi';
+import { FiUpload, FiBookOpen, FiBarChart2, FiPlus } from 'react-icons/fi';
 import PageTransition from '../../components/common/PageTransition';
 import Loader from '../../components/common/Loader';
 import { useAuth } from '../../contexts/AuthContext';
 import { getLessons } from '../../firebase/lessons';
-import { collection, getDocs, query, where } from 'firebase/firestore';
-import { db } from '../../firebase/config';
 
 const TeacherDashboard = () => {
   const { t } = useTranslation();
   const { profile } = useAuth();
   const [lessons, setLessons] = useState([]);
-  const [studentsCount, setStudentsCount] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    (async () => {
-      try {
-        const [lessonsData, studentsSnap] = await Promise.all([
-          getLessons({}),
-          getDocs(query(collection(db, 'users'), where('role', '==', 'student'))),
-        ]);
-        setLessons(lessonsData);
-        setStudentsCount(studentsSnap.size);
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    })();
-  }, []);
+  (async () => {
+    try {
+      const lessonsData = await getLessons({});
+      setLessons(lessonsData);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  })();
+}, []);
+
 
   if (loading) return <Loader />;
 
   const palbookCount = lessons.filter((l) => l.section === 'palbook').length;
   const generalCount = lessons.filter((l) => l.section === 'general').length;
+  const totalViews = lessons.reduce((sum, l) => sum + (l.views || 0), 0);
 
   const stats = [
-    {
-      icon: <FiBookOpen />,
-      label: 'Total Lessons',
-      value: lessons.length,
-      gradient: 'from-primary-400 to-pink-500',
-    },
-    {
-      icon: <FiUsers />,
-      label: 'Students',
-      value: studentsCount,
-      gradient: 'from-secondary-400 to-emerald-500',
-    },
-    {
-      icon: <FiBarChart2 />,
-      label: 'PalBook Lessons',
-      value: palbookCount,
-      gradient: 'from-accent-400 to-orange-500',
-    },
-    {
-      icon: <FiBarChart2 />,
-      label: 'General Lessons',
-      value: generalCount,
-      gradient: 'from-violet-400 to-purple-500',
-    },
-  ];
+  {
+    icon: <FiBookOpen />,
+    label: 'Total Lessons',
+    value: lessons.length,
+    gradient: 'from-primary-400 to-pink-500',
+  },
+  {
+    icon: <FiBarChart2 />,
+    label: 'Total Views',
+    value: totalViews,
+    gradient: 'from-violet-400 to-purple-500',
+  },
+  {
+    icon: <FiBarChart2 />,
+    label: 'PalBook Lessons',
+    value: palbookCount,
+    gradient: 'from-accent-400 to-orange-500',
+  },
+  {
+    icon: <FiBarChart2 />,
+    label: 'General Lessons',
+    value: generalCount,
+    gradient: 'from-secondary-400 to-emerald-500',
+  },
+];
 
   return (
     <PageTransition>

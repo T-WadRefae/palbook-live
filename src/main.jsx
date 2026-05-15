@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
+import { Analytics } from '@vercel/analytics/react';
 import App from './App.jsx';
 import './styles/index.css';
 import './translations/i18n';
@@ -14,6 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <ThemeProvider>
         <AuthProvider>
           <App />
+          <Analytics />
           <Toaster
             position="top-center"
             toastOptions={{

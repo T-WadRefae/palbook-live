@@ -9,6 +9,7 @@ import {
   query,
   where,
   serverTimestamp,
+  increment,
 } from 'firebase/firestore';
 import { db } from './config';
 
@@ -17,6 +18,8 @@ const LESSONS_COLLECTION = 'lessons';
 export const addLesson = async (lessonData) => {
   const docRef = await addDoc(collection(db, LESSONS_COLLECTION), {
     ...lessonData,
+    views: 0,
+    lastViewedAt: null,
     createdAt: serverTimestamp(),
     updatedAt: serverTimestamp(),
   });
@@ -37,7 +40,6 @@ export const getLessons = async (filters = {}) => {
   const snapshot = await getDocs(q);
   const lessons = snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
 
-  // Sort manually by createdAt (most recent first)
   lessons.sort((a, b) => {
     const aTime = a.createdAt?.seconds || 0;
     const bTime = b.createdAt?.seconds || 0;
@@ -61,6 +63,19 @@ export const updateLesson = async (id, updates) => {
 
 export const deleteLesson = async (id) => {
   await deleteDoc(doc(db, LESSONS_COLLECTION, id));
+};
+
+// Track lesson views (called when student opens a lesson)
+export const trackLessonView = async (lessonId) => {
+  try {
+    await updateDoc(doc(db, LESSONS_COLLECTION, lessonId), {
+      views: increment(1),
+      lastViewedAt: serverTimestamp(),
+    });
+  } catch (err) {
+    // Silently fail - don't disrupt user experience
+    console.error('Failed to track view:', err);
+  }
 };
 
 export const updateProgress = async (uid, lessonId, completed = true) => {
