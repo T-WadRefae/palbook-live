@@ -34,7 +34,6 @@ import ManageLessonsPage from './pages/teacher/ManageLessonsPage';
 import AnalyticsPage from './pages/teacher/AnalyticsPage';
 
 import { ROLES } from './utils/constants';
-import AnalyticsPage from './pages/teacher/AnalyticsPage';
 
 function App() {
   const location = useLocation();
