@@ -201,15 +201,6 @@ palbook-live/
 * Bilingual lesson titles (English + Arabic)
 * Iframe-based safe lesson rendering
 
-### Games (4 mini-games with sound effects)
-
-1. **Multiple Choice** — pick the correct answer from 4 options
-2. **Matching** — match English words with Arabic meanings
-3. **Sentence Builder** — drag words to form correct sentences
-4. **Pronunciation Challenge** — listen (via SpeechSynthesis) and identify the right spelling
-
-All games feature: scoring, success animations, confetti, correct/wrong sound effects, points saved to the student's profile.
-
 ### Teacher Dashboard 👩‍🏫 (T. Wad Refae)
 
 * Stats overview (lessons, students, sections)
