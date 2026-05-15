@@ -23,7 +23,7 @@ const Footer = () => {
               {t('app.tagline')}
             </p>
             <p className="text-xs mt-3 text-accent-400 font-bold">
-              👩‍🏫 {t('app.teacher')}
+              
             </p>
            
           </div>
@@ -46,7 +46,7 @@ const Footer = () => {
         </div>
 
         <div className="pt-6 border-t border-slate-700 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-slate-400">
-          <p>{t('app.footer')}</p>
+        
           <p className="flex items-center gap-1">
             Made with <FaHeart className="text-palestine-red animate-pulse" /> in Palestine
           </p>
