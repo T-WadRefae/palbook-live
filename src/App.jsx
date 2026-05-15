@@ -22,8 +22,6 @@ import UnauthorizedPage from './pages/public/UnauthorizedPage';
 import LoginPage from './pages/auth/LoginPage';
 
 // Student pages (games only - student dashboard removed for now)
-import SentenceBuilderGame from './pages/student/SentenceBuilderGame';
-import PronunciationGame from './pages/student/PronunciationGame';
 
 // Teacher pages
 import TeacherDashboard from './pages/teacher/TeacherDashboard';
@@ -48,10 +46,9 @@ function App() {
           <Route path="/unauthorized" element={<UnauthorizedPage />} />
 
           {/* Games - public access */}
-                    
-          <Route path="/games/sentence-builder" element={<SentenceBuilderGame />} />
-          <Route path="/games/pronunciation" element={<PronunciationGame />} />
-        </Route>
+             
+             
+                </Route>
 
         {/* Secret login - only at this hidden URL */}
         <Route element={<AuthLayout />}>

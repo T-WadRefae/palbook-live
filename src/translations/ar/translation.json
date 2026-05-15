@@ -109,15 +109,7 @@
     "timeLeft": "الوقت المتبقي",
     "youWon": "لقد فزت!",
     "totalScore": "النتيجة الإجمالية",
-    "multipleChoice": "اختيار من متعدد",
-    "multipleChoiceDesc": "اختر الإجابة الصحيحة من أربعة خيارات",
-    "matching": "لعبة التوصيل",
-    "matchingDesc": "وصّل الكلمات مع معانيها",
-    "sentenceBuilder": "تكوين الجملة",
-    "sentenceBuilderDesc": "رتّب الكلمات لتكوين جمل صحيحة",
-    "pronunciation": "تحدي النطق",
-    "pronunciationDesc": "استمع واختر الكلمة الصحيحة",
-    "question": "سؤال",
+        "question": "سؤال",
     "of": "من"
   },
   "dashboard": {
