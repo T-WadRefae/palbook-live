@@ -289,12 +289,13 @@ const UploadLessonPage = () => {
           </div>
 
           {form.fileUrl && isValidUrl(form.fileUrl) && (
-            
+            <a
               href={form.fileUrl}
               target="_blank"
               rel="noreferrer"
+              >
               className="mt-2 inline-flex items-center gap-2 text-sm text-secondary-600 hover:underline font-semibold"
-            >
+            
               <FiCheck /> Preview in new tab <FiExternalLink size={14} />
             </a>
           )}
