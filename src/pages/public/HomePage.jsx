@@ -69,7 +69,7 @@ const HomePage = () => {
                 🇵🇸 by T. Wad Refae
               </span>
               <h1 className="text-4xl md:text-6xl font-display font-extrabold mt-4 leading-tight text-balance">
-                {t('home.welcome')} <span className="gradient-text">📚✨</span>
+                {t('home.welcome')} <span className="gradient-text"> </span>
               </h1>
               <p className="text-lg text-slate-600 dark:text-slate-300 mt-4 leading-relaxed">
                 {t('home.subtitle')}
