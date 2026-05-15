@@ -332,7 +332,7 @@ A lesson document in the `lessons` collection looks like:
   "filePath": "lessons/palbook/grade-7/unit-16/lesson-3/...html",
   "fileName": "unit16-period3.html",
   "teacher": "T. Wad Refae",
-  "school": "Surda Basic Mixed School",
+  "school": "",
   "createdAt": "2026-05-01T...",
   "updatedAt": "2026-05-01T..."
 }

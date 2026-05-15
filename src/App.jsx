@@ -20,10 +20,8 @@ import UnauthorizedPage from './pages/public/UnauthorizedPage';
 
 // Auth pages
 import LoginPage from './pages/auth/LoginPage';
-import RegisterPage from './pages/auth/RegisterPage';
 
-// Student pages
-import StudentDashboard from './pages/student/StudentDashboard';
+// Student pages (games only - student dashboard removed for now)
 import MultipleChoiceGame from './pages/student/MultipleChoiceGame';
 import MatchingGame from './pages/student/MatchingGame';
 import SentenceBuilderGame from './pages/student/SentenceBuilderGame';
@@ -42,7 +40,7 @@ function App() {
   return (
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
-        {/* Public routes with main layout */}
+        {/* Public pages */}
         <Route element={<MainLayout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/general" element={<GeneralPage />} />
@@ -50,46 +48,26 @@ function App() {
           <Route path="/games" element={<GamesPage />} />
           <Route path="/unauthorized" element={<UnauthorizedPage />} />
 
-          {/* Game routes - accessible to all (logged-in students get points saved) */}
+          {/* Games - public access */}
           <Route path="/games/multiple-choice" element={<MultipleChoiceGame />} />
           <Route path="/games/matching" element={<MatchingGame />} />
           <Route path="/games/sentence-builder" element={<SentenceBuilderGame />} />
           <Route path="/games/pronunciation" element={<PronunciationGame />} />
         </Route>
 
-        {/* Auth routes - only for unauthenticated users */}
+        {/* Secret login - only at this hidden URL */}
         <Route element={<AuthLayout />}>
           <Route
-            path="/login"
+            path="/admin-wad-2026"
             element={
               <PublicRoute>
                 <LoginPage />
               </PublicRoute>
             }
           />
-          <Route
-            path="/register"
-            element={
-              <PublicRoute>
-                <RegisterPage />
-              </PublicRoute>
-            }
-          />
         </Route>
 
-        {/* Student dashboard - protected */}
-        <Route element={<DashboardLayout />}>
-          <Route
-            path="/student"
-            element={
-              <ProtectedRoute role={ROLES.STUDENT}>
-                <StudentDashboard />
-              </ProtectedRoute>
-            }
-          />
-        </Route>
-
-        {/* Teacher dashboard - protected, teacher-only */}
+        {/* Teacher dashboard - protected, teacher only */}
         <Route element={<DashboardLayout />}>
           <Route
             path="/teacher"

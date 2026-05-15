@@ -76,7 +76,7 @@ const HomePage = () => {
 
               <div className="flex flex-wrap gap-3 mt-8">
                 {!isAuthenticated && (
-                  <Link to="/register" className="btn-primary !text-base !px-7">
+                  <Link to="/palbook" className="btn-primary !text-base !px-7">
                     {t('home.startLearning')} <FiArrowRight className="rtl-flip" />
                   </Link>
                 )}
@@ -214,7 +214,7 @@ const HomePage = () => {
               Join hundreds of Palestinian students mastering English the fun way!
             </p>
             <Link
-              to={isAuthenticated ? '/palbook' : '/register'}
+              to="/palbook"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-white text-primary-600 font-bold text-lg shadow-2xl hover:scale-105 transition-transform"
             >
               {isAuthenticated ? t('home.exploreLessons') : t('home.startLearning')}
