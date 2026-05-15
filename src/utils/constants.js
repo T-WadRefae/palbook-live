@@ -19,8 +19,8 @@ export const GENERAL_SUBSECTIONS = {
   READING: 'reading',
 };
 
-// Grades 1 → 9
-export const GRADES = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+// Grades 5 → 9 (Middle school)
+export const GRADES = [5, 6, 7, 8, 9];
 
 // Units 1 → 18
 export const UNITS = Array.from({ length: 18 }, (_, i) => i + 1);

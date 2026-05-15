@@ -18,7 +18,7 @@ import {
 const initialForm = {
   section: SECTIONS.PALBOOK,
   subsection: GENERAL_SUBSECTIONS.GRAMMAR,
-  grade: 7,
+  grade: 5,
   unit: 1,
   lesson: 1,
   title: '',
@@ -52,7 +52,7 @@ const UploadLessonPage = () => {
     e.preventDefault();
 
     if (!form.fileUrl) {
-      toast.error('Please enter the lesson URL');
+      toast.error('Please enter the URL');
       return;
     }
 
@@ -62,7 +62,7 @@ const UploadLessonPage = () => {
     }
 
     if (!form.title) {
-      toast.error('Please enter the lesson title');
+      toast.error('Please enter the title');
       return;
     }
 
@@ -82,17 +82,17 @@ const UploadLessonPage = () => {
         lessonData.grade = form.grade;
         lessonData.unit = form.unit;
         lessonData.lesson = form.lesson;
-      } else {
+      } else if (form.section === SECTIONS.GENERAL) {
         lessonData.subsection = form.subsection;
       }
 
       await addLesson(lessonData);
-      toast.success('Lesson added successfully!');
+      toast.success('Added successfully!');
       setForm(initialForm);
       navigate('/teacher/lessons');
     } catch (err) {
       console.error(err);
-      toast.error(err.message || 'Failed to save lesson');
+      toast.error(err.message || 'Failed to save');
     } finally {
       setSaving(false);
     }
@@ -102,7 +102,7 @@ const UploadLessonPage = () => {
     <PageTransition>
       <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
         <div className="flex items-center gap-3 mb-6">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-500 to-pink-600 text-white flex items-center justify-center shadow-kid">
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary-400 to-pink-400 text-white flex items-center justify-center shadow-kid">
             <FiLink size={28} />
           </div>
           <div>
@@ -117,10 +117,11 @@ const UploadLessonPage = () => {
       <form onSubmit={handleSubmit} className="card space-y-5">
         <div>
           <label className="label">Section</label>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-3 gap-3">
             {[
-              { v: SECTIONS.PALBOOK, label: 'PalBook Live', emoji: '🇵🇸' },
+              { v: SECTIONS.PALBOOK, label: 'PalBook', emoji: '🇵🇸' },
               { v: SECTIONS.GENERAL, label: 'General', emoji: '✨' },
+              { v: SECTIONS.GAMES, label: 'Games', emoji: '🎮' },
             ].map((s) => (
               <button
                 key={s.v}
@@ -171,10 +172,11 @@ const UploadLessonPage = () => {
         {form.section === SECTIONS.GENERAL && (
           <div>
             <label className="label">Sub-section</label>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-3 gap-3">
               {[
                 { v: GENERAL_SUBSECTIONS.GRAMMAR, label: 'Grammar', emoji: '📝' },
                 { v: GENERAL_SUBSECTIONS.PRONUNCIATION, label: 'Pronunciation', emoji: '🗣️' },
+                { v: GENERAL_SUBSECTIONS.READING, label: 'Reading', emoji: '📖' },
               ].map((s) => (
                 <button
                   key={s.v}
@@ -186,7 +188,7 @@ const UploadLessonPage = () => {
                       : 'border-slate-200'
                   }`}
                 >
-                  <span className="text-2xl me-2">{s.emoji}</span>
+                  <div className="text-2xl mb-1">{s.emoji}</div>
                   {s.label}
                 </button>
               ))}
@@ -194,26 +196,35 @@ const UploadLessonPage = () => {
           </div>
         )}
 
+        {form.section === SECTIONS.GAMES && (
+          <div className="p-4 rounded-2xl bg-gradient-to-br from-accent-50 to-accent-100 border-2 border-accent-200">
+            <p className="text-sm font-bold text-accent-800 mb-1">Adding a Game</p>
+            <p className="text-xs text-slate-700">
+              Games appear in the Games section. Upload your interactive HTML game to GitHub Pages first.
+            </p>
+          </div>
+        )}
+
         <div className="grid md:grid-cols-2 gap-4">
           <div>
-            <label className="label">Lesson Title (EN)</label>
+            <label className="label">Title (EN)</label>
             <input
               type="text"
               value={form.title}
               onChange={update('title')}
               className="input"
-              placeholder="Communication and Technology"
+              placeholder="Title in English"
               required
             />
           </div>
           <div>
-            <label className="label">Lesson Title (AR)</label>
+            <label className="label">Title (AR)</label>
             <input
               type="text"
               value={form.titleAr}
               onChange={update('titleAr')}
               className="input"
-              placeholder="عنوان الدرس بالعربي"
+              placeholder="العنوان بالعربي"
               dir="rtl"
             />
           </div>
@@ -226,7 +237,7 @@ const UploadLessonPage = () => {
             onChange={update('description')}
             rows={3}
             className="input"
-            placeholder="Brief description for students..."
+            placeholder="Brief description..."
           />
         </div>
 
@@ -253,38 +264,38 @@ const UploadLessonPage = () => {
         <div>
           <label className="label flex items-center gap-2">
             <FiLink className="text-primary-500" />
-            Lesson URL (from GitHub Pages)
+            URL from GitHub Pages
           </label>
           <input
             type="url"
             value={form.fileUrl}
             onChange={update('fileUrl')}
             className="input font-mono text-sm"
-            placeholder="https://t-wadrefae.github.io/palbook-lessons/grade7/unit17p3.html"
+            placeholder="https://t-wadrefae.github.io/palbook-lessons/..."
             required
             dir="ltr"
           />
 
           <div className="mt-3 p-4 rounded-2xl bg-blue-50 border-2 border-blue-200">
             <p className="text-sm font-bold text-blue-800 mb-2">
-              💡 How to get the URL:
+              How to get the URL:
             </p>
             <ol className="text-xs text-slate-700 space-y-1 list-decimal list-inside">
-              <li>Upload your HTML lesson to palbook-lessons repo on GitHub</li>
-              <li>Wait 2-3 minutes for GitHub Pages to publish</li>
+              <li>Upload your HTML file to palbook-lessons repo</li>
+              <li>Wait 2-3 minutes for GitHub Pages</li>
               <li>Copy the GitHub Pages URL</li>
               <li>Paste it above</li>
             </ol>
           </div>
 
           {form.fileUrl && isValidUrl(form.fileUrl) && (
-             <a
+            
               href={form.fileUrl}
               target="_blank"
               rel="noreferrer"
               className="mt-2 inline-flex items-center gap-2 text-sm text-secondary-600 hover:underline font-semibold"
             >
-              <FiCheck /> Preview lesson in new tab <FiExternalLink size={14} />
+              <FiCheck /> Preview in new tab <FiExternalLink size={14} />
             </a>
           )}
         </div>
@@ -305,7 +316,7 @@ const UploadLessonPage = () => {
               </>
             ) : (
               <>
-                <FiCheck /> Save Lesson
+                <FiCheck /> Save
               </>
             )}
           </button>

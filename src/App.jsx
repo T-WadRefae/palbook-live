@@ -18,11 +18,8 @@ import GamesPage from './pages/public/GamesPage';
 import NotFoundPage from './pages/public/NotFoundPage';
 import UnauthorizedPage from './pages/public/UnauthorizedPage';
 
-
-// Auth pages
+// Auth
 import LoginPage from './pages/auth/LoginPage';
-
-// Student pages (games only - student dashboard removed for now)
 
 // Teacher pages
 import TeacherDashboard from './pages/teacher/TeacherDashboard';
@@ -45,13 +42,9 @@ function App() {
           <Route path="/palbook" element={<PalBookPage />} />
           <Route path="/games" element={<GamesPage />} />
           <Route path="/unauthorized" element={<UnauthorizedPage />} />
+        </Route>
 
-          {/* Games - public access */}
-             
-             
-                </Route>
-
-        {/* Secret login - only at this hidden URL */}
+        {/* Secret login */}
         <Route element={<AuthLayout />}>
           <Route
             path="/admin-wad-2026"
@@ -63,7 +56,7 @@ function App() {
           />
         </Route>
 
-        {/* Teacher dashboard - protected, teacher only */}
+        {/* Teacher dashboard - protected */}
         <Route element={<DashboardLayout />}>
           <Route
             path="/teacher"
@@ -99,7 +92,6 @@ function App() {
           />
         </Route>
 
-        {/* Catch-all 404 */}
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </AnimatePresence>

@@ -1,12 +1,44 @@
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { FiSearch } from 'react-icons/fi';
 import PageTransition from '../../components/common/PageTransition';
+import LessonCard from '../../components/common/LessonCard';
+import LessonViewer from '../../components/common/LessonViewer';
+import Loader from '../../components/common/Loader';
+import EmptyState from '../../components/common/EmptyState';
+import { getLessons } from '../../firebase/lessons';
 
 const GamesPage = () => {
   const { t } = useTranslation();
+  const [games, setGames] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState('');
+  const [activeGame, setActiveGame] = useState(null);
 
- 
+  useEffect(() => {
+    (async () => {
+      try {
+        const data = await getLessons({ section: 'games' });
+        setGames(data);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    })();
+  }, []);
+
+  const filtered = games.filter((g) => {
+    if (!search) return true;
+    const term = search.toLowerCase();
+    return (
+      g.title?.toLowerCase().includes(term) ||
+      g.titleAr?.includes(search) ||
+      g.description?.toLowerCase().includes(term)
+    );
+  });
+
   return (
     <PageTransition className="max-w-7xl mx-auto px-4 py-10">
       <motion.div
@@ -23,36 +55,44 @@ const GamesPage = () => {
         </p>
       </motion.div>
 
-      <div className="grid sm:grid-cols-2 gap-6">
-        {games.map((g, i) => (
-          <motion.div
-            key={g.to}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1 }}
-            whileHover={{ y: -8, scale: 1.02 }}
-          >
-            <Link
-              to={g.to}
-              className={`block relative overflow-hidden rounded-3xl bg-gradient-to-br ${g.gradient} text-white p-8 shadow-kid h-full`}
-            >
-              <div className="absolute -top-10 -end-10 w-40 h-40 bg-white/10 rounded-full" />
-              <div className="absolute -bottom-10 -start-10 w-32 h-32 bg-white/10 rounded-full" />
+      {/* Search */}
+      {(games.length > 0 || search) && (
+        <div className="relative mb-8 max-w-xl mx-auto">
+          <FiSearch className="absolute top-1/2 -translate-y-1/2 start-4 text-slate-400" />
+          <input
+            type="text"
+            placeholder={t('common.search')}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="input ps-12"
+          />
+        </div>
+      )}
 
-              <div className="relative">
-                <div className="text-7xl mb-4 transform group-hover:scale-110 transition-transform">
-                  {g.emoji}
-                </div>
-                <h3 className="text-2xl font-bold mb-2">{g.title}</h3>
-                <p className="text-white/90 mb-4">{g.desc}</p>
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-white/20 backdrop-blur font-bold text-sm">
-                  {t('games.play')} →
-                </div>
-              </div>
-            </Link>
-          </motion.div>
-        ))}
-      </div>
+      {loading ? (
+        <Loader />
+      ) : filtered.length === 0 ? (
+        <EmptyState
+          emoji="🎮"
+          title={search ? t('common.noResults') : t('games.noGames')}
+          message={search ? '' : 'The teacher will add games soon. Stay tuned!'}
+        />
+      ) : (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filtered.map((g, i) => (
+            <LessonCard
+              key={g.id}
+              lesson={g}
+              index={i}
+              onOpen={setActiveGame}
+            />
+          ))}
+        </div>
+      )}
+
+      {activeGame && (
+        <LessonViewer lesson={activeGame} onClose={() => setActiveGame(null)} />
+      )}
     </PageTransition>
   );
 };
