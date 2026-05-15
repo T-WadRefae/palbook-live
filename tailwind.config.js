@@ -4,14 +4,13 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
-      colors: {// Palestinian flag-inspired palette (softened)
+      colors: {
         palestine: {
           red: '#D4756B',
           green: '#7BAA8A',
           black: '#3A3A3A',
           white: '#FFFFFF',
         },
-        // Soft pastel palette
         primary: {
           50: '#FDF6F4',
           100: '#FAE9E5',
@@ -55,10 +54,11 @@ export default {
         display: ['Fredoka', 'Poppins', 'sans-serif'],
       },
       backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-pal': 'linear-gradient(135deg, #D4756B 0%, #7BAA8A 50%, #3A3A3A 100%)',
         'gradient-kid': 'linear-gradient(135deg, #DD928A 0%, #F2CB75 50%, #7BAA8A 100%)',
         'gradient-sky': 'linear-gradient(135deg, #93B5DA 0%, #C9B8DA 100%)',
-           },
+      },
       animation: {
         'bounce-slow': 'bounce 3s infinite',
         'wiggle': 'wiggle 1s ease-in-out infinite',
@@ -91,11 +91,9 @@ export default {
         },
       },
       boxShadow: {
-        boxShadow: {
         'kid': '0 10px 30px -5px rgba(212, 117, 107, 0.25)',
         'glow': '0 0 20px rgba(242, 203, 117, 0.35)',
         'soft': '0 4px 20px rgba(0, 0, 0, 0.06)',
-      },
       },
     },
   },
