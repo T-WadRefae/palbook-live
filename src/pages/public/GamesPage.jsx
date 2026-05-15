@@ -6,37 +6,7 @@ import PageTransition from '../../components/common/PageTransition';
 const GamesPage = () => {
   const { t } = useTranslation();
 
-  const games = [
-    {
-      to: '/games/multiple-choice',
-      emoji: '🎯',
-      title: t('games.multipleChoice'),
-      desc: t('games.multipleChoiceDesc'),
-      gradient: 'from-primary-500 to-pink-600',
-    },
-    {
-      to: '/games/matching',
-      emoji: '🧩',
-      title: t('games.matching'),
-      desc: t('games.matchingDesc'),
-      gradient: 'from-secondary-500 to-emerald-600',
-    },
-    {
-      to: '/games/sentence-builder',
-      emoji: '📝',
-      title: t('games.sentenceBuilder'),
-      desc: t('games.sentenceBuilderDesc'),
-      gradient: 'from-accent-500 to-orange-600',
-    },
-    {
-      to: '/games/pronunciation',
-      emoji: '🗣️',
-      title: t('games.pronunciation'),
-      desc: t('games.pronunciationDesc'),
-      gradient: 'from-violet-500 to-purple-600',
-    },
-  ];
-
+ 
   return (
     <PageTransition className="max-w-7xl mx-auto px-4 py-10">
       <motion.div

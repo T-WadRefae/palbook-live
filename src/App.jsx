@@ -22,8 +22,6 @@ import UnauthorizedPage from './pages/public/UnauthorizedPage';
 import LoginPage from './pages/auth/LoginPage';
 
 // Student pages (games only - student dashboard removed for now)
-import MultipleChoiceGame from './pages/student/MultipleChoiceGame';
-import MatchingGame from './pages/student/MatchingGame';
 import SentenceBuilderGame from './pages/student/SentenceBuilderGame';
 import PronunciationGame from './pages/student/PronunciationGame';
 
@@ -50,8 +48,7 @@ function App() {
           <Route path="/unauthorized" element={<UnauthorizedPage />} />
 
           {/* Games - public access */}
-          <Route path="/games/multiple-choice" element={<MultipleChoiceGame />} />
-          <Route path="/games/matching" element={<MatchingGame />} />
+                    
           <Route path="/games/sentence-builder" element={<SentenceBuilderGame />} />
           <Route path="/games/pronunciation" element={<PronunciationGame />} />
         </Route>
