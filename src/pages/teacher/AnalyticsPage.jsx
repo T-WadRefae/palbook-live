@@ -215,7 +215,7 @@ const AnalyticsPage = () => {
                 <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-gradient-to-r from-secondary-400 to-secondary-500"
-                    style={{ width: totlViews > 0 ? '${(generalViews / totalViews) * 100}% ': '0%' }}
+                    style={{ width: totalViews > 0 ? '${(generalViews / totalViews) * 100}% ': '0%' }}
                   />
                 </div>
               </div>
