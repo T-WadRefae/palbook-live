@@ -35,27 +35,25 @@ const GeneralPage = () => {
     setSearch('');
   }, [subsection]);
 
+  // Smaller squares with a distinct purple/violet palette
   const subsectionCards = [
     {
       key: GENERAL_SUBSECTIONS.GRAMMAR,
       emoji: '📝',
       title: t('general.grammar'),
-      desc: t('general.grammarDesc'),
-      gradient: 'from-pastel-coral to-pastel-pink',
+      gradient: 'from-violet-400 to-purple-500',
     },
     {
       key: GENERAL_SUBSECTIONS.PRONUNCIATION,
       emoji: '🗣️',
       title: t('general.pronunciation'),
-      desc: t('general.pronunciationDesc'),
-      gradient: 'from-pastel-mint to-pastel-green',
+      gradient: 'from-fuchsia-400 to-pink-500',
     },
     {
       key: GENERAL_SUBSECTIONS.READING,
       emoji: '📖',
       title: t('general.reading'),
-      desc: t('general.readingDesc'),
-      gradient: 'from-pastel-blue to-pastel-skyblue',
+      gradient: 'from-indigo-400 to-blue-500',
     },
   ];
 
@@ -84,10 +82,10 @@ const GeneralPage = () => {
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="mb-10 text-center"
+        className="mb-8 text-center"
       >
-        <div className="text-6xl mb-3 animate-float">📘</div>
-        <h1 className="text-4xl font-display font-extrabold gradient-text">
+        <div className="text-5xl mb-3 animate-float">📘</div>
+        <h1 className="text-3xl font-display font-extrabold gradient-text">
           {t('general.title')}
         </h1>
         <p className="text-slate-600 dark:text-slate-300 mt-2">
@@ -104,7 +102,7 @@ const GeneralPage = () => {
             📘 {t('general.title')}
           </button>
           <span className="text-slate-400">/</span>
-          <span className="px-3 py-1.5 rounded-lg bg-primary-100 text-primary-700 font-semibold">
+          <span className="px-3 py-1.5 rounded-lg bg-violet-100 text-violet-700 font-semibold">
             {currentCard?.emoji} {currentCard?.title}
           </span>
         </div>
@@ -121,39 +119,36 @@ const GeneralPage = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center">
+              <h2 className="text-xl font-bold text-slate-800 dark:text-white mb-5 text-center">
                 {t('general.chooseSection')}
               </h2>
 
-              <div className="grid md:grid-cols-3 gap-6">
+              {/* Smaller square buttons - like grade buttons */}
+              <div className="grid grid-cols-3 gap-3 max-w-2xl mx-auto">
                 {subsectionCards.map((card, i) => {
                   const count = countForSubsection(card.key);
                   return (
                     <motion.button
                       key={card.key}
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: i * 0.1 }}
-                      whileHover={{ y: -10, scale: 1.03 }}
-                      whileTap={{ scale: 0.98 }}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: i * 0.08 }}
+                      whileHover={{ y: -6, scale: 1.05 }}
+                      whileTap={{ scale: 0.97 }}
                       onClick={() => setSubsection(card.key)}
-                      className={`relative overflow-hidden rounded-3xl bg-gradient-to-br ${card.gradient} p-8 text-start shadow-kid group`}
+                      className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${card.gradient} p-5 shadow-kid group aspect-square flex flex-col items-center justify-center`}
                     >
-                      <div className="absolute -top-10 -end-10 w-40 h-40 bg-white/20 rounded-full" />
-                      <div className="absolute -bottom-10 -start-10 w-32 h-32 bg-white/10 rounded-full" />
-
-                      <div className="relative">
-                        <div className="text-6xl mb-4 group-hover:scale-110 transition-transform">
+                      <div className="absolute -top-6 -end-6 w-20 h-20 bg-white/20 rounded-full" />
+                      <div className="relative text-center">
+                        <div className="text-4xl mb-2 group-hover:scale-110 transition-transform">
                           {card.emoji}
                         </div>
-                        <h3 className="text-2xl font-bold text-slate-800 mb-2">
+                        <h3 className="text-base font-bold text-white mb-1">
                           {card.title}
                         </h3>
-                        <p className="text-sm text-slate-700 mb-4">{card.desc}</p>
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-white/40 backdrop-blur font-bold text-sm text-slate-800">
+                        <span className="text-xs text-white/90 font-semibold">
                           {count} {count === 1 ? t('general.lesson') : t('general.lessons')}
-                          <span>→</span>
-                        </div>
+                        </span>
                       </div>
                     </motion.button>
                   );
@@ -174,12 +169,11 @@ const GeneralPage = () => {
               >
                 <div className="absolute -top-10 -end-10 w-40 h-40 bg-white/20 rounded-full" />
                 <div className="relative flex items-center gap-4">
-                  <div className="text-6xl">{currentCard.emoji}</div>
+                  <div className="text-5xl">{currentCard.emoji}</div>
                   <div>
-                    <h2 className="text-3xl font-extrabold text-slate-800">
+                    <h2 className="text-2xl font-extrabold text-white">
                       {currentCard.title}
                     </h2>
-                    <p className="text-slate-700 text-sm mt-1">{currentCard.desc}</p>
                   </div>
                 </div>
               </div>

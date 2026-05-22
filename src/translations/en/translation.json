@@ -21,25 +21,22 @@
     "theme": "Theme"
   },
   "home": {
-    "welcome": "Welcome to PalBook Live!",
-    "subtitle": "Learn English the fun way with Teacher Wad Refae",
-    "startLearning": "Start Learning",
-    "exploreLessons": "Explore Lessons",
-    "watchVideo": "Watch Intro",
-    "feature1Title": "Interactive Lessons",
-    "feature1Desc": "Engaging digital lessons from English for Palestine textbooks",
+    "welcome": "Welcome to PalBook Live",
+    "subtitle": "Learn English in a fun way with T. Wad Refae",
+    "exploreSections": "Explore Our Sections",
+    "whyDesc": "Crafted with love by T. Wad Refae for Palestinian students learning English",
+    "palbookDesc": "Lessons aligned with the curriculum",
+    "generalDesc": "Grammar, pronunciation, and reading",
+    "gamesDesc": "Fun educational games",
+    "feature1Title": "Rich Lessons",
+    "feature1Desc": "Interactive lessons for every grade",
     "feature2Title": "Fun Games",
-    "feature2Desc": "Practice English through colorful educational games",
-    "feature3Title": "Bilingual Support",
-    "feature3Desc": "Arabic explanations alongside English content",
-    "feature4Title": "Track Progress",
-    "feature4Desc": "Earn points and unlock achievements as you learn",
-    "stats": {
-      "students": "Happy Students",
-      "lessons": "Interactive Lessons",
-      "games": "Fun Games",
-      "languages": "Languages"
-    }
+    "feature2Desc": "Learn while playing",
+    "feature3Title": "Bilingual",
+    "feature3Desc": "Arabic and English support",
+    "feature4Title": "Palestinian Identity",
+    "feature4Desc": "Content honoring our heritage"
+    
   },
   "auth": {
     "loginTitle": "Welcome back!",
@@ -164,6 +161,7 @@
     "previous": "Previous",
     "viewAll": "View All",
     "filter": "Filter",
+    "explore": "Explore",
     "all": "All"
   },
   "errors": {
