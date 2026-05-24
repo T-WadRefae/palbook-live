@@ -35,25 +35,22 @@ const GeneralPage = () => {
     setSearch('');
   }, [subsection]);
 
-  // Subsections with distinct violet/purple palette
+  // Same square style as grade buttons, but distinct violet/purple palette
   const subsectionCards = [
     {
       key: GENERAL_SUBSECTIONS.GRAMMAR,
       emoji: '📝',
       title: t('general.grammar'),
-      gradient: 'from-violet-400 to-purple-500',
     },
     {
       key: GENERAL_SUBSECTIONS.PRONUNCIATION,
       emoji: '🔤',
       title: t('general.pronunciation'),
-      gradient: 'from-fuchsia-400 to-pink-500',
     },
     {
       key: GENERAL_SUBSECTIONS.READING,
       emoji: '📖',
       title: t('general.reading'),
-      gradient: 'from-indigo-400 to-blue-500',
     },
   ];
 
@@ -97,7 +94,7 @@ const GeneralPage = () => {
         <div className="flex items-center gap-2 mb-6 text-sm">
           <button
             onClick={() => setSubsection(null)}
-            className="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+            className="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700"
           >
             📘 {t('general.title')}
           </button>
@@ -119,12 +116,10 @@ const GeneralPage = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <h2 className="text-xl font-bold text-slate-800 dark:text-white mb-5 text-center">
+              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center">
                 {t('general.chooseSection')}
               </h2>
-
-              {/* Grid matching grade-button layout */}
-              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3 max-w-3xl mx-auto">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
                 {subsectionCards.map((card, i) => {
                   const count = countForSubsection(card.key);
                   return (
@@ -132,21 +127,20 @@ const GeneralPage = () => {
                       key={card.key}
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: i * 0.06 }}
-                      whileHover={{ y: -5, scale: 1.05 }}
-                      whileTap={{ scale: 0.97 }}
+                      transition={{ delay: i * 0.05 }}
+                      whileHover={{ y: -8, scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
                       onClick={() => setSubsection(card.key)}
-                      className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${card.gradient} p-4 shadow-kid group aspect-square flex flex-col items-center justify-center`}
+                      className="aspect-square rounded-3xl bg-gradient-to-br from-violet-500 via-fuchsia-500 to-indigo-500 text-white shadow-kid flex flex-col items-center justify-center font-extrabold relative overflow-hidden"
                     >
-                      <div className="text-3xl mb-1.5 group-hover:scale-110 transition-transform">
-                        {card.emoji}
-                      </div>
-                      <h3 className="text-sm font-bold text-white text-center leading-tight">
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+                      <div className="text-4xl mb-1 relative">{card.emoji}</div>
+                      <div className="text-base relative text-center px-2 leading-tight">
                         {card.title}
-                      </h3>
-                      <span className="text-[10px] text-white/90 font-semibold mt-1">
+                      </div>
+                      <div className="text-xs mt-1 px-2 py-0.5 rounded-full bg-white/20 backdrop-blur relative">
                         {count} {count === 1 ? t('general.lesson') : t('general.lessons')}
-                      </span>
+                      </div>
                     </motion.button>
                   );
                 })}
@@ -161,9 +155,7 @@ const GeneralPage = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
             >
-              <div
-                className={`relative overflow-hidden rounded-3xl bg-gradient-to-br ${currentCard.gradient} p-6 md:p-8 mb-8 shadow-kid`}
-              >
+              <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-violet-500 via-fuchsia-500 to-indigo-500 p-6 md:p-8 mb-8 shadow-kid">
                 <div className="absolute -top-10 -end-10 w-40 h-40 bg-white/20 rounded-full" />
                 <div className="relative flex items-center gap-4">
                   <div className="text-5xl">{currentCard.emoji}</div>
