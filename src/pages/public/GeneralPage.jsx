@@ -35,7 +35,7 @@ const GeneralPage = () => {
     setSearch('');
   }, [subsection]);
 
-  // Smaller squares with a distinct purple/violet palette
+  // Subsections with distinct violet/purple palette
   const subsectionCards = [
     {
       key: GENERAL_SUBSECTIONS.GRAMMAR,
@@ -45,7 +45,7 @@ const GeneralPage = () => {
     },
     {
       key: GENERAL_SUBSECTIONS.PRONUNCIATION,
-      emoji: '🗣️',
+      emoji: '🔤',
       title: t('general.pronunciation'),
       gradient: 'from-fuchsia-400 to-pink-500',
     },
@@ -123,8 +123,8 @@ const GeneralPage = () => {
                 {t('general.chooseSection')}
               </h2>
 
-              {/* Smaller square buttons - like grade buttons */}
-              <div className="grid grid-cols-3 gap-3 max-w-2xl mx-auto">
+              {/* Grid matching grade-button layout */}
+              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3 max-w-3xl mx-auto">
                 {subsectionCards.map((card, i) => {
                   const count = countForSubsection(card.key);
                   return (
@@ -132,24 +132,21 @@ const GeneralPage = () => {
                       key={card.key}
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: i * 0.08 }}
-                      whileHover={{ y: -6, scale: 1.05 }}
+                      transition={{ delay: i * 0.06 }}
+                      whileHover={{ y: -5, scale: 1.05 }}
                       whileTap={{ scale: 0.97 }}
                       onClick={() => setSubsection(card.key)}
-                      className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${card.gradient} p-5 shadow-kid group aspect-square flex flex-col items-center justify-center`}
+                      className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${card.gradient} p-4 shadow-kid group aspect-square flex flex-col items-center justify-center`}
                     >
-                      <div className="absolute -top-6 -end-6 w-20 h-20 bg-white/20 rounded-full" />
-                      <div className="relative text-center">
-                        <div className="text-4xl mb-2 group-hover:scale-110 transition-transform">
-                          {card.emoji}
-                        </div>
-                        <h3 className="text-base font-bold text-white mb-1">
-                          {card.title}
-                        </h3>
-                        <span className="text-xs text-white/90 font-semibold">
-                          {count} {count === 1 ? t('general.lesson') : t('general.lessons')}
-                        </span>
+                      <div className="text-3xl mb-1.5 group-hover:scale-110 transition-transform">
+                        {card.emoji}
                       </div>
+                      <h3 className="text-sm font-bold text-white text-center leading-tight">
+                        {card.title}
+                      </h3>
+                      <span className="text-[10px] text-white/90 font-semibold mt-1">
+                        {count} {count === 1 ? t('general.lesson') : t('general.lessons')}
+                      </span>
                     </motion.button>
                   );
                 })}
