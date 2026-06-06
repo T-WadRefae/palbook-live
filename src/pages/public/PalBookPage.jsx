@@ -17,6 +17,7 @@ const PalBookPage = () => {
   const [grade, setGrade] = useState(null);
   const [unit, setUnit] = useState(null);
   const [activeLesson, setActiveLesson] = useState(null);
+  const HERO_IMAGE = 'https://i.ibb.co/p6QNWhzG/c04b1a3e-8374-451d-b195-7524b7e041cd-20260515-160245-0000.png';
 
   useEffect(() => {
     (async () => {
