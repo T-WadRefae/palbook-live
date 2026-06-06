@@ -18,12 +18,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
             <Logo size="md" linkTo={null} showTagline={false} />
-            <p className="text-sm mt-4 text-slate-400 leading-relaxed">
-              {t('footer.crafted')}
-            </p>
-            <p className="text-sm mt-2 text-slate-400 leading-relaxed">
-              {t('footer.craftedBy')}
-            </p>
+            
           </div>
 
           <div>
