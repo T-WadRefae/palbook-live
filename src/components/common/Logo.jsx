@@ -30,11 +30,7 @@ const Logo = ({ size = 'md', linkTo = '/', showTagline = false }) => {
         <div className={`font-display font-extrabold ${sizeClasses[size]} gradient-text`}>
           PalBook<span className="text-secondary-500">Live</span>
         </div>
-        {showTagline && (
-          <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-0.5">
-            by T. Wad Refae 🇵🇸
-          </div>
-        )}
+        
       </div>
     </div>
   );

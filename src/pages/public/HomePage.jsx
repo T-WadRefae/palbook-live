@@ -80,10 +80,7 @@ const HomePage = () => {
               transition={{ duration: 0.6 }}
               className="order-2 lg:order-1 text-center lg:text-start"
             >
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-pal text-white text-sm font-bold shadow-soft">
-                🇵🇸 by T. Wad Refae
-              </span>
-              <h1 className="text-3xl md:text-5xl font-display font-extrabold mt-4 leading-tight">
+             <h1 className="text-3xl md:text-5xl font-display font-extrabold leading-tight">
                 {t('home.welcome')} 
               </h1>
               <p className="text-lg text-slate-600 dark:text-slate-300 mt-3 leading-relaxed">
@@ -153,9 +150,7 @@ const HomePage = () => {
           <h2 className="text-3xl font-display font-extrabold gradient-text mb-2">
             ✨ Why PalBook Live?
           </h2>
-          <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
-            {t('home.whyDesc')}
-          </p>
+          
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">

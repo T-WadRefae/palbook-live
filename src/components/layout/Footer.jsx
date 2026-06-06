@@ -1,5 +1,4 @@
 import { useTranslation } from 'react-i18next';
-import { FaHeart } from 'react-icons/fa';
 import Logo from '../common/Logo';
 
 const Footer = () => {
@@ -18,14 +17,13 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 py-10">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
-            <Logo size="md" linkTo={null} />
+            <Logo size="md" linkTo={null} showTagline={false} />
             <p className="text-sm mt-4 text-slate-400 leading-relaxed">
-              {t('app.tagline')}
+              {t('footer.crafted')}
             </p>
-            <p className="text-xs mt-3 text-accent-400 font-bold">
-              
+            <p className="text-sm mt-2 text-slate-400 leading-relaxed">
+              {t('footer.craftedBy')}
             </p>
-           
           </div>
 
           <div>
@@ -38,15 +36,14 @@ const Footer = () => {
           </div>
 
           <div>
-              <h4 className="font-bold text-white mb-3">🇵🇸 {t('footer.palestineTitle')}</h4>
-             <p className="text-sm text-slate-400 leading-relaxed">
-      {t('footer.palestineDesc')}
-    </p>
-</div>
+            <h4 className="font-bold text-white mb-3">🇵🇸 {t('footer.palestineTitle')}</h4>
+            <p className="text-sm text-slate-400 leading-relaxed">
+              {t('footer.palestineDesc')}
+            </p>
+          </div>
         </div>
 
         <div className="pt-6 border-t border-slate-700 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-slate-400">
-        
           <p className="flex items-center gap-1">
             Made with 🩷 in Palestine - © 2026 PalBook Live . All Rights Reserved
           </p>
