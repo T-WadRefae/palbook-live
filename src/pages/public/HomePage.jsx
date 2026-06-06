@@ -4,12 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { FiBookOpen, FiPlayCircle, FiAward, FiArrowLeft } from 'react-icons/fi';
 import PageTransition from '../../components/common/PageTransition';
 
-const HERO_IMAGE = 'https://i.ibb.co/p6QNWhzG/c04b1a3e-8374-451d-b195-7524b7e041cd-20260515-160245-0000.png';
 
 const HomePage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-
+  const HERO_IMAGE = 'https://i.ibb.co/p6QNWhzG/c04b1a3e-8374-451d-b195-7524b7e041cd-20260515-160245-0000.png';
   const sections = [
     {
       to: '/palbook',
