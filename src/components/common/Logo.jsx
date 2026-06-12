@@ -21,10 +21,9 @@ const Logo = ({ size = 'md', linkTo = '/', showTagline = false }) => {
       <motion.div
         whileHover={{ rotate: [0, -10, 10, -10, 0], scale: 1.1 }}
         transition={{ duration: 0.5 }}
-        className={`${dotSize[size]} rounded-2xl bg-gradient-pal flex items-center justify-center shadow-kid relative overflow-hidden`}
+        className={`${dotSize[size]} flex items-center justify-center relative`}
       >
-        <span className="text-white font-bold text-xl drop-shadow">P</span>
-        <div className="absolute -bottom-1 -right-1 w-3 h-3 rounded-full bg-accent-400 animate-pulse" />
+        <img src="/logo.png" alt="PalBook Live" className="w-full h-full object-contain drop-shadow" />
       </motion.div>
       <div className="leading-tight">
         <div className={`font-display font-extrabold ${sizeClasses[size]} gradient-text`}>
