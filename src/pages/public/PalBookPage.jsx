@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiArrowLeft } from 'react-icons/fi';
 import PageTransition from '../../components/common/PageTransition';
-import LessonCard from '../../components/common/LessonCard';
+import LessonRow from '../../components/common/LessonRow';
 import LessonViewer from '../../components/common/LessonViewer';
 import Loader from '../../components/common/Loader';
 import EmptyState from '../../components/common/EmptyState';
@@ -43,9 +43,11 @@ const PalBookPage = () => {
 
   const lessonsForUnit = useMemo(() => {
     if (!grade || !unit) return [];
-    return lessons.filter(
-      (l) => Number(l.grade) === Number(grade) && Number(l.unit) === Number(unit)
-    );
+    return lessons
+      .filter(
+        (l) => Number(l.grade) === Number(grade) && Number(l.unit) === Number(unit)
+      )
+      .sort((a, b) => (Number(a.lesson) || 0) - (Number(b.lesson) || 0));
   }, [lessons, grade, unit]);
 
   const lessonsCountByGrade = (g) =>
@@ -223,9 +225,9 @@ const PalBookPage = () => {
               {lessonsForUnit.length === 0 ? (
                 <EmptyState emoji="📭" title={t('palbook.noLessons')} />
               ) : (
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="max-w-3xl mx-auto flex flex-col gap-2.5">
                   {lessonsForUnit.map((l, i) => (
-                    <LessonCard
+                    <LessonRow
                       key={l.id}
                       lesson={l}
                       index={i}
