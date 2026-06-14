@@ -1,158 +1,111 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { FiBookOpen, FiPlayCircle, FiAward, FiArrowLeft } from 'react-icons/fi';
+import { FiArrowLeft } from 'react-icons/fi';
 import PageTransition from '../../components/common/PageTransition';
-
 
 const HomePage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const HERO_IMAGE = '/hero.png';
+
   const sections = [
     {
       to: '/palbook',
       emoji: '🇵🇸',
       title: 'PalBook Live',
       desc: t('home.palbookDesc'),
-      gradient: 'from-pastel-coral to-pastel-pink',
+      grad: 'g-olive',
     },
     {
       to: '/general',
       emoji: '✨',
       title: 'General',
       desc: t('home.generalDesc'),
-      gradient: 'from-pastel-mint to-pastel-green',
+      grad: 'g-blue',
     },
     {
       to: '/games',
       emoji: '🎮',
       title: 'Games',
       desc: t('home.gamesDesc'),
-      gradient: 'from-pastel-blue to-pastel-skyblue',
+      grad: 'g-olive',
     },
   ];
 
   const features = [
-    {
-      title: t('home.feature1Title'),
-      desc: t('home.feature1Desc'),
-      emoji: '📚',
-      gradient: 'from-pastel-blue to-pastel-skyblue',
-    },
-    {
-      title: t('home.feature2Title'),
-      desc: t('home.feature2Desc'),
-      emoji: '🎮',
-      gradient: 'from-pastel-mint to-pastel-green',
-    },
-    {
-      title: t('home.feature3Title'),
-      desc: t('home.feature3Desc'),
-      emoji: '🌍',
-      gradient: 'from-pastel-cream to-pastel-peach',
-    },
-    {
-      title: t('home.feature4Title'),
-      desc: t('home.feature4Desc'),
-      emoji: '🏆',
-      gradient: 'from-pastel-coral to-pastel-pink',
-    },
+    { emoji: '📚', title: t('home.feature1Title'), desc: t('home.feature1Desc'), grad: 'g-blue' },
+    { emoji: '🎮', title: t('home.feature2Title'), desc: t('home.feature2Desc'), grad: 'g-olive' },
+    { emoji: '🌍', title: t('home.feature3Title'), desc: t('home.feature3Desc'), grad: 'g-blue' },
+    { emoji: '🏆', title: t('home.feature4Title'), desc: t('home.feature4Desc'), grad: 'g-olive' },
   ];
 
   return (
     <PageTransition>
-      {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-pastel-skyblue/30 via-white to-pastel-mint/30 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900" />
+      {/* Hero — image centered at one third of the page width, text below */}
+      <section className="px-4 pt-10 pb-4 text-center">
+        <div className="flex justify-center">
+          <motion.img
+            src={HERO_IMAGE}
+            alt="PalBook Live"
+            animate={{ y: [0, -12, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+            className="w-[33.333vw] min-w-[150px] max-w-[33.333vw] h-auto drop-shadow-2xl"
+            loading="eager"
+          />
+        </div>
 
-        <div className="absolute top-20 -start-20 w-72 h-72 bg-pastel-blue/30 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-10 -end-20 w-72 h-72 bg-pastel-mint/30 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
+        <motion.h1
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mt-5 text-3xl md:text-5xl font-display font-extrabold leading-tight text-slate-800 dark:text-white"
+        >
+          {t('home.welcome')}
+        </motion.h1>
+        <p className="mt-3 max-w-2xl mx-auto text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+          {t('home.subtitle')}
+        </p>
+      </section>
 
-        <div className="relative max-w-7xl mx-auto px-4 py-10 md:py-16">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-
-            {/* Text + buttons side */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="order-2 lg:order-1 text-center lg:text-start"
+      {/* Explore sections — centered cards */}
+      <section className="px-4 py-12">
+        <h2 className="text-center text-xl md:text-2xl font-display font-extrabold text-secondary-800 dark:text-secondary-300 mb-7">
+          🧭 {t('home.exploreSections')}
+        </h2>
+        <div className="flex flex-wrap justify-center gap-5">
+          {sections.map((s, i) => (
+            <motion.button
+              key={s.to}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 + i * 0.1 }}
+              whileHover={{ y: -8, scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => navigate(s.to)}
+              className={`${s.grad} relative overflow-hidden w-[300px] max-w-full rounded-[26px] p-6 text-start shadow-kid group`}
             >
-             <h1 className="text-3xl md:text-5xl font-display font-extrabold leading-tight">
-                {t('home.welcome')} 
-              </h1>
-              <p className="text-lg text-slate-600 dark:text-slate-300 mt-3 leading-relaxed">
-                {t('home.subtitle')}
-              </p>
-            </motion.div>
-
-            {/* Image side */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-              className="order-1 lg:order-2 flex items-center justify-center"
-            >
-              <motion.img
-                src={HERO_IMAGE}
-                alt="PalBook Live"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                className="w-full max-w-sm drop-shadow-2xl"
-                loading="eager"
-              />
-            </motion.div>
-
-          </div>
-
-          {/* Section buttons */}
-          <div className="relative mt-6">
-            <h2 className="text-center text-xl font-bold text-slate-700 dark:text-slate-200 mb-5">
-              {t('home.exploreSections')}
-            </h2>
-            <div className="grid sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
-              {sections.map((s, i) => (
-                <motion.button
-                  key={s.to}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 + i * 0.1 }}
-                  whileHover={{ y: -8, scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => navigate(s.to)}
-                  className={`relative overflow-hidden rounded-3xl bg-gradient-to-br ${s.gradient} p-6 text-start shadow-kid group`}
-                >
-                  <div className="absolute -top-8 -end-8 w-28 h-28 bg-white/20 rounded-full" />
-                  <div className="relative">
-                    <div className="text-5xl mb-3 group-hover:scale-110 transition-transform">
-                      {s.emoji}
-                    </div>
-                    <h3 className="text-xl font-bold text-slate-800 mb-1">
-                      {s.title}
-                    </h3>
-                    <p className="text-sm text-slate-700 mb-3">{s.desc}</p>
-                    <span className="inline-flex items-center gap-1 text-sm font-bold text-slate-800">
-                      {t('common.explore')} <FiArrowLeft className="rtl-flip" />
-                    </span>
-                  </div>
-                </motion.button>
-              ))}
-            </div>
-          </div>
+              <span className="absolute -top-8 -end-8 w-28 h-28 bg-white/25 rounded-full" />
+              <span className="relative block text-5xl mb-2.5 group-hover:scale-110 transition-transform">
+                {s.emoji}
+              </span>
+              <h3 className="relative text-xl font-extrabold mb-1">{s.title}</h3>
+              <p className="relative text-sm opacity-90 mb-3.5">{s.desc}</p>
+              <span className="relative inline-flex items-center gap-1.5 text-sm font-extrabold">
+                {t('common.explore')} <FiArrowLeft className="rtl-flip" />
+              </span>
+            </motion.button>
+          ))}
         </div>
       </section>
 
-      {/* Features */}
-      <section className="max-w-7xl mx-auto px-4 py-14">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-display font-extrabold gradient-text mb-2">
-            ✨ Why PalBook Live?
-          </h2>
-          
-        </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {/* Why PalBook Live — centered cards */}
+      <section className="px-4 pb-16">
+        <h2 className="text-center text-xl md:text-2xl font-display font-extrabold text-secondary-800 dark:text-secondary-300 mb-7">
+          ✨ {t('home.whyTitle')}
+        </h2>
+        <div className="flex flex-wrap justify-center gap-5">
           {features.map((f, i) => (
             <motion.div
               key={f.title}
@@ -161,16 +114,14 @@ const HomePage = () => {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
               whileHover={{ y: -10 }}
-              className="card group"
+              className="w-[240px] max-w-full rounded-3xl p-6 text-center bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm shadow-soft hover:shadow-kid transition-shadow"
             >
               <div
-                className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${f.gradient} text-slate-700 flex items-center justify-center mb-4 shadow-kid group-hover:scale-110 transition-transform`}
+                className={`${f.grad} w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-kid`}
               >
                 <span className="text-3xl">{f.emoji}</span>
               </div>
-              <h3 className="text-lg font-bold mb-2 text-slate-800 dark:text-white">
-                {f.title}
-              </h3>
+              <h3 className="text-lg font-bold mb-1.5 text-slate-800 dark:text-white">{f.title}</h3>
               <p className="text-sm text-slate-600 dark:text-slate-300">{f.desc}</p>
             </motion.div>
           ))}

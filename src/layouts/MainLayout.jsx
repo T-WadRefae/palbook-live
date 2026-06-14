@@ -1,12 +1,14 @@
 import { Outlet } from 'react-router-dom';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
+import SkyScene from '../components/layout/SkyScene';
 
 const MainLayout = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-900">
+    <div className="relative min-h-screen flex flex-col">
+      <SkyScene />
       <Navbar />
-      <main className="flex-1">
+      <main className="relative z-10 flex-1">
         <Outlet />
       </main>
       <Footer />

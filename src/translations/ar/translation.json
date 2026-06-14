@@ -25,9 +25,10 @@
     "theme": "المظهر"
   },
  "home": {
-    "welcome": "أهلاً بك في بال بوك لايف",
+    "welcome": "أهلاً بك في PalBook Live",
     "subtitle": "تعلّم الإنجليزية بطريقة ممتعة مع المعلمة وعد رفاعي",
     "exploreSections": "استكشف أقسامنا",
+    "whyTitle": "لماذا PalBook Live؟",
     "whyDesc": "صُمّمت بحب من المعلمة وعد رفاعي لطلاب فلسطين",
     "palbookDesc": "دروس حسب المنهاج",
     "generalDesc": "قواعد، نطق، وقراءة",

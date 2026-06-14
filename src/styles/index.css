@@ -105,3 +105,89 @@
     transform: scaleX(-1);
   }
 }
+
+/* ===================== Sky / clouds / hills site scene ===================== */
+@layer base {
+  :root {
+    --sky-top: #74B9EE;
+    --sky-mid: #A9D8F4;
+    --sky-low: #D9EFFB;
+    --hill-far: #CDE6A6;
+    --hill-mid: #A8D381;
+    --hill-near: #86C268;
+    --cloud: #ffffff;
+    --olive-a: #DCEAB6;
+    --olive-b: #A9C97E;
+    --blue-a: #C5E2F6;
+    --blue-b: #97C2EC;
+    --card-ink: #2c3d2a;
+    --card-ink-blue: #23384f;
+  }
+
+  .dark {
+    --sky-top: #0a1230;
+    --sky-mid: #121d44;
+    --sky-low: #1c2a55;
+    --hill-far: #1d3b2b;
+    --hill-mid: #163020;
+    --hill-near: #0f2417;
+    --cloud: #b9c6e8;
+    --olive-a: #3c4a28;
+    --olive-b: #2a361c;
+    --blue-a: #2b3c58;
+    --blue-b: #1d2b45;
+    --card-ink: #e7f0d8;
+    --card-ink-blue: #dce9f8;
+  }
+}
+
+@layer components {
+  .sky-scene { position: fixed; inset: 0; z-index: -20; overflow: hidden; pointer-events: none; }
+  .sky-scene .sky {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 45%, var(--sky-low) 100%);
+    transition: background .6s ease;
+  }
+  .sky-scene .stars {
+    position: absolute; inset: 0; opacity: 0; transition: opacity .8s ease;
+    background-image:
+      radial-gradient(1.5px 1.5px at 12% 18%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 28% 8%, #fff, transparent),
+      radial-gradient(2px 2px at 47% 22%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 63% 12%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 78% 26%, #fff, transparent),
+      radial-gradient(2px 2px at 88% 9%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 36% 33%, #fff, transparent),
+      radial-gradient(1.5px 1.5px at 71% 38%, #fff, transparent);
+  }
+  .dark .sky-scene .stars { opacity: .85; }
+  .sky-scene .orb {
+    position: absolute; top: 8%; inset-inline-end: 9%;
+    width: 84px; height: 84px; border-radius: 50%; transition: opacity .6s ease;
+  }
+  .sky-scene .orb.sun { background: radial-gradient(circle at 35% 35%, #FFF3B0, #FFD54A); box-shadow: 0 0 50px 12px rgba(255, 213, 74, .55); }
+  .sky-scene .orb.moon { opacity: 0; background: radial-gradient(circle at 35% 35%, #f4f6ff, #cdd6f0); box-shadow: 0 0 36px 8px rgba(205, 214, 240, .45); }
+  .dark .sky-scene .orb.sun { opacity: 0; }
+  .dark .sky-scene .orb.moon { opacity: 1; }
+  .sky-scene .cloud { position: absolute; background: var(--cloud); border-radius: 100px; opacity: .95; transition: opacity .6s ease; }
+  .sky-scene .cloud::before, .sky-scene .cloud::after { content: ""; position: absolute; background: var(--cloud); border-radius: 50%; }
+  .sky-scene .cloud::before { width: 55%; height: 140%; top: -50%; left: 14%; }
+  .sky-scene .cloud::after { width: 42%; height: 115%; top: -32%; right: 16%; }
+  .dark .sky-scene .cloud { opacity: .10; }
+  .sky-scene .c1 { width: 150px; height: 46px; top: 20%; left: 7%; animation: drift 34s linear infinite; }
+  .sky-scene .c2 { width: 110px; height: 36px; top: 24%; left: 60%; animation: drift 46s linear infinite; }
+  .sky-scene .c3 { width: 190px; height: 56px; top: 27%; left: 26%; animation: drift 58s linear infinite; }
+  .sky-scene .c4 { width: 90px; height: 30px; top: 34%; left: 80%; animation: drift 40s linear infinite; }
+  .sky-scene .hills { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 42vh; min-height: 280px; }
+  .sky-scene .hills svg { position: absolute; bottom: 0; width: 100%; height: 100%; }
+
+  /* Requested card gradient families: pastel olive-green + blue */
+  .g-olive { background: linear-gradient(135deg, var(--olive-a), var(--olive-b)); color: var(--card-ink); }
+  .g-blue { background: linear-gradient(135deg, var(--blue-a), var(--blue-b)); color: var(--card-ink-blue); }
+}
+
+@keyframes drift {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(40px); }
+  100% { transform: translateX(0); }
+}
