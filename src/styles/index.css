@@ -120,6 +120,7 @@
     --olive-b: #A9C97E;
     --blue-a: #C5E2F6;
     --blue-b: #97C2EC;
+    --mint-mid: #BCECE6;
     --card-ink: #2c3d2a;
     --card-ink-blue: #23384f;
   }
@@ -136,6 +137,7 @@
     --olive-b: #2a361c;
     --blue-a: #2b3c58;
     --blue-b: #1d2b45;
+    --mint-mid: #244a44;
     --card-ink: #e7f0d8;
     --card-ink-blue: #dce9f8;
   }
@@ -184,6 +186,8 @@
   /* Requested card gradient families: pastel olive-green + blue */
   .g-olive { background: linear-gradient(135deg, var(--olive-a), var(--olive-b)); color: var(--card-ink); }
   .g-blue { background: linear-gradient(135deg, var(--blue-a), var(--blue-b)); color: var(--card-ink-blue); }
+  /* Blended blue -> mint -> green for lesson cards */
+  .g-mix { background: linear-gradient(135deg, var(--blue-a) 0%, var(--mint-mid) 50%, var(--olive-a) 100%); color: var(--card-ink-blue); }
 }
 
 @keyframes drift {

@@ -22,10 +22,10 @@ const LessonCard = ({
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05 }}
       whileHover={{ y: -8 }}
-      className="card group cursor-pointer relative overflow-hidden"
+      className="g-mix group cursor-pointer relative overflow-hidden rounded-3xl shadow-soft p-6 transition-all duration-300 hover:shadow-kid"
       onClick={() => onOpen?.(lesson)}
     >
-      <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-primary-100 to-transparent rounded-bl-full opacity-50" />
+      <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-white/30 to-transparent rounded-bl-full opacity-60" />
 
       {/* Views badge */}
       {views > 0 && (
@@ -35,7 +35,7 @@ const LessonCard = ({
       )}
 
       <div className="relative">
-        <div className="w-20 h-20 rounded-2xl bg-gradient-kid flex items-center justify-center text-5xl mb-4 shadow-kid group-hover:scale-110 transition-transform duration-300">
+        <div className="w-20 h-20 rounded-2xl bg-white/85 dark:bg-slate-900/40 flex items-center justify-center text-5xl mb-4 shadow-kid group-hover:scale-110 transition-transform duration-300">
           {lesson.thumbnail || '📚'}
         </div>
 
@@ -64,23 +64,23 @@ const LessonCard = ({
 
       <div className="flex flex-wrap gap-2 text-xs text-slate-500 dark:text-slate-400 mb-4">
         {lesson.grade && (
-          <span className="px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded-lg">
+          <span className="px-2 py-1 bg-white/50 dark:bg-black/20 rounded-lg">
             {t('palbook.grade')} {lesson.grade}
           </span>
         )}
         {lesson.unit && (
-          <span className="px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded-lg">
+          <span className="px-2 py-1 bg-white/50 dark:bg-black/20 rounded-lg">
             {t('palbook.unit')} {lesson.unit}
           </span>
         )}
         {lesson.lesson && (
-          <span className="px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded-lg">
+          <span className="px-2 py-1 bg-white/50 dark:bg-black/20 rounded-lg">
             {t('palbook.lesson')} {lesson.lesson}
           </span>
         )}
       </div>
 
-      <div className="flex items-center gap-2 mt-auto pt-3 border-t border-slate-100 dark:border-slate-700">
+      <div className="flex items-center gap-2 mt-auto pt-3 border-t border-black/10 dark:border-white/15">
         <button
           onClick={(e) => {
             e.stopPropagation();

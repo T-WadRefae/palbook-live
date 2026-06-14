@@ -17,14 +17,14 @@ const LessonRow = ({ lesson, onOpen, index = 0 }) => {
       transition={{ delay: index * 0.04 }}
       whileHover={{ x: isAr ? -4 : 4 }}
       onClick={() => onOpen?.(lesson)}
-      className="group cursor-pointer flex items-center gap-3 sm:gap-4 bg-white dark:bg-slate-800 rounded-2xl shadow-soft hover:shadow-kid border border-slate-100 dark:border-slate-700 hover:border-primary-200 dark:hover:border-primary-700 px-3 py-3 sm:px-4 transition-all duration-200"
+      className="group cursor-pointer flex items-center gap-3 sm:gap-4 g-mix rounded-2xl shadow-soft hover:shadow-kid border border-black/10 dark:border-white/10 px-3 py-3 sm:px-4 transition-all duration-200"
     >
       {/* Lesson number / thumbnail */}
       <div className="shrink-0 relative">
-        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-primary-500 via-accent-500 to-secondary-500 text-white flex items-center justify-center text-xl sm:text-2xl shadow-kid group-hover:scale-105 transition-transform duration-200">
+        <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-white/85 dark:bg-slate-900/40 text-secondary-700 dark:text-secondary-200 flex items-center justify-center text-xl sm:text-2xl shadow-kid group-hover:scale-105 transition-transform duration-200">
           {lesson.thumbnail || lessonNo}
         </div>
-        <span className="absolute -bottom-1.5 -end-1.5 min-w-[20px] h-5 px-1 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-[10px] font-extrabold text-primary-600 dark:text-primary-300 flex items-center justify-center shadow-sm">
+        <span className="absolute -bottom-1.5 -end-1.5 min-w-[20px] h-5 px-1 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-[10px] font-extrabold text-secondary-700 dark:text-secondary-300 flex items-center justify-center shadow-sm">
           {lessonNo}
         </span>
       </div>
@@ -44,22 +44,22 @@ const LessonRow = ({ lesson, onOpen, index = 0 }) => {
         {/* Boxed lesson info */}
         <div className="flex flex-wrap items-center gap-1.5 mt-1.5 text-[11px] text-slate-500 dark:text-slate-400">
           {lesson.grade && (
-            <span className="px-2 py-0.5 bg-slate-100 dark:bg-slate-700 rounded-md font-semibold">
+            <span className="px-2 py-0.5 bg-white/50 dark:bg-black/20 rounded-md font-semibold">
               {t('palbook.grade')} {lesson.grade}
             </span>
           )}
           {lesson.unit && (
-            <span className="px-2 py-0.5 bg-slate-100 dark:bg-slate-700 rounded-md font-semibold">
+            <span className="px-2 py-0.5 bg-white/50 dark:bg-black/20 rounded-md font-semibold">
               {t('palbook.unit')} {lesson.unit}
             </span>
           )}
           {lesson.lesson && (
-            <span className="px-2 py-0.5 bg-primary-50 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300 rounded-md font-semibold">
+            <span className="px-2 py-0.5 bg-white/60 dark:bg-black/25 text-secondary-800 dark:text-secondary-200 rounded-md font-semibold">
               {t('palbook.lesson')} {lesson.lesson}
             </span>
           )}
           {views > 0 && (
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-slate-100 dark:bg-slate-700 rounded-md font-semibold">
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-white/50 dark:bg-black/20 rounded-md font-semibold">
               <FiEye size={11} /> {views}
             </span>
           )}
