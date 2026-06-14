@@ -50,7 +50,7 @@ const HomePage = () => {
             alt="PalBook Live"
             animate={{ y: [0, -12, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            className="w-[33.333vw] min-w-[150px] max-w-[33.333vw] h-auto drop-shadow-2xl"
+            className="w-full max-w-sm h-auto drop-shadow-2xl"
             loading="eager"
           />
         </div>

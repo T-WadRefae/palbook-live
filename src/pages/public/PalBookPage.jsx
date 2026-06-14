@@ -17,7 +17,6 @@ const PalBookPage = () => {
   const [grade, setGrade] = useState(null);
   const [unit, setUnit] = useState(null);
   const [activeLesson, setActiveLesson] = useState(null);
-  const HERO_IMAGE = 'https://i.ibb.co/p6QNWhzG/c04b1a3e-8374-451d-b195-7524b7e041cd-20260515-160245-0000.png';
 
   useEffect(() => {
     (async () => {
@@ -95,7 +94,7 @@ const PalBookPage = () => {
           {unit && (
             <>
               <span className="text-slate-400">/</span>
-              <span className="px-3 py-1.5 rounded-lg bg-primary-100 text-primary-700 font-semibold">
+              <span className="px-3 py-1.5 rounded-lg bg-secondary-100 text-secondary-700 font-semibold">
                 {t('palbook.unit')} {unit}
               </span>
             </>
@@ -118,7 +117,7 @@ const PalBookPage = () => {
               <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center">
                 {t('palbook.selectGrade')}
               </h2>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+              <div className="flex flex-wrap justify-center gap-4">
                 {GRADES.map((g, i) => {
                   const count = lessonsCountByGrade(g);
                   return (
@@ -130,7 +129,7 @@ const PalBookPage = () => {
                       whileHover={{ y: -8, scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       onClick={() => setGrade(g)}
-                      className="aspect-square rounded-3xl bg-gradient-to-br from-primary-500 via-accent-500 to-secondary-500 text-white shadow-kid flex flex-col items-center justify-center font-extrabold relative overflow-hidden"
+                      className={`${i % 2 === 0 ? 'g-blue' : 'g-olive'} w-36 sm:w-40 aspect-square rounded-3xl shadow-kid flex flex-col items-center justify-center font-extrabold relative overflow-hidden`}
                     >
                       <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
                       <div className="text-4xl mb-1 relative">📚</div>
@@ -138,7 +137,7 @@ const PalBookPage = () => {
                         {t('palbook.grade')}
                       </div>
                       <div className="text-4xl relative">{g}</div>
-                      <div className="text-xs mt-1 px-2 py-0.5 rounded-full bg-white/20 backdrop-blur relative">
+                      <div className="text-xs mt-1 px-2 py-0.5 rounded-full bg-black/10 dark:bg-white/15 backdrop-blur relative">
                         {count} lessons
                       </div>
                     </motion.button>
@@ -170,20 +169,12 @@ const PalBookPage = () => {
                   }
                 />
               ) : (
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                <div className="flex flex-wrap justify-center gap-4">
                   {unitsForGrade.map((u, i) => {
                     const count = lessons.filter(
                       (l) => Number(l.grade) === grade && Number(l.unit) === u
                     ).length;
-                    const colors = [
-                      'from-rose-400 to-pink-600',
-                      'from-amber-400 to-orange-600',
-                      'from-emerald-400 to-teal-600',
-                      'from-sky-400 to-indigo-600',
-                      'from-violet-400 to-purple-600',
-                      'from-fuchsia-400 to-pink-600',
-                    ];
-                    const c = colors[i % colors.length];
+                    const grad = i % 2 === 0 ? 'g-blue' : 'g-olive';
                     return (
                       <motion.button
                         key={u}
@@ -193,14 +184,14 @@ const PalBookPage = () => {
                         whileHover={{ y: -6, scale: 1.03 }}
                         whileTap={{ scale: 0.97 }}
                         onClick={() => setUnit(u)}
-                        className={`p-6 rounded-3xl bg-gradient-to-br ${c} text-white shadow-kid text-start`}
+                        className={`${grad} w-44 p-6 rounded-3xl shadow-kid text-start`}
                       >
                         <div className="text-4xl mb-2">📖</div>
                         <div className="text-xs uppercase tracking-wider opacity-80">
                           {t('palbook.unit')}
                         </div>
                         <div className="text-3xl font-extrabold">{u}</div>
-                        <div className="text-xs mt-2 px-2 py-0.5 rounded-full bg-white/20 backdrop-blur inline-block">
+                        <div className="text-xs mt-2 px-2 py-0.5 rounded-full bg-black/10 dark:bg-white/15 backdrop-blur inline-block">
                           {count} lessons
                         </div>
                       </motion.button>

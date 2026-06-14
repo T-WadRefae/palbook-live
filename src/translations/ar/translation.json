@@ -1,7 +1,7 @@
 
   {
   "app": {
-    "name": "بال بوك لايف",
+    "name": "PalBook Live",
     "tagline": "من تصميم المعلمة وعد رفاعي   🇵🇸"
   },
   "footer": {
@@ -14,7 +14,7 @@
   "nav": {
     "home": "الرئيسية",
     "general": "الدروس العامة",
-    "palbook": "بال بوك لايف",
+    "palbook": "PalBook Live",
     "games": "الألعاب",
     "dashboard": "لوحة التحكم",
     "login": "تسجيل الدخول",
@@ -46,7 +46,7 @@
   "auth": {
     "loginTitle": "أهلاً بعودتك!",
     "loginSubtitle": "سجّل الدخول لمتابعة التعلم",
-    "registerTitle": "انضم إلى بال بوك لايف!",
+    "registerTitle": "انضم إلى PalBook Live!",
     "registerSubtitle": "ابدأ مغامرة التعلم",
     "email": "البريد الإلكتروني",
     "password": "كلمة المرور",
@@ -85,7 +85,7 @@
     "noLessons": "لا توجد دروس متاحة حالياً"
 },
   "palbook": {
-    "title": "بال بوك لايف",
+    "title": "PalBook Live",
     "subtitle": "دروس تفاعلية من منهاج اللغة الإنجليزية لفلسطين",
     "selectGrade": "اختر صفّك",
     "selectUnit": "اختر الوحدة",
@@ -126,7 +126,7 @@
     "section": "القسم",
     "selectSection": "اختر القسم",
     "general": "عام",
-    "palbook": "بال بوك لايف",
+    "palbook": "PalBook Live",
     "subsection": "القسم الفرعي",
     "grammar": "قواعد",
     "pronunciation": "نطق",
