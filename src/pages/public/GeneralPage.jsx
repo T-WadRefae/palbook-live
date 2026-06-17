@@ -9,6 +9,7 @@ import Loader from '../../components/common/Loader';
 import EmptyState from '../../components/common/EmptyState';
 import { getLessons } from '../../firebase/lessons';
 import { GENERAL_SUBSECTIONS, GRADES } from '../../utils/constants';
+import { GRAMMAR_LESSONS } from '../../data/grammarLessons';
 
 const GeneralPage = () => {
   const { t } = useTranslation();
@@ -23,9 +24,13 @@ const GeneralPage = () => {
     (async () => {
       try {
         const data = await getLessons({ section: 'general' });
-        setLessons(data);
+        // Merge static grammar lessons; Firestore docs take priority (same id wins).
+        const firestoreIds = new Set(data.map((l) => l.id));
+        const staticFallbacks = GRAMMAR_LESSONS.filter((l) => !firestoreIds.has(l.id));
+        setLessons([...data, ...staticFallbacks]);
       } catch (err) {
         console.error(err);
+        setLessons(GRAMMAR_LESSONS);
       } finally {
         setLoading(false);
       }
