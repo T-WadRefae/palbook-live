@@ -6,6 +6,7 @@ import toast from 'react-hot-toast';
 import { FiPlus, FiSearch, FiX, FiSave, FiLink, FiExternalLink, FiCheck } from 'react-icons/fi';
 import PageTransition from '../../components/common/PageTransition';
 import LessonCard from '../../components/common/LessonCard';
+import GradeMultiSelect from '../../components/common/GradeMultiSelect';
 import LessonViewer from '../../components/common/LessonViewer';
 import Loader from '../../components/common/Loader';
 import EmptyState from '../../components/common/EmptyState';
@@ -96,8 +97,10 @@ const ManageLessonsPage = () => {
         updates.unit = editingLesson.unit;
         updates.lesson = editingLesson.lesson;
         updates.subsection = null;
+        updates.grades = null;
       } else if (editingLesson.section === SECTIONS.GENERAL) {
         updates.subsection = editingLesson.subsection;
+        updates.grades = editingLesson.grades || [];
         updates.grade = null;
         updates.unit = null;
         updates.lesson = null;
@@ -107,6 +110,7 @@ const ManageLessonsPage = () => {
         updates.unit = null;
         updates.lesson = null;
         updates.subsection = null;
+        updates.grades = null;
       }
 
       await updateLesson(editingLesson.id, updates);
@@ -337,6 +341,17 @@ const ManageLessonsPage = () => {
                           {s.label}
                         </button>
                       ))}
+                    </div>
+
+                    <div className="mt-4">
+                      <label className="label">{t('upload.grades')}</label>
+                      <GradeMultiSelect
+                        value={editingLesson.grades || []}
+                        onChange={(grades) => setEditingLesson({ ...editingLesson, grades })}
+                      />
+                      <p className="text-xs text-slate-500 mt-2">
+                        {t('upload.gradesHint')}
+                      </p>
                     </div>
                   </div>
                 )}

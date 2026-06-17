@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 import { FiLink, FiCheck, FiArrowLeft, FiExternalLink } from 'react-icons/fi';
 import PageTransition from '../../components/common/PageTransition';
+import GradeMultiSelect from '../../components/common/GradeMultiSelect';
 import { addLesson } from '../../firebase/lessons';
 import {
   SECTIONS,
@@ -21,6 +22,7 @@ const initialForm = {
   grade: 5,
   unit: 1,
   lesson: 1,
+  grades: [], // General lessons: which grades this lesson serves (can be many)
   title: '',
   titleAr: '',
   description: '',
@@ -84,6 +86,7 @@ const UploadLessonPage = () => {
         lessonData.lesson = form.lesson;
       } else if (form.section === SECTIONS.GENERAL) {
         lessonData.subsection = form.subsection;
+        lessonData.grades = form.grades; // grades this lesson serves
       }
 
       await addLesson(lessonData);
@@ -192,6 +195,19 @@ const UploadLessonPage = () => {
                   {s.label}
                 </button>
               ))}
+            </div>
+
+            <div className="mt-4">
+              <label className="label">
+                {t('upload.grades')}
+              </label>
+              <GradeMultiSelect
+                value={form.grades}
+                onChange={(grades) => setForm({ ...form, grades })}
+              />
+              <p className="text-xs text-slate-500 mt-2">
+                {t('upload.gradesHint')}
+              </p>
             </div>
           </div>
         )}
