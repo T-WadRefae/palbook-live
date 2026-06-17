@@ -8,7 +8,8 @@ import LessonViewer from '../../components/common/LessonViewer';
 import Loader from '../../components/common/Loader';
 import EmptyState from '../../components/common/EmptyState';
 import { getLessons } from '../../firebase/lessons';
-import { GENERAL_SUBSECTIONS } from '../../utils/constants';
+import { GENERAL_SUBSECTIONS, GRADES } from '../../utils/constants';
+import { GRAMMAR_LESSONS } from '../../data/grammarLessons';
 
 const GeneralPage = () => {
   const { t } = useTranslation();
@@ -16,15 +17,20 @@ const GeneralPage = () => {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [subsection, setSubsection] = useState(null);
+  const [gradeFilter, setGradeFilter] = useState(null); // null = all grades
   const [activeLesson, setActiveLesson] = useState(null);
 
   useEffect(() => {
     (async () => {
       try {
         const data = await getLessons({ section: 'general' });
-        setLessons(data);
+        // Merge static grammar lessons; Firestore docs take priority (same id wins).
+        const firestoreIds = new Set(data.map((l) => l.id));
+        const staticFallbacks = GRAMMAR_LESSONS.filter((l) => !firestoreIds.has(l.id));
+        setLessons([...data, ...staticFallbacks]);
       } catch (err) {
         console.error(err);
+        setLessons(GRAMMAR_LESSONS);
       } finally {
         setLoading(false);
       }
@@ -33,6 +39,7 @@ const GeneralPage = () => {
 
   useEffect(() => {
     setSearch('');
+    setGradeFilter(null);
   }, [subsection]);
 
   // Same square style as grade buttons, using the blue/green homepage palette
@@ -59,6 +66,11 @@ const GeneralPage = () => {
     return lessons
       .filter((l) => l.subsection === subsection)
       .filter((l) => {
+        // A lesson can serve several grades, so it shows under each of them.
+        if (!gradeFilter) return true;
+        return (l.grades || []).includes(gradeFilter);
+      })
+      .filter((l) => {
         if (!search) return true;
         const term = search.toLowerCase();
         return (
@@ -67,7 +79,16 @@ const GeneralPage = () => {
           l.description?.toLowerCase().includes(term)
         );
       });
-  }, [lessons, subsection, search]);
+  }, [lessons, subsection, gradeFilter, search]);
+
+  // Lessons in the current subsection ignoring the grade filter,
+  // used to show a count next to each grade chip.
+  const subsectionLessons = useMemo(
+    () => (subsection ? lessons.filter((l) => l.subsection === subsection) : []),
+    [lessons, subsection]
+  );
+  const countForGrade = (g) =>
+    subsectionLessons.filter((l) => (l.grades || []).includes(g)).length;
 
   const countForSubsection = (key) =>
     lessons.filter((l) => l.subsection === key).length;
@@ -167,6 +188,44 @@ const GeneralPage = () => {
                 </div>
               </div>
 
+              {/* Grade filter — a lesson tagged with several grades shows under each */}
+              <div className="flex flex-wrap items-center gap-2 mb-6">
+                <span className="text-sm font-bold text-slate-500 dark:text-slate-400 me-1">
+                  {t('general.filterByGrade')}
+                </span>
+                <button
+                  onClick={() => setGradeFilter(null)}
+                  className={`px-4 h-10 rounded-xl font-bold text-sm transition-all ${
+                    gradeFilter === null
+                      ? 'g-blue text-slate-800 shadow-soft'
+                      : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
+                  }`}
+                >
+                  {t('common.all')}
+                </button>
+                {GRADES.map((g) => {
+                  const count = countForGrade(g);
+                  return (
+                    <button
+                      key={g}
+                      onClick={() => setGradeFilter(g)}
+                      className={`min-w-10 h-10 px-3 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-1 ${
+                        gradeFilter === g
+                          ? 'g-blue text-slate-800 shadow-soft'
+                          : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700'
+                      }`}
+                    >
+                      {g}
+                      {count > 0 && (
+                        <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-black/10 dark:bg-white/15">
+                          {count}
+                        </span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+
               {lessonsForSubsection.length > 0 || search ? (
                 <div className="relative mb-6">
                   <FiSearch className="absolute top-1/2 -translate-y-1/2 start-4 text-slate-400" />
@@ -185,7 +244,7 @@ const GeneralPage = () => {
                   emoji="📭"
                   title={t('general.noLessons')}
                   message={
-                    search
+                    search || gradeFilter
                       ? t('common.noResults')
                       : 'The teacher will add lessons soon. Stay tuned!'
                   }

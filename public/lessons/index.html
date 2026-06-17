@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Grammar Lessons — PalBook Live Review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --blue: #99C3EC;
+    --blue-deep: #5588BD;
+    --mint: #BCECE6;
+    --green: #97E3C2;
+    --green-deep: #36A06E;
+    --coral: #F69C9E;
+    --coral-deep: #DC5A5E;
+    --cream: #FFEED9;
+    --peach: #FFE2C2;
+    --accent: #FF9F47;
+    --ink: #2B3A4A;
+    --ink-soft: #5b6b7a;
+    --card: #ffffff;
+    --bg: #f4f9ff;
+    --radius: 22px;
+    --shadow: 0 10px 30px rgba(60,100,150,.12);
+    --shadow-kid: 0 14px 34px rgba(60,100,150,.22);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Poppins', 'Segoe UI', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Header ── */
+  .page-head {
+    background: linear-gradient(135deg, var(--blue) 0%, var(--mint) 55%, var(--green) 100%);
+    padding: 36px 24px 30px;
+    text-align: center;
+    box-shadow: var(--shadow-kid);
+  }
+  .page-head h1 { margin: 0 0 6px; font-size: clamp(22px, 4vw, 32px); font-weight: 800; }
+  .page-head p  { margin: 0; opacity: .75; font-size: 14px; font-weight: 600; }
+  .badge-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 14px; }
+  .badge {
+    background: rgba(255,255,255,.65); border-radius: 999px;
+    padding: 4px 14px; font-size: 12px; font-weight: 700;
+  }
+
+  /* ── Filters ── */
+  .filter-bar {
+    max-width: 980px; margin: 24px auto 0; padding: 0 16px;
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+  }
+  .filter-bar span { font-weight: 700; font-size: 13px; color: var(--ink-soft); }
+  .grade-btn {
+    border: 2px solid #e6eef7; background: #fff;
+    border-radius: 12px; padding: 6px 14px; font: inherit;
+    font-weight: 700; font-size: 13px; cursor: pointer;
+    color: var(--ink); transition: .15s;
+  }
+  .grade-btn.active { border-color: var(--blue-deep); background: var(--blue); }
+  .grade-btn:hover { border-color: var(--blue-deep); }
+
+  /* ── Grid ── */
+  .grid {
+    max-width: 980px; margin: 20px auto 60px;
+    padding: 0 16px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 18px;
+  }
+
+  /* ── Lesson Card ── */
+  .lesson-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .lesson-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-kid); }
+
+  .card-head {
+    padding: 18px 18px 12px;
+    border-bottom: 1px solid #eef3f9;
+  }
+  .card-head .icon { font-size: 28px; margin-bottom: 6px; }
+  .card-head h2 {
+    margin: 0 0 4px; font-size: 16px; font-weight: 800; line-height: 1.3;
+  }
+  .card-head .ar-title {
+    font-family: 'Cairo', sans-serif; direction: rtl;
+    font-size: 13px; color: var(--ink-soft); margin: 0 0 8px;
+  }
+
+  .grade-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+  .g-chip {
+    background: linear-gradient(135deg, var(--blue), var(--mint));
+    border-radius: 999px; padding: 2px 10px;
+    font-size: 11px; font-weight: 700; color: var(--ink);
+  }
+
+  .card-body { padding: 12px 18px; flex: 1; }
+  .section-list {
+    list-style: none; padding: 0; margin: 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4px;
+  }
+  .section-list li {
+    font-size: 11px; color: var(--ink-soft); font-weight: 600;
+    padding: 2px 0;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .section-list li::before { content: "›"; margin-right: 4px; color: var(--blue-deep); }
+
+  .card-foot {
+    padding: 12px 18px;
+    border-top: 1px solid #eef3f9;
+    display: flex; gap: 8px;
+  }
+  .btn-preview {
+    flex: 1; padding: 9px 0; border-radius: 12px; border: 0;
+    font: inherit; font-weight: 700; font-size: 13px; cursor: pointer;
+    background: linear-gradient(135deg, var(--coral), var(--coral-deep));
+    color: #fff; transition: .15s; text-decoration: none;
+    text-align: center; display: block;
+  }
+  .btn-preview:hover { opacity: .9; transform: translateY(-1px); }
+  .btn-open {
+    padding: 9px 12px; border-radius: 12px; border: 2px solid #e6eef7;
+    background: #fff; font: inherit; font-weight: 700; font-size: 13px;
+    cursor: pointer; color: var(--ink-soft); transition: .15s;
+    text-decoration: none; display: grid; place-items: center;
+  }
+  .btn-open:hover { border-color: var(--blue-deep); }
+
+  /* ── Preview pane ── */
+  .preview-overlay {
+    display: none; position: fixed; inset: 0; z-index: 100;
+    background: rgba(0,0,0,.75); backdrop-filter: blur(6px);
+    padding: 16px;
+    align-items: center; justify-content: center;
+  }
+  .preview-overlay.open { display: flex; }
+  .preview-wrap {
+    background: #fff; border-radius: 24px; overflow: hidden;
+    width: 100%; max-width: 1100px; height: 90vh;
+    display: flex; flex-direction: column;
+    box-shadow: 0 30px 80px rgba(0,0,0,.4);
+  }
+  .preview-bar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 16px; gap: 12px;
+    background: linear-gradient(135deg, var(--blue), var(--mint));
+  }
+  .preview-bar .title { font-weight: 800; font-size: 15px; flex: 1; }
+  .preview-bar button {
+    border: 0; background: rgba(255,255,255,.3); border-radius: 10px;
+    padding: 6px 12px; font: inherit; font-weight: 700; cursor: pointer;
+    color: var(--ink); transition: .15s;
+  }
+  .preview-bar button:hover { background: rgba(255,255,255,.5); }
+  #previewFrame { flex: 1; border: 0; width: 100%; }
+
+  /* ── Legend ── */
+  .legend {
+    max-width: 980px; margin: 0 auto 4px; padding: 0 16px;
+    display: flex; align-items: center; gap: 10px; font-size: 12px;
+    color: var(--ink-soft); font-weight: 600;
+  }
+  .legend .dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), var(--mint));
+    flex: none;
+  }
+
+  .hidden { display: none !important; }
+
+  @media (max-width: 560px) {
+    .section-list { grid-template-columns: 1fr; }
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Page Header ===== -->
+<div class="page-head">
+  <p style="font-size:36px;margin:0 0 8px">📚</p>
+  <h1>Grammar Lessons — Teacher Review</h1>
+  <p>PalBook Live · T. Wad Refae · 15 lessons · Grades 5–9</p>
+  <div class="badge-row">
+    <span class="badge">📝 15 Lessons</span>
+    <span class="badge">🎓 Grades 5–9</span>
+    <span class="badge">🔤 Grammar Section</span>
+    <span class="badge ar" style="font-family:'Cairo',sans-serif">مراجعة الدروس</span>
+  </div>
+</div>
+
+<!-- ===== Grade Filter ===== -->
+<div class="filter-bar">
+  <span>Filter by grade:</span>
+  <button class="grade-btn active" data-grade="all">All</button>
+  <button class="grade-btn" data-grade="5">Grade 5</button>
+  <button class="grade-btn" data-grade="6">Grade 6</button>
+  <button class="grade-btn" data-grade="7">Grade 7</button>
+  <button class="grade-btn" data-grade="8">Grade 8</button>
+  <button class="grade-btn" data-grade="9">Grade 9</button>
+</div>
+
+<div class="legend">
+  <div class="dot"></div>
+  Click <b>Preview</b> to open in a panel · Click <b>⬡</b> to open in a new tab
+</div>
+
+<!-- ===== Lesson Grid ===== -->
+<div class="grid" id="lessonGrid">
+
+  <!-- 1 -->
+  <div class="lesson-card" data-grades="5,7">
+    <div class="card-head">
+      <div class="icon">📅</div>
+      <h2>Present Simple — Routines &amp; Habits</h2>
+      <p class="ar-title">المضارع البسيط</p>
+      <div class="grade-chips">
+        <span class="g-chip">Grade 5</span>
+        <span class="g-chip">Grade 7</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <ul class="section-list">
+        <li>1 · Your Daily Routine</li>
+        <li>2 · Learning Outcomes</li>
+        <li>3 · Frequency Words</li>
+        <li>4 · The -s Rule</li>
+        <li>5 · Add -s, do/does</li>
+        <li>6 · My Routine</li>
+        <li>7 · Interview Partner</li>
+        <li>8 · Quiz</li>
+      </ul>
+    </div>
+    <div class="card-foot">
+      <a href="#" class="btn-preview" data-src="present-simple.html">▶ Preview</a>
+      <a href="present-simple.html" target="_blank" class="btn-open" title="Open in new tab">↗</a>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="lesson-card" data-grades="5,7,8">
+    <div class="card-head">
+      <div class="icon">🔄</div>
+      <h2>Present Continuous — Actions Now</h2>
+      <p class="ar-title">المضارع المستمر</p>
+      <div class="grade-chips">
+        <span class="g-chip">Grade 5</span>
+        <span class="g-chip">Grade 7</span>
+        <span class="g-chip">Grade 8</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <ul class="section-list">
+        <li>1 · What's Happening Now?</li>
+        <li>2 · Learning Outcomes</li>
+        <li>3 · Action Words</li>
+        <li>4 · am/is/are + -ing</li>
+        <li>5 · am/is/are Practice</li>
+        <li>6 · Right Now!</li>
+        <li>7 · Observe Your World</li>
+        <li>8 · Quiz</li>
+      </ul>
+    </div>
+    <div class="card-foot">
+      <a href="#" class="btn-preview" data-src="present-continuous.html">▶ Preview</a>
+      <a href="present-continuous.html" target="_blank" class="btn-open">↗</a>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="lesson-card" data-grades="5">
+    <div class="card-head">
+      <div class="icon">🏅</div>
+      <h2>Ordinal Numbers — 1st to 12th</h2>
+      <p class="ar-title">الأعداد الترتيبية</p>
+      <div class="grade-chips">
+        <span class="g-chip">Grade 5</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <ul class="section-list">
+        <li>1 · What Comes First?</li>
+        <li>2 · Learning Outcomes</li>
+        <li>3 · Position Words</li>
+        <li>4 · Ordinal Forms</li>
+        <li>5 · Spelling &amp; Use</li>
+        <li>6 · My Calendar</li>
+        <li>7 · Class Competition</li>
+        <li>8 · Quiz</li>
+      </ul>
+    </div>
+    <div class="card-foot">
+      <a href="#" class="btn-preview" data-src="ordinal-numbers.html">▶ Preview</a>
+      <a href="ordinal-numbers.html" target="_blank" class="btn-open">↗</a>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="lesson-card" data-grades="5,6,8">
+    <div class="card-head">
+      <div class="icon">📖</div>
+      <h2>Past Simple — Narrating Past Events</h2>
+      <p class="ar-title">الماضي البسيط</p>
+      <div class="grade-chips">
+        <span class="g-chip">Grade 5</span>
+        <span class="g-chip">Grade 6</span>
+        <span class="g-chip">Grade 8</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <ul class="section-list">
+        <li>1 · A Story from Yesterday</li>
+        <li>2 · Learning Outcomes</li>
+        <li>3 · Past Time Expressions</li>
+        <li>4 · Regular &amp; Irregular</li>
+        <li>5 · Practice Verbs</li>
+        <li>6 · My Weekend</li>
+        <li>7 · Tell Your Story</li>
+        <li>8 · Quiz</li>
+      </ul>
+    </div>
+    <div class="card-foot">
+      <a href="#" class="btn-preview" data-src="past-simple.html">▶ Preview</a>
+      <a href="past-simple.html" target="_blank" class="btn-open">↗</a>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="lesson-card" data-grades="5,8">
+    <div class="card-head">
+      <div class="icon">⚖️</div>
+      <h2>Comparatives &amp; Superlatives</h2>
+      <p class="ar-title">أسماء التفضيل</p>
+      <div class="grade-chips">
+        <span class="g-chip">Grade 5</span>
+        <span class="g-chip">Grade 8</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <ul class="section-list">
+        <li>1 · Who Is Taller?</li>
+        <li>2 · Learning Outcomes</li>
+        <li>3 · Comparison Adjectives</li>
+        <li>4 · -er/-est vs. more/most</li>
+        <li>5 · Forming Comparisons</li>
+        <li>6 · My Comparisons</li>
+        <li>7 · Class Survey</li>
+        <li>8 · Quiz</li>
+      </ul>
+    </div>
+    <div class="card-foot">
+      <a href="#" class="btn-preview" data-src="comparatives-superlatives.html">▶ Preview</a>
+      <a href="comparatives-superlatives.html" target="_blank" class="btn-open">↗</a>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="lesson-card" data-grades="5,7,9">
+    <div class="card-head">
+      <div class="icon">🔮</div>
+      <h2>Future: will &amp; going to</h2>
+      <p class="ar-title">المستقبل: will و going to</p>
+      <div class="grade-chips">
+        <span class="g-chip">Grade 5</span>
+        <span class="g-chip">Grade 7</span>
+        <span class="g-chip">Grade 9</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <ul class="section-list">
+        <li>1 · What's Your Dream?</li>
+        <li>2 · Learning Outcomes</li>
+        <li>3 · Future Time Markers</li>
+        <li>4 · will vs. going to</li>
+        <li>5 · Right Future Form</li>
+        <li>6 · My Future Plans</li>
+        <li>7 · Interview: Plans</li>
+        <li>8 · Quiz</li>
+      </ul>
+    </div>
+    <div class="card-foot">
+      <a href="#" class="btn-preview" data-src="future-will-going-to.html">▶ Preview</a>
+      <a href="future-will-going-to.html" target="_blank" class="btn-open">↗</a>
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="lesson-card" data-grades="7,9">
+    <div class="card-head">
+      <div class="icon">🔗</div>
+      <h2>Present Perfect — just, already, yet</h2>
+      <p class="ar-title">المضارع التام</p>
+      <div class="grade-chips">
+        <span class="g-chip">Grade 7</span>
+        <span class="g-chip">Grade 9</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <ul class="section-list">
+        <li>1 · The Bridge to Now</li>
+        <li>2 · Learning Outcomes</li>
+        <li>3 · Time Markers</li>
+        <li>4 · have/has + participle</li>
+        <li>5 · Practice</li>
+        <li>6 · My Experiences</li>
+        <li>7 · Latest News!</li>
+        <li>8 · Quiz</li>
+      </ul>
+    </div>
+    <div class="card-foot">
+      <a href="#" class="btn-preview" data-src="present-perfect.html">▶ Preview</a>
+      <a href="present-perfect.html" target="_blank" class="btn-open">↗</a>
+    </div>
+  </div>
+
+  <!-- 8 -->
+  <div class="lesson-card" data-grades="6,7">
+    <div class="card-head">
+      <div class="icon">💬</div>
+      <h2>Modal Verbs — can, must, should, may</h2>
+      <p class="ar-title">أفعال الأوجه</p>
+      <div class="grade-chips">
+        <span class="g-chip">Grade 6</span>
+        <span class="g-chip">Grade 7</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <ul class="section-list">
+        <li>1 · Can You Give Advice?</li>
+        <li>2 · Learning Outcomes</li>
+        <li>3 · Meaning Words</li>
+        <li>4 · Modal Meanings</li>
+        <li>5 · Right Modal</li>
+        <li>6 · Advice &amp; Rules</li>
+        <li>7 · School Rules Poster</li>
+        <li>8 · Quiz</li>
+      </ul>
+    </div>
+    <div class="card-foot">
+      <a href="#" class="btn-preview" data-src="modals.html">▶ Preview</a>
+      <a href="modals.html" target="_blank" class="btn-open">↗</a>
+    </div>
+  </div>
+
+  <!-- 9 -->
+  <div class="lesson-card" data-grades="7,8">
+    <div class="card-head">
+      <div class="icon">👁️</div>
+      <h2>Stative Verbs — Feelings &amp; Perception</h2>
+      <p class="ar-title">أفعال الحالة</p>
+      <div class="grade-chips">
+        <span class="g-chip">Grade 7</span>
+        <span class="g-chip">Grade 8</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <ul class="section-list">
+        <li>1 · What Do You Feel?</li>
+        <li>2 · Learning Outcomes</li>
+        <li>3 · Stative Verb Groups</li>
+        <li>4 · Why No -ing?</li>
+        <li>5 · State or Action?</li>
+        <li>6 · How I Feel</li>
+        <li>7 · The Five Senses</li>
+        <li>8 · Quiz</li>
+      </ul>
+    </div>
+    <div class="card-foot">
+      <a href="#" class="btn-preview" data-src="stative-verbs.html">▶ Preview</a>
+      <a href="stative-verbs.html" target="_blank" class="btn-open">↗</a>
+    </div>
+  </div>
+
+  <!-- 10 -->
+  <div class="lesson-card" data-grades="7,9">
+    <div class="card-head">
+      <div class="icon">❓</div>
+      <h2>Question Tags — Confirming Info</h2>
+      <p class="ar-title">الأسئلة الذيلية</p>
+      <div class="grade-chips">
+        <span class="g-chip">Grade 7</span>
+        <span class="g-chip">Grade 9</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <ul class="section-list">
+        <li>1 · You Know This, Don't You?</li>
+        <li>2 · Learning Outcomes</li>
+        <li>3 · Auxiliary Recap</li>
+        <li>4 · The Tag Rule</li>
+        <li>5 · Adding the Right Tag</li>
+        <li>6 · Tag the Statements</li>
+        <li>7 · Conversation Starter</li>
+        <li>8 · Quiz</li>
+      </ul>
+    </div>
+    <div class="card-foot">
+      <a href="#" class="btn-preview" data-src="question-tags.html">▶ Preview</a>
+      <a href="question-tags.html" target="_blank" class="btn-open">↗</a>
+    </div>
+  </div>
+
+  <!-- 11 -->
+  <div class="lesson-card" data-grades="7,9">
+    <div class="card-head">
+      <div class="icon">🗣️</div>
+      <h2>Reported Speech — What Was Said</h2>
+      <p class="ar-title">الكلام المنقول</p>
+      <div class="grade-chips">
+        <span class="g-chip">Grade 7</span>
+        <span class="g-chip">Grade 9</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <ul class="section-list">
+        <li>1 · What Did He Say?</li>
+        <li>2 · Learning Outcomes</li>
+        <li>3 · Reporting Verbs</li>
+        <li>4 · Tense Backshift</li>
+        <li>5 · Backshifting</li>
+        <li>6 · Report It!</li>
+        <li>7 · Be a Reporter</li>
+        <li>8 · Quiz</li>
+      </ul>
+    </div>
+    <div class="card-foot">
+      <a href="#" class="btn-preview" data-src="reported-speech.html">▶ Preview</a>
+      <a href="reported-speech.html" target="_blank" class="btn-open">↗</a>
+    </div>
+  </div>
+
+  <!-- 12 -->
+  <div class="lesson-card" data-grades="8,9">
+    <div class="card-head">
+      <div class="icon">🔎</div>
+      <h2>Relative Clauses — who, which, that</h2>
+      <p class="ar-title">الجمل الموصولة</p>
+      <div class="grade-chips">
+        <span class="g-chip">Grade 8</span>
+        <span class="g-chip">Grade 9</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <ul class="section-list">
+        <li>1 · What Exactly?</li>
+        <li>2 · Learning Outcomes</li>
+        <li>3 · Relative Pronouns</li>
+        <li>4 · who/which/that/where</li>
+        <li>5 · Practice</li>
+        <li>6 · Combine &amp; Describe</li>
+        <li>7 · Describe Palestine</li>
+        <li>8 · Quiz</li>
+      </ul>
+    </div>
+    <div class="card-foot">
+      <a href="#" class="btn-preview" data-src="relative-clauses.html">▶ Preview</a>
+      <a href="relative-clauses.html" target="_blank" class="btn-open">↗</a>
+    </div>
+  </div>
+
+  <!-- 13 -->
+  <div class="lesson-card" data-grades="9">
+    <div class="card-head">
+      <div class="icon">🎬</div>
+      <h2>Past Continuous &amp; Past Perfect</h2>
+      <p class="ar-title">الماضي المستمر والماضي التام</p>
+      <div class="grade-chips">
+        <span class="g-chip">Grade 9</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <ul class="section-list">
+        <li>1 · A Scene in the Past</li>
+        <li>2 · Learning Outcomes</li>
+        <li>3 · Time Connectors</li>
+        <li>4 · was/were + -ing &amp; had</li>
+        <li>5 · Layering the Past</li>
+        <li>6 · Yesterday's Story</li>
+        <li>7 · A Day in History</li>
+        <li>8 · Quiz</li>
+      </ul>
+    </div>
+    <div class="card-foot">
+      <a href="#" class="btn-preview" data-src="past-continuous-perfect.html">▶ Preview</a>
+      <a href="past-continuous-perfect.html" target="_blank" class="btn-open">↗</a>
+    </div>
+  </div>
+
+  <!-- 14 -->
+  <div class="lesson-card" data-grades="9">
+    <div class="card-head">
+      <div class="icon">🏭</div>
+      <h2>Passive Voice — Describing Processes</h2>
+      <p class="ar-title">المبني للمجهول</p>
+      <div class="grade-chips">
+        <span class="g-chip">Grade 9</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <ul class="section-list">
+        <li>1 · Who Did It vs. What Happened</li>
+        <li>2 · Learning Outcomes</li>
+        <li>3 · Process Vocabulary</li>
+        <li>4 · Forming Passive</li>
+        <li>5 · Active to Passive</li>
+        <li>6 · Transform &amp; Create</li>
+        <li>7 · Palestinian Products</li>
+        <li>8 · Quiz</li>
+      </ul>
+    </div>
+    <div class="card-foot">
+      <a href="#" class="btn-preview" data-src="passive-voice.html">▶ Preview</a>
+      <a href="passive-voice.html" target="_blank" class="btn-open">↗</a>
+    </div>
+  </div>
+
+  <!-- 15 -->
+  <div class="lesson-card" data-grades="8,9">
+    <div class="card-head">
+      <div class="icon">🌿</div>
+      <h2>Conditionals — Types 0, 1 &amp; 2</h2>
+      <p class="ar-title">الجمل الشرطية</p>
+      <div class="grade-chips">
+        <span class="g-chip">Grade 8</span>
+        <span class="g-chip">Grade 9</span>
+      </div>
+    </div>
+    <div class="card-body">
+      <ul class="section-list">
+        <li>1 · What Would You Do If…?</li>
+        <li>2 · Learning Outcomes</li>
+        <li>3 · Conditional Key Words</li>
+        <li>4 · Three Types</li>
+        <li>5 · Which Type?</li>
+        <li>6 · My Conditions</li>
+        <li>7 · Dreaming of a Better World</li>
+        <li>8 · Quiz</li>
+      </ul>
+    </div>
+    <div class="card-foot">
+      <a href="#" class="btn-preview" data-src="conditionals.html">▶ Preview</a>
+      <a href="conditionals.html" target="_blank" class="btn-open">↗</a>
+    </div>
+  </div>
+
+</div><!-- /grid -->
+
+<!-- ===== Preview overlay ===== -->
+<div class="preview-overlay" id="previewOverlay">
+  <div class="preview-wrap">
+    <div class="preview-bar">
+      <div class="title" id="previewTitle">Lesson Preview</div>
+      <a id="previewNewTab" href="#" target="_blank">↗ New tab</a>
+      <button onclick="closePreview()">✕ Close</button>
+    </div>
+    <iframe id="previewFrame" src="" title="Lesson Preview"></iframe>
+  </div>
+</div>
+
+<script>
+  /* ── Grade filter ── */
+  const cards = Array.from(document.querySelectorAll('.lesson-card'));
+  document.querySelectorAll('.grade-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.grade-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const g = btn.dataset.grade;
+      cards.forEach(card => {
+        if (g === 'all') { card.classList.remove('hidden'); return; }
+        const grades = card.dataset.grades.split(',');
+        card.classList.toggle('hidden', !grades.includes(g));
+      });
+    });
+  });
+
+  /* ── Preview pane ── */
+  const overlay = document.getElementById('previewOverlay');
+  const frame   = document.getElementById('previewFrame');
+  const title   = document.getElementById('previewTitle');
+  const newTab  = document.getElementById('previewNewTab');
+
+  document.querySelectorAll('.btn-preview').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      const src = btn.dataset.src;
+      const lessonTitle = btn.closest('.lesson-card').querySelector('h2').textContent;
+      frame.src = src;
+      title.textContent = lessonTitle;
+      newTab.href = src;
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closePreview() {
+    overlay.classList.remove('open');
+    frame.src = '';
+    document.body.style.overflow = '';
+  }
+
+  overlay.addEventListener('click', e => { if (e.target === overlay) closePreview(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closePreview(); });
+</script>
+</body>
+</html>

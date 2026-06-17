@@ -68,6 +68,16 @@ const LessonCard = ({
             {t('palbook.grade')} {lesson.grade}
           </span>
         )}
+        {/* General lessons can serve several grades at once */}
+        {Array.isArray(lesson.grades) &&
+          lesson.grades.map((g) => (
+            <span
+              key={g}
+              className="px-2 py-1 bg-white/50 dark:bg-black/20 rounded-lg"
+            >
+              {t('palbook.grade')} {g}
+            </span>
+          ))}
         {lesson.unit && (
           <span className="px-2 py-1 bg-white/50 dark:bg-black/20 rounded-lg">
             {t('palbook.unit')} {lesson.unit}
