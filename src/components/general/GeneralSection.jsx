@@ -95,7 +95,9 @@ const GeneralSection = ({ section }) => {
               <img
                 src={section.bannerImage}
                 alt={title}
-                className="w-full h-40 sm:h-56 md:h-72 object-cover"
+                loading="eager"
+                decoding="async"
+                className="w-full h-auto block"
               />
               <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/60 to-transparent" />
               <h2 className="absolute bottom-4 start-5 end-5 text-2xl md:text-3xl font-extrabold text-white drop-shadow-lg">
