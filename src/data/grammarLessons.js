@@ -1,7 +1,9 @@
-// Static grammar lessons — served from public/lessons/*.html
+// Static grammar lessons — served from palbook-lessons GitHub Pages.
 // These appear in General → Grammar without needing Firestore documents.
 // The teacher can override any entry by uploading a Firestore lesson with
 // the same slug as the id.
+
+const BASE = 'https://t-wadrefae.github.io/palbook-lessons/grammar';
 
 export const GRAMMAR_LESSONS = [
   {
@@ -13,7 +15,7 @@ export const GRAMMAR_LESSONS = [
     section: 'general',
     subsection: 'grammar',
     grades: [5, 7],
-    fileUrl: '/lessons/present-simple.html',
+    fileUrl: `${BASE}/present-simple.html`,
     static: true,
   },
   {
@@ -25,7 +27,7 @@ export const GRAMMAR_LESSONS = [
     section: 'general',
     subsection: 'grammar',
     grades: [5, 7, 8],
-    fileUrl: '/lessons/present-continuous.html',
+    fileUrl: `${BASE}/present-continuous.html`,
     static: true,
   },
   {
@@ -37,7 +39,7 @@ export const GRAMMAR_LESSONS = [
     section: 'general',
     subsection: 'grammar',
     grades: [5],
-    fileUrl: '/lessons/ordinal-numbers.html',
+    fileUrl: `${BASE}/ordinal-numbers.html`,
     static: true,
   },
   {
@@ -49,7 +51,7 @@ export const GRAMMAR_LESSONS = [
     section: 'general',
     subsection: 'grammar',
     grades: [5, 6, 8],
-    fileUrl: '/lessons/past-simple.html',
+    fileUrl: `${BASE}/past-simple.html`,
     static: true,
   },
   {
@@ -61,7 +63,7 @@ export const GRAMMAR_LESSONS = [
     section: 'general',
     subsection: 'grammar',
     grades: [5, 8],
-    fileUrl: '/lessons/comparatives-superlatives.html',
+    fileUrl: `${BASE}/comparatives-superlatives.html`,
     static: true,
   },
   {
@@ -73,7 +75,7 @@ export const GRAMMAR_LESSONS = [
     section: 'general',
     subsection: 'grammar',
     grades: [5, 7, 9],
-    fileUrl: '/lessons/future-will-going-to.html',
+    fileUrl: `${BASE}/future-will-going-to.html`,
     static: true,
   },
   {
@@ -85,7 +87,7 @@ export const GRAMMAR_LESSONS = [
     section: 'general',
     subsection: 'grammar',
     grades: [7, 9],
-    fileUrl: '/lessons/present-perfect.html',
+    fileUrl: `${BASE}/present-perfect.html`,
     static: true,
   },
   {
@@ -97,7 +99,7 @@ export const GRAMMAR_LESSONS = [
     section: 'general',
     subsection: 'grammar',
     grades: [6, 7],
-    fileUrl: '/lessons/modals.html',
+    fileUrl: `${BASE}/modals.html`,
     static: true,
   },
   {
@@ -109,7 +111,7 @@ export const GRAMMAR_LESSONS = [
     section: 'general',
     subsection: 'grammar',
     grades: [7, 8],
-    fileUrl: '/lessons/stative-verbs.html',
+    fileUrl: `${BASE}/stative-verbs.html`,
     static: true,
   },
   {
@@ -121,7 +123,7 @@ export const GRAMMAR_LESSONS = [
     section: 'general',
     subsection: 'grammar',
     grades: [7, 9],
-    fileUrl: '/lessons/question-tags.html',
+    fileUrl: `${BASE}/question-tags.html`,
     static: true,
   },
   {
@@ -133,7 +135,7 @@ export const GRAMMAR_LESSONS = [
     section: 'general',
     subsection: 'grammar',
     grades: [7, 9],
-    fileUrl: '/lessons/reported-speech.html',
+    fileUrl: `${BASE}/reported-speech.html`,
     static: true,
   },
   {
@@ -145,7 +147,7 @@ export const GRAMMAR_LESSONS = [
     section: 'general',
     subsection: 'grammar',
     grades: [8, 9],
-    fileUrl: '/lessons/relative-clauses.html',
+    fileUrl: `${BASE}/relative-clauses.html`,
     static: true,
   },
   {
@@ -157,7 +159,7 @@ export const GRAMMAR_LESSONS = [
     section: 'general',
     subsection: 'grammar',
     grades: [9],
-    fileUrl: '/lessons/past-continuous-perfect.html',
+    fileUrl: `${BASE}/past-continuous-perfect.html`,
     static: true,
   },
   {
@@ -169,7 +171,7 @@ export const GRAMMAR_LESSONS = [
     section: 'general',
     subsection: 'grammar',
     grades: [9],
-    fileUrl: '/lessons/passive-voice.html',
+    fileUrl: `${BASE}/passive-voice.html`,
     static: true,
   },
   {
@@ -181,7 +183,7 @@ export const GRAMMAR_LESSONS = [
     section: 'general',
     subsection: 'grammar',
     grades: [8, 9],
-    fileUrl: '/lessons/conditionals.html',
+    fileUrl: `${BASE}/conditionals.html`,
     static: true,
   },
 ];
