@@ -179,7 +179,15 @@ const GeneralPage = () => {
               <div className="g-blue relative overflow-hidden rounded-3xl p-6 md:p-8 mb-8 shadow-kid">
                 <div className="absolute -top-10 -end-10 w-40 h-40 bg-white/20 rounded-full" />
                 <div className="relative flex items-center gap-4">
-                  <div className="text-5xl">{currentCard.emoji}</div>
+                  {subsection === GENERAL_SUBSECTIONS.GRAMMAR ? (
+                    <img
+                      src="https://i.ibb.co/Kp9Br3sn/Gemini-Generated-Image-7jr80l7jr80l7jr8.png"
+                      alt={currentCard.title}
+                      className="w-16 h-16 md:w-20 md:h-20 object-contain drop-shadow-md"
+                    />
+                  ) : (
+                    <div className="text-5xl">{currentCard.emoji}</div>
+                  )}
                   <div>
                     <h2 className="text-2xl font-extrabold text-slate-800 dark:text-white">
                       {currentCard.title}
