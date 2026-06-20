@@ -17,8 +17,7 @@ export const GENERAL_SECTIONS = {
     slug: 'grammar',
     titleKey: 'general.grammar',
     emoji: '📝',
-    bannerImage:
-      'https://i.ibb.co/Kp9Br3sn/Gemini-Generated-Image-7jr80l7jr80l7jr8.png',
+    bannerImage: '/grammar-hero.png',
   },
   phonics: {
     subsection: GENERAL_SUBSECTIONS.PRONUNCIATION,
