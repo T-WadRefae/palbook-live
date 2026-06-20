@@ -176,17 +176,31 @@ const GeneralPage = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
             >
-              <div className="g-blue relative overflow-hidden rounded-3xl p-6 md:p-8 mb-8 shadow-kid">
-                <div className="absolute -top-10 -end-10 w-40 h-40 bg-white/20 rounded-full" />
-                <div className="relative flex items-center gap-4">
-                  <div className="text-5xl">{currentCard.emoji}</div>
-                  <div>
-                    <h2 className="text-2xl font-extrabold text-slate-800 dark:text-white">
-                      {currentCard.title}
-                    </h2>
+              {subsection === GENERAL_SUBSECTIONS.GRAMMAR ? (
+                <div className="relative overflow-hidden rounded-3xl mb-8 shadow-kid">
+                  <img
+                    src="https://i.ibb.co/Kp9Br3sn/Gemini-Generated-Image-7jr80l7jr80l7jr8.png"
+                    alt={currentCard.title}
+                    className="w-full h-40 sm:h-56 md:h-72 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <h2 className="absolute bottom-4 start-5 end-5 text-2xl md:text-3xl font-extrabold text-white drop-shadow-lg">
+                    {currentCard.title}
+                  </h2>
+                </div>
+              ) : (
+                <div className="g-blue relative overflow-hidden rounded-3xl p-6 md:p-8 mb-8 shadow-kid">
+                  <div className="absolute -top-10 -end-10 w-40 h-40 bg-white/20 rounded-full" />
+                  <div className="relative flex items-center gap-4">
+                    <div className="text-5xl">{currentCard.emoji}</div>
+                    <div>
+                      <h2 className="text-2xl font-extrabold text-slate-800 dark:text-white">
+                        {currentCard.title}
+                      </h2>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
 
               {/* Grade filter — a lesson tagged with several grades shows under each */}
               <div className="flex flex-wrap items-center gap-2 mb-6">
