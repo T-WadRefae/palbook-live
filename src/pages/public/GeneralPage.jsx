@@ -6,7 +6,12 @@ import PageTransition from '../../components/common/PageTransition';
 import Loader from '../../components/common/Loader';
 import { getLessons } from '../../firebase/lessons';
 import { GRAMMAR_LESSONS } from '../../data/grammarLessons';
+import { READING_LESSONS } from '../../data/readingLessons';
 import { GENERAL_SECTION_LIST } from '../../data/generalSections';
+
+// Static lessons served from palbook-lessons GitHub Pages (grammar + reading).
+// Counted here so each chooser card shows its real lesson total.
+const STATIC_LESSONS = [...GRAMMAR_LESSONS, ...READING_LESSONS];
 
 // Landing page for the General section: shows a chooser card per sub-page.
 // Each card links to its own route (/general/grammar, /general/phonics, ...).
@@ -19,13 +24,13 @@ const GeneralPage = () => {
     (async () => {
       try {
         const data = await getLessons({ section: 'general' });
-        // Merge static grammar lessons; Firestore docs take priority (same id wins).
+        // Merge static grammar + reading lessons; Firestore docs take priority (same id wins).
         const firestoreIds = new Set(data.map((l) => l.id));
-        const staticFallbacks = GRAMMAR_LESSONS.filter((l) => !firestoreIds.has(l.id));
+        const staticFallbacks = STATIC_LESSONS.filter((l) => !firestoreIds.has(l.id));
         setLessons([...data, ...staticFallbacks]);
       } catch (err) {
         console.error(err);
-        setLessons(GRAMMAR_LESSONS);
+        setLessons(STATIC_LESSONS);
       } finally {
         setLoading(false);
       }
