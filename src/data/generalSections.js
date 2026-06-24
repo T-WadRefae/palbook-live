@@ -31,7 +31,7 @@ export const GENERAL_SECTIONS = {
     slug: 'reading',
     titleKey: 'general.reading',
     emoji: '📖',
-    bannerImage: null,
+    bannerImage: '/reading-hero.png',
   },
 };
 
