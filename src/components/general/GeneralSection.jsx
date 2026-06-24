@@ -11,6 +11,11 @@ import EmptyState from '../common/EmptyState';
 import { getLessons } from '../../firebase/lessons';
 import { GRADES } from '../../utils/constants';
 import { GRAMMAR_LESSONS } from '../../data/grammarLessons';
+import { READING_LESSONS } from '../../data/readingLessons';
+
+// Static lessons served from palbook-lessons GitHub Pages (grammar + reading).
+// They show in their General sub-page without needing Firestore documents.
+const STATIC_LESSONS = [...GRAMMAR_LESSONS, ...READING_LESSONS];
 
 // Shared view for every General sub-page. Each page (Grammar / Phonics /
 // Reading) renders this with its own `section` config from generalSections.js.
@@ -28,13 +33,13 @@ const GeneralSection = ({ section }) => {
     (async () => {
       try {
         const data = await getLessons({ section: 'general' });
-        // Merge static grammar lessons; Firestore docs take priority (same id wins).
+        // Merge static grammar + reading lessons; Firestore docs take priority (same id wins).
         const firestoreIds = new Set(data.map((l) => l.id));
-        const staticFallbacks = GRAMMAR_LESSONS.filter((l) => !firestoreIds.has(l.id));
+        const staticFallbacks = STATIC_LESSONS.filter((l) => !firestoreIds.has(l.id));
         setLessons([...data, ...staticFallbacks]);
       } catch (err) {
         console.error(err);
-        setLessons(GRAMMAR_LESSONS);
+        setLessons(STATIC_LESSONS);
       } finally {
         setLoading(false);
       }
