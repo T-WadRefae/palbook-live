@@ -117,4 +117,16 @@ export const WRITING_LESSONS = [
     fileUrl: `${BASE}/grade7-email.html`,
     static: true,
   },
+  {
+    id: 'writing-grade7-informal-letter',
+    title: 'Informal Letter Layout',
+    titleAr: 'تنسيق الرسالة الشخصية',
+    description: 'Lay out a personal letter (address & date, greeting, body, closing) with friendly language. An airmail-envelope lesson with a Letter Guide, practice, a checklist and a worksheet.',
+    thumbnail: '✉️',
+    section: 'general',
+    subsection: 'writing',
+    grades: [7],
+    fileUrl: `${BASE}/grade7-informal-letter.html`,
+    static: true,
+  },
 ];
