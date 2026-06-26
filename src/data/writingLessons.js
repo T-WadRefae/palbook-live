@@ -263,4 +263,16 @@ export const WRITING_LESSONS = [
     fileUrl: `${BASE}/grade9-problem.html`,
     static: true,
   },
+  {
+    id: 'writing-grade9-schedules',
+    title: 'Schedules & Directions',
+    titleAr: 'الجداول الزمنية والاتجاهات',
+    description: 'Write a precise school-trip timetable and give clear directions with reference words. An immersive departure-board lesson with a live clock, celebratory effects, practice, a checklist and a worksheet.',
+    thumbnail: '🕐',
+    section: 'general',
+    subsection: 'writing',
+    grades: [9],
+    fileUrl: `${BASE}/grade9-schedules.html`,
+    static: true,
+  },
 ];
