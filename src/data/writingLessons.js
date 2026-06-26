@@ -141,4 +141,16 @@ export const WRITING_LESSONS = [
     fileUrl: `${BASE}/grade7-sequence.html`,
     static: true,
   },
+  {
+    id: 'writing-grade7-however',
+    title: 'Punctuation with "However"',
+    titleAr: 'الترقيم مع however',
+    description: 'Use however to show contrast and punctuate it correctly (full stop or semicolon before, comma after). An immersive road-sign lesson with practice, a checklist and a worksheet.',
+    thumbnail: '🛣️',
+    section: 'general',
+    subsection: 'writing',
+    grades: [7],
+    fileUrl: `${BASE}/grade7-however.html`,
+    static: true,
+  },
 ];
