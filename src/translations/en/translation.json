@@ -80,6 +80,8 @@
     "pronunciationDesc": "Master English sounds and letter pronunciation",
     "reading": "Reading",
     "readingDesc": "Engaging reading texts with comprehension activities",
+    "writing": "Writing",
+    "writingDesc": "Guided writing lessons with worksheets and checklists",
     "openLesson": "Open Lesson",
     "noLessons": "No lessons available yet"
   },

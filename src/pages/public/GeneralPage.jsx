@@ -7,11 +7,12 @@ import Loader from '../../components/common/Loader';
 import { getLessons } from '../../firebase/lessons';
 import { GRAMMAR_LESSONS } from '../../data/grammarLessons';
 import { READING_LESSONS } from '../../data/readingLessons';
+import { WRITING_LESSONS } from '../../data/writingLessons';
 import { GENERAL_SECTION_LIST } from '../../data/generalSections';
 
-// Static lessons served from palbook-lessons GitHub Pages (grammar + reading).
+// Static lessons served from palbook-lessons GitHub Pages (grammar + reading + writing).
 // Counted here so each chooser card shows its real lesson total.
-const STATIC_LESSONS = [...GRAMMAR_LESSONS, ...READING_LESSONS];
+const STATIC_LESSONS = [...GRAMMAR_LESSONS, ...READING_LESSONS, ...WRITING_LESSONS];
 
 // Landing page for the General section: shows a chooser card per sub-page.
 // Each card links to its own route (/general/grammar, /general/phonics, ...).

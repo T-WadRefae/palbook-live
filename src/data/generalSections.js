@@ -33,6 +33,13 @@ export const GENERAL_SECTIONS = {
     emoji: '📖',
     bannerImage: '/reading-hero.png',
   },
+  writing: {
+    subsection: GENERAL_SUBSECTIONS.WRITING,
+    slug: 'writing',
+    titleKey: 'general.writing',
+    emoji: '✍️',
+    bannerImage: null,
+  },
 };
 
 // Ordered list used by the /general landing page to render the chooser cards.
@@ -40,4 +47,5 @@ export const GENERAL_SECTION_LIST = [
   GENERAL_SECTIONS.grammar,
   GENERAL_SECTIONS.phonics,
   GENERAL_SECTIONS.reading,
+  GENERAL_SECTIONS.writing,
 ];

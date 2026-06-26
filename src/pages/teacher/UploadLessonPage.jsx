@@ -180,6 +180,7 @@ const UploadLessonPage = () => {
                 { v: GENERAL_SUBSECTIONS.GRAMMAR, label: 'Grammar', emoji: '📝' },
                 { v: GENERAL_SUBSECTIONS.PRONUNCIATION, label: 'Pronunciation', emoji: '🗣️' },
                 { v: GENERAL_SUBSECTIONS.READING, label: 'Reading', emoji: '📖' },
+                { v: GENERAL_SUBSECTIONS.WRITING, label: 'Writing', emoji: '✍️' },
               ].map((s) => (
                 <button
                   key={s.v}
