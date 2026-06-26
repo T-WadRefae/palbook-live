@@ -104,4 +104,17 @@ export const WRITING_LESSONS = [
     fileUrl: `${BASE}/grade6-exclamation.html`,
     static: true,
   },
+  // ---------------- Grade 7 ----------------
+  {
+    id: 'writing-grade7-email',
+    title: 'Email Writing',
+    titleAr: 'كتابة البريد الإلكتروني',
+    description: 'Learn the parts of an email (To, Subject, greeting, body, sign-off) and reply to a friend. An immersive pen-pal mailbox lesson with practice, a checklist and a worksheet.',
+    thumbnail: '📬',
+    section: 'general',
+    subsection: 'writing',
+    grades: [7],
+    fileUrl: `${BASE}/grade7-email.html`,
+    static: true,
+  },
 ];
