@@ -202,4 +202,16 @@ export const WRITING_LESSONS = [
     fileUrl: `${BASE}/grade8-business-letter.html`,
     static: true,
   },
+  {
+    id: 'writing-grade8-pronouns',
+    title: 'Using Pronouns',
+    titleAr: 'استخدام الضمائر للترابط',
+    description: 'Replace repeated nouns with pronouns (he/she/it/they, him/her/them) for smooth, cohesive writing. An immersive sewing-themed lesson with celebratory effects, practice, a checklist and a worksheet.',
+    thumbnail: '🧵',
+    section: 'general',
+    subsection: 'writing',
+    grades: [8],
+    fileUrl: `${BASE}/grade8-pronouns.html`,
+    static: true,
+  },
 ];
