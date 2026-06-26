@@ -251,4 +251,16 @@ export const WRITING_LESSONS = [
     fileUrl: `${BASE}/grade9-expand.html`,
     static: true,
   },
+  {
+    id: 'writing-grade9-problem',
+    title: 'Problem and Solution',
+    titleAr: 'المشكلة والحل',
+    description: 'Write a problem-solution paragraph: state a problem, suggest solutions and support them with reasons. An immersive lightbulb-themed lesson with glowing effects, practice, a checklist and a worksheet.',
+    thumbnail: '💡',
+    section: 'general',
+    subsection: 'writing',
+    grades: [9],
+    fileUrl: `${BASE}/grade9-problem.html`,
+    static: true,
+  },
 ];
