@@ -153,4 +153,17 @@ export const WRITING_LESSONS = [
     fileUrl: `${BASE}/grade7-however.html`,
     static: true,
   },
+  // ---------------- Grade 8 ----------------
+  {
+    id: 'writing-grade8-paragraph',
+    title: 'The Paragraph Structure',
+    titleAr: 'بناء الفقرة (جملة الموضوع)',
+    description: 'Build a paragraph with a topic sentence, supporting details and a conclusion. An immersive burger-themed lesson with celebratory effects, practice, a checklist and a worksheet.',
+    thumbnail: '🍔',
+    section: 'general',
+    subsection: 'writing',
+    grades: [8],
+    fileUrl: `${BASE}/grade8-paragraph.html`,
+    static: true,
+  },
 ];
