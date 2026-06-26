@@ -227,4 +227,16 @@ export const WRITING_LESSONS = [
     fileUrl: `${BASE}/grade9-reports.html`,
     static: true,
   },
+  {
+    id: 'writing-grade9-passive',
+    title: 'Active to Passive Narrative',
+    titleAr: 'المعلوم إلى المجهول (وصف العمليات)',
+    description: 'Change active sentences into the passive (be + past participle) to describe a process. An immersive factory assembly-line lesson with celebratory effects, practice, a checklist and a worksheet.',
+    thumbnail: '⚙️',
+    section: 'general',
+    subsection: 'writing',
+    grades: [9],
+    fileUrl: `${BASE}/grade9-passive.html`,
+    static: true,
+  },
 ];
