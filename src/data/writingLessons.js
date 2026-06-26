@@ -190,4 +190,16 @@ export const WRITING_LESSONS = [
     fileUrl: `${BASE}/grade8-diary.html`,
     static: true,
   },
+  {
+    id: 'writing-grade8-business-letter',
+    title: 'Business / Formal Letters',
+    titleAr: 'الرسائل الرسمية',
+    description: 'Write a formal business letter with a subject line, formal greeting/closing and a job title. An immersive executive-desk lesson with celebratory effects, practice, a checklist and a worksheet.',
+    thumbnail: '💼',
+    section: 'general',
+    subsection: 'writing',
+    grades: [8],
+    fileUrl: `${BASE}/grade8-business-letter.html`,
+    static: true,
+  },
 ];
