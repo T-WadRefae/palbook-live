@@ -166,4 +166,16 @@ export const WRITING_LESSONS = [
     fileUrl: `${BASE}/grade8-paragraph.html`,
     static: true,
   },
+  {
+    id: 'writing-grade8-notes',
+    title: 'Making Notes for Writing',
+    titleAr: 'أخذ الملاحظات للكتابة',
+    description: 'Take short key-word notes and turn them into an organised paragraph. An immersive detective case-file lesson with celebratory effects, practice, a checklist and a worksheet.',
+    thumbnail: '🔍',
+    section: 'general',
+    subsection: 'writing',
+    grades: [8],
+    fileUrl: `${BASE}/grade8-notes.html`,
+    static: true,
+  },
 ];
