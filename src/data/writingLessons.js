@@ -129,4 +129,16 @@ export const WRITING_LESSONS = [
     fileUrl: `${BASE}/grade7-informal-letter.html`,
     static: true,
   },
+  {
+    id: 'writing-grade7-sequence',
+    title: 'Sequence Connectives',
+    titleAr: 'كلمات التسلسل',
+    description: 'Use First, Next, Then, After that and Finally to describe a process step by step. An immersive recipe-card lesson with practice, a checklist and a worksheet.',
+    thumbnail: '👨‍🍳',
+    section: 'general',
+    subsection: 'writing',
+    grades: [7],
+    fileUrl: `${BASE}/grade7-sequence.html`,
+    static: true,
+  },
 ];
