@@ -12,10 +12,11 @@ import { getLessons } from '../../firebase/lessons';
 import { GRADES } from '../../utils/constants';
 import { GRAMMAR_LESSONS } from '../../data/grammarLessons';
 import { READING_LESSONS } from '../../data/readingLessons';
+import { WRITING_LESSONS } from '../../data/writingLessons';
 
-// Static lessons served from palbook-lessons GitHub Pages (grammar + reading).
+// Static lessons served from palbook-lessons GitHub Pages (grammar + reading + writing).
 // They show in their General sub-page without needing Firestore documents.
-const STATIC_LESSONS = [...GRAMMAR_LESSONS, ...READING_LESSONS];
+const STATIC_LESSONS = [...GRAMMAR_LESSONS, ...READING_LESSONS, ...WRITING_LESSONS];
 
 // Shared view for every General sub-page. Each page (Grammar / Phonics /
 // Reading) renders this with its own `section` config from generalSections.js.

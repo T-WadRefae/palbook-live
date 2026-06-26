@@ -69,7 +69,7 @@
   },
   "general": {
     "title": "General Lessons",
-    "subtitle": "Master grammar, pronunciation, and reading",
+    "subtitle": "Master grammar, pronunciation, reading, and writing",
     "chooseSection": "Choose a Category",
     "filterByGrade": "Filter by grade:",
     "lesson": "lesson",
@@ -80,6 +80,8 @@
     "pronunciationDesc": "Master English sounds and letter pronunciation",
     "reading": "Reading",
     "readingDesc": "Engaging reading texts with comprehension activities",
+    "writing": "Writing",
+    "writingDesc": "Guided writing lessons with a printable worksheet",
     "openLesson": "Open Lesson",
     "noLessons": "No lessons available yet"
   },

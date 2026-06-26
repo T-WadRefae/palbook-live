@@ -17,6 +17,7 @@ export const GENERAL_SUBSECTIONS = {
   GRAMMAR: 'grammar',
   PRONUNCIATION: 'pronunciation',
   READING: 'reading',
+  WRITING: 'writing',
 };
 
 // Grades 5 → 9 (Middle school)
