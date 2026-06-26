@@ -239,4 +239,16 @@ export const WRITING_LESSONS = [
     fileUrl: `${BASE}/grade9-passive.html`,
     static: true,
   },
+  {
+    id: 'writing-grade9-expand',
+    title: 'Expanding Notes into Stories',
+    titleAr: 'توسيع الملاحظات إلى قصة',
+    description: 'Turn short story notes into a full story with details, feelings and linked events. An immersive storyboard lesson with celebratory effects, practice, a checklist and a worksheet.',
+    thumbnail: '🎬',
+    section: 'general',
+    subsection: 'writing',
+    grades: [9],
+    fileUrl: `${BASE}/grade9-expand.html`,
+    static: true,
+  },
 ];
