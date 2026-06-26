@@ -214,4 +214,17 @@ export const WRITING_LESSONS = [
     fileUrl: `${BASE}/grade8-pronouns.html`,
     static: true,
   },
+  // ---------------- Grade 9 ----------------
+  {
+    id: 'writing-grade9-reports',
+    title: 'Progress & Fitness Reports',
+    titleAr: 'تقارير التقدّم واللياقة',
+    description: 'Write a formal report from data and tables, with factual sentences, an objective tone and a recommendation. An immersive report-card lesson with celebratory effects, practice, a checklist and a worksheet.',
+    thumbnail: '📊',
+    section: 'general',
+    subsection: 'writing',
+    grades: [9],
+    fileUrl: `${BASE}/grade9-reports.html`,
+    static: true,
+  },
 ];
