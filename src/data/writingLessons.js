@@ -92,4 +92,16 @@ export const WRITING_LESSONS = [
     fileUrl: `${BASE}/grade6-posters-quizzes.html`,
     static: true,
   },
+  {
+    id: 'writing-grade6-exclamation',
+    title: 'Exclamation Marks',
+    titleAr: 'علامة التعجب',
+    description: 'Use "!" to show strong feelings, and choose "." vs "!" correctly. An immersive comic-strip lesson with practice, a checklist and a worksheet.',
+    thumbnail: '💥',
+    section: 'general',
+    subsection: 'writing',
+    grades: [6],
+    fileUrl: `${BASE}/grade6-exclamation.html`,
+    static: true,
+  },
 ];
