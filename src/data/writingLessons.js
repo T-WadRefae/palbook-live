@@ -178,4 +178,16 @@ export const WRITING_LESSONS = [
     fileUrl: `${BASE}/grade8-notes.html`,
     static: true,
   },
+  {
+    id: 'writing-grade8-diary',
+    title: 'Writing a Diary Page',
+    titleAr: 'كتابة صفحة مذكّرات',
+    description: 'Write a dated diary entry: Dear Diary, past-tense events and personal feelings. An immersive locked-journal lesson with celebratory effects, practice, a checklist and a worksheet.',
+    thumbnail: '📖',
+    section: 'general',
+    subsection: 'writing',
+    grades: [8],
+    fileUrl: `${BASE}/grade8-diary.html`,
+    static: true,
+  },
 ];
