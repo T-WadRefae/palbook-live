@@ -10,7 +10,10 @@ import GradeMultiSelect from '../../components/common/GradeMultiSelect';
 import LessonViewer from '../../components/common/LessonViewer';
 import Loader from '../../components/common/Loader';
 import EmptyState from '../../components/common/EmptyState';
-import { getLessons, deleteLesson, updateLesson } from '../../firebase/lessons';
+import { getLessons, deleteLesson, updateLesson, setLesson } from '../../firebase/lessons';
+import { GRAMMAR_LESSONS } from '../../data/grammarLessons';
+import { READING_LESSONS } from '../../data/readingLessons';
+import { WRITING_LESSONS } from '../../data/writingLessons';
 import {
   SECTIONS,
   GENERAL_SUBSECTIONS,
@@ -19,6 +22,12 @@ import {
   LESSONS,
   LESSON_EMOJIS,
 } from '../../utils/constants';
+
+// Auto-published lessons shipped with the app (served from GitHub Pages).
+// They appear on the public General pages without a Firestore document, so we
+// also surface them here as editable cards. Editing one writes a Firestore
+// override keyed by the static lesson's id.
+const STATIC_LESSONS = [...GRAMMAR_LESSONS, ...READING_LESSONS, ...WRITING_LESSONS];
 
 const ManageLessonsPage = () => {
   const { t } = useTranslation();
@@ -33,7 +42,11 @@ const ManageLessonsPage = () => {
   const loadLessons = async () => {
     try {
       const data = await getLessons({});
-      setLessons(data);
+      // Merge in auto-published static lessons that haven't been overridden by
+      // a Firestore document with the same id, so the teacher can edit them.
+      const firestoreIds = new Set(data.map((l) => l.id));
+      const staticFallbacks = STATIC_LESSONS.filter((l) => !firestoreIds.has(l.id));
+      setLessons([...data, ...staticFallbacks]);
     } catch (err) {
       console.error(err);
       toast.error('Failed to load');
@@ -47,6 +60,15 @@ const ManageLessonsPage = () => {
   }, []);
 
   const handleDelete = async (lesson) => {
+    // Auto-published lessons live in the app's code, not Firestore, so there is
+    // nothing to delete — it would just reappear on reload. Guide the teacher
+    // to edit it instead.
+    if (lesson.static) {
+      toast('This is an auto-published lesson. You can edit it, but it can\'t be deleted.', {
+        icon: 'ℹ️',
+      });
+      return;
+    }
     if (!window.confirm('Are you sure you want to delete this?')) return;
     try {
       await deleteLesson(lesson.id);
@@ -113,10 +135,18 @@ const ManageLessonsPage = () => {
         updates.grades = null;
       }
 
-      await updateLesson(editingLesson.id, updates);
+      // An auto-published static lesson has no Firestore document yet, so the
+      // first edit creates an override keyed by its id; later edits update it.
+      if (editingLesson.static) {
+        await setLesson(editingLesson.id, updates);
+      } else {
+        await updateLesson(editingLesson.id, updates);
+      }
       toast.success('Updated successfully!');
       setLessons((prev) =>
-        prev.map((l) => (l.id === editingLesson.id ? { ...l, ...updates } : l))
+        prev.map((l) =>
+          l.id === editingLesson.id ? { ...l, ...updates, static: false } : l
+        )
       );
       setEditingLesson(null);
     } catch (err) {

@@ -2,6 +2,7 @@ import {
   collection,
   doc,
   addDoc,
+  setDoc,
   getDocs,
   getDoc,
   updateDoc,
@@ -59,6 +60,28 @@ export const updateLesson = async (id, updates) => {
     ...updates,
     updatedAt: serverTimestamp(),
   });
+};
+
+// Create (or overwrite) a lesson document at a specific id.
+// Used when a teacher edits an auto-published static lesson: we persist a
+// Firestore override keyed by the static lesson's id so it both appears in the
+// public pages (Firestore docs win over static fallbacks with the same id) and
+// becomes a regular, editable lesson in the dashboard.
+export const setLesson = async (id, lessonData) => {
+  const ref = doc(db, LESSONS_COLLECTION, id);
+  const existing = await getDoc(ref);
+  await setDoc(
+    ref,
+    {
+      ...lessonData,
+      // Only seed these on first creation so edits don't reset them.
+      ...(existing.exists()
+        ? {}
+        : { views: 0, lastViewedAt: null, createdAt: serverTimestamp() }),
+      updatedAt: serverTimestamp(),
+    },
+    { merge: true }
+  );
 };
 
 export const deleteLesson = async (id) => {
