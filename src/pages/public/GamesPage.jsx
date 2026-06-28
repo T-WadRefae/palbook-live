@@ -8,6 +8,7 @@ import LessonViewer from '../../components/common/LessonViewer';
 import Loader from '../../components/common/Loader';
 import EmptyState from '../../components/common/EmptyState';
 import { getLessons } from '../../firebase/lessons';
+import { GAMES } from '../../data/gamesLessons';
 
 const GamesPage = () => {
   const { t } = useTranslation();
@@ -20,9 +21,13 @@ const GamesPage = () => {
     (async () => {
       try {
         const data = await getLessons({ section: 'games' });
-        setGames(data);
+        // Merge static games; Firestore docs take priority (same id wins).
+        const firestoreIds = new Set(data.map((g) => g.id));
+        const staticFallbacks = GAMES.filter((g) => !firestoreIds.has(g.id));
+        setGames([...data, ...staticFallbacks]);
       } catch (err) {
         console.error(err);
+        setGames(GAMES);
       } finally {
         setLoading(false);
       }
