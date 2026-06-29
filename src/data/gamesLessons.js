@@ -18,4 +18,16 @@ export const GAMES = [
     fileUrl: `${BASE}/SpellingBee.html`,
     static: true,
   },
+  {
+    id: 'game-word-bomber',
+    title: 'Word Bomber 💣',
+    titleAr: 'مُفجِّر الكلمات',
+    description:
+      'A Bomberman-style maze: drop bombs to blow up crates and uncover hidden coins. Each coin opens a vocabulary question — meaning, synonym or antonym — from a 400-word bank. Difficulty levels, sound and visual effects.',
+    thumbnail: '💣',
+    section: 'games',
+    grades: [5, 6, 7, 8, 9],
+    fileUrl: `${BASE}/WordBomber.html`,
+    static: true,
+  },
 ];
