@@ -8,6 +8,7 @@ import LessonViewer from '../../components/common/LessonViewer';
 import Loader from '../../components/common/Loader';
 import EmptyState from '../../components/common/EmptyState';
 import { getLessons } from '../../firebase/lessons';
+import { PALBOOK_LESSONS } from '../../data/palbookLessons';
 import { GRADES } from '../../utils/constants';
 
 const PalBookPage = () => {
@@ -22,9 +23,13 @@ const PalBookPage = () => {
     (async () => {
       try {
         const data = await getLessons({ section: 'palbook' });
-        setLessons(data);
+        // Merge static curriculum lessons; Firestore docs win (same id).
+        const firestoreIds = new Set(data.map((l) => l.id));
+        const staticFallbacks = PALBOOK_LESSONS.filter((l) => !firestoreIds.has(l.id));
+        setLessons([...data, ...staticFallbacks]);
       } catch (err) {
         console.error(err);
+        setLessons(PALBOOK_LESSONS);
       } finally {
         setLoading(false);
       }
