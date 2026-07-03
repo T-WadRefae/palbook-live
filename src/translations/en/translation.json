@@ -1,6 +1,6 @@
 {
   "app": {
-    "name": "PalBook Live",
+    "name": "PalBook",
     "tagline": "by T. Wad Refae 🇵🇸"
   },
   "footer": {
@@ -23,10 +23,11 @@
     "theme": "Theme"
   },
   "home": {
-    "welcome": "Welcome to PalBook Live",
+    "welcome": "Welcome to PalBook",
     "subtitle": "Learn English in a fun way with T. Wad Refae",
     "exploreSections": "Explore Our Sections",
-    "whyTitle": "Why PalBook Live?",
+    "whyTitle": "Why PalBook?",
+    "latestTitle": "Latest Grade 5 Lessons",
     "whyDesc": "Crafted with love by T. Wad Refae for Palestinian students learning English",
     "palbookDesc": "Lessons aligned with the curriculum",
     "generalDesc": "Grammar, pronunciation, and reading",
@@ -44,7 +45,7 @@
   "auth": {
     "loginTitle": "Welcome back!",
     "loginSubtitle": "Sign in to continue learning",
-    "registerTitle": "Join PalBook Live!",
+    "registerTitle": "Join PalBook!",
     "registerSubtitle": "Start your learning adventure",
     "email": "Email",
     "password": "Password",
@@ -121,7 +122,14 @@
     "continueLearning": "Continue Learning",
     "completedLessons": "Completed Lessons",
     "currentLesson": "Current Lesson",
-    "noProgress": "Start a lesson to see your progress here!"
+    "noProgress": "Start a lesson to see your progress here!",
+    "newFromGithub": "new lessons from GitHub",
+    "newFromGithubHint": "Pushed to the lessons repo — register them to edit their details.",
+    "reviewRegister": "Review & Register",
+    "unregistered": "Unregistered",
+    "register": "Register",
+    "registerLesson": "Register Lesson",
+    "registerAll": "Register All"
   },
   "upload": {
     "title": "Upload New Lesson",

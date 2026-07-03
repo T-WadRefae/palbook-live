@@ -13,8 +13,24 @@ import {
   increment,
 } from 'firebase/firestore';
 import { db } from './config';
+import { fetchRepoLessons } from '../utils/lessonsRepo';
+import { PALBOOK_LESSONS } from '../data/palbookLessons';
+import { GRAMMAR_LESSONS } from '../data/grammarLessons';
+import { READING_LESSONS } from '../data/readingLessons';
+import { WRITING_LESSONS } from '../data/writingLessons';
+import { GAMES } from '../data/gamesLessons';
 
 const LESSONS_COLLECTION = 'lessons';
+
+// Auto-published lessons shipped with the app (served from GitHub Pages).
+// A Firestore document with the same id overrides its static entry.
+const STATIC_LESSONS = [
+  ...PALBOOK_LESSONS,
+  ...GRAMMAR_LESSONS,
+  ...READING_LESSONS,
+  ...WRITING_LESSONS,
+  ...GAMES,
+];
 
 export const addLesson = async (lessonData) => {
   const docRef = await addDoc(collection(db, LESSONS_COLLECTION), {
@@ -48,6 +64,52 @@ export const getLessons = async (filters = {}) => {
   });
 
   return lessons;
+};
+
+const normalizeUrl = (u) => {
+  const s = (u || '').trim();
+  try {
+    return decodeURI(s).toLowerCase();
+  } catch {
+    return s.toLowerCase();
+  }
+};
+
+const applyLessonFilters = (list, filters) => {
+  let out = list;
+  if (filters.section) out = out.filter((l) => l.section === filters.section);
+  if (filters.grade) out = out.filter((l) => Number(l.grade) === Number(filters.grade));
+  if (filters.unit) out = out.filter((l) => Number(l.unit) === Number(filters.unit));
+  return out;
+};
+
+// One merged view of all lesson sources:
+//   1. Firestore registry (teacher-managed; wins over a static entry with the same id)
+//   2. Static lessons shipped with the app (curated titles, `static: true`)
+//   3. Lessons discovered in the palbook-lessons GitHub repo (`discovered: true`)
+//      — dropped when their URL is already known, kept otherwise so a plain
+//      `git push` is enough for a lesson to reach the site and the dashboard.
+// Either remote source may fail independently; the rest still renders.
+export const getMergedLessons = async (filters = {}, { force = false } = {}) => {
+  const [fire, repo] = await Promise.allSettled([
+    getLessons(filters),
+    fetchRepoLessons({ force }),
+  ]);
+  const registered = fire.status === 'fulfilled' ? fire.value : [];
+  const discovered = repo.status === 'fulfilled' ? repo.value : [];
+
+  const registeredIds = new Set(registered.map((l) => l.id));
+  const statics = applyLessonFilters(STATIC_LESSONS, filters).filter(
+    (l) => !registeredIds.has(l.id)
+  );
+  const base = [...registered, ...statics];
+
+  const seenUrls = new Set(base.map((l) => normalizeUrl(l.fileUrl)));
+  const fresh = applyLessonFilters(discovered, filters).filter(
+    (l) => !seenUrls.has(normalizeUrl(l.fileUrl))
+  );
+
+  return [...base, ...fresh];
 };
 
 export const getLesson = async (id) => {

@@ -122,7 +122,7 @@ const UploadLessonPage = () => {
           <label className="label">Section</label>
           <div className="grid grid-cols-3 gap-3">
             {[
-              { v: SECTIONS.PALBOOK, label: 'PalBook', emoji: '🇵🇸' },
+              { v: SECTIONS.PALBOOK, label: 'PalBook Live', emoji: '🇵🇸' },
               { v: SECTIONS.GENERAL, label: 'General', emoji: '✨' },
               { v: SECTIONS.GAMES, label: 'Games', emoji: '🎮' },
             ].map((s) => (

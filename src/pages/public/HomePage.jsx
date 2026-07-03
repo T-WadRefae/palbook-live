@@ -1,13 +1,38 @@
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { FiArrowLeft } from 'react-icons/fi';
 import PageTransition from '../../components/common/PageTransition';
+import LessonRow from '../../components/common/LessonRow';
+import LessonViewer from '../../components/common/LessonViewer';
+import { getMergedLessons } from '../../firebase/lessons';
+
+// The grade whose newest lessons are featured on the homepage
+const LATEST_GRADE = 5;
 
 const HomePage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const HERO_IMAGE = '/hero.png';
+  const [latest, setLatest] = useState([]);
+  const [activeLesson, setActiveLesson] = useState(null);
+
+  useEffect(() => {
+    let alive = true;
+    (async () => {
+      const data = await getMergedLessons({ section: 'palbook', grade: LATEST_GRADE });
+      if (!alive) return;
+      data.sort(
+        (a, b) =>
+          Number(b.unit) - Number(a.unit) || Number(b.lesson) - Number(a.lesson)
+      );
+      setLatest(data.slice(0, 8));
+    })();
+    return () => {
+      alive = false;
+    };
+  }, []);
 
   const sections = [
     {
@@ -47,7 +72,7 @@ const HomePage = () => {
         <div className="flex justify-center">
           <motion.img
             src={HERO_IMAGE}
-            alt="PalBook Live"
+            alt="PalBook"
             animate={{ y: [0, -12, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
             className="w-full max-w-sm h-auto drop-shadow-2xl"
@@ -100,7 +125,26 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Why PalBook Live — centered cards */}
+      {/* Latest Grade 5 lessons — pulled straight from the lessons repo */}
+      {latest.length > 0 && (
+        <section className="px-4 pb-12">
+          <h2 className="text-center text-xl md:text-2xl font-display font-extrabold text-secondary-800 dark:text-secondary-300 mb-7">
+            🆕 {t('home.latestTitle')}
+          </h2>
+          <div className="max-w-3xl mx-auto flex flex-col gap-2.5">
+            {latest.map((l, i) => (
+              <LessonRow key={l.id} lesson={l} index={i} onOpen={setActiveLesson} />
+            ))}
+          </div>
+          <div className="text-center mt-6">
+            <button onClick={() => navigate('/palbook')} className="btn-secondary !py-2.5 !text-sm">
+              {t('common.viewAll')} <FiArrowLeft className="rtl-flip" />
+            </button>
+          </div>
+        </section>
+      )}
+
+      {/* Why PalBook — centered cards */}
       <section className="px-4 pb-16">
         <h2 className="text-center text-xl md:text-2xl font-display font-extrabold text-secondary-800 dark:text-secondary-300 mb-7">
           ✨ {t('home.whyTitle')}
@@ -127,6 +171,10 @@ const HomePage = () => {
           ))}
         </div>
       </section>
+
+      {activeLesson && (
+        <LessonViewer lesson={activeLesson} onClose={() => setActiveLesson(null)} />
+      )}
     </PageTransition>
   );
 };

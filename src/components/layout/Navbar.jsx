@@ -22,7 +22,7 @@ const Navbar = () => {
         <Link to="/" className="justify-self-center flex items-center gap-2.5">
           <img
             src="/logo.png"
-            alt="PalBook Live"
+            alt="PalBook"
             className="w-10 h-10 object-contain drop-shadow"
           />
           <span className="font-display font-bold text-base sm:text-lg text-slate-700 dark:text-slate-100 whitespace-nowrap">

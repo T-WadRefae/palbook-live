@@ -7,8 +7,7 @@ import LessonRow from '../../components/common/LessonRow';
 import LessonViewer from '../../components/common/LessonViewer';
 import Loader from '../../components/common/Loader';
 import EmptyState from '../../components/common/EmptyState';
-import { getLessons } from '../../firebase/lessons';
-import { PALBOOK_LESSONS } from '../../data/palbookLessons';
+import { getMergedLessons } from '../../firebase/lessons';
 import { GRADES } from '../../utils/constants';
 
 const PalBookPage = () => {
@@ -22,14 +21,11 @@ const PalBookPage = () => {
   useEffect(() => {
     (async () => {
       try {
-        const data = await getLessons({ section: 'palbook' });
-        // Merge static curriculum lessons; Firestore docs win (same id).
-        const firestoreIds = new Set(data.map((l) => l.id));
-        const staticFallbacks = PALBOOK_LESSONS.filter((l) => !firestoreIds.has(l.id));
-        setLessons([...data, ...staticFallbacks]);
+        // Firestore + static curriculum lessons + repo-discovered, merged centrally
+        const data = await getMergedLessons({ section: 'palbook' });
+        setLessons(data);
       } catch (err) {
         console.error(err);
-        setLessons(PALBOOK_LESSONS);
       } finally {
         setLoading(false);
       }
@@ -83,7 +79,7 @@ const PalBookPage = () => {
             }}
             className="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700"
           >
-            🇵🇸 PalBook
+            🇵🇸 PalBook Live
           </button>
           {grade && (
             <>

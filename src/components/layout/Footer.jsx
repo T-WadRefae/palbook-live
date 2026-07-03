@@ -45,7 +45,7 @@ const Footer = () => {
 
         <div className="pt-6 border-t border-slate-700 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-slate-400">
           <p className="flex items-center gap-1">
-            Made with 🩷 in Palestine - © 2026 PalBook Live . All Rights Reserved
+            Made with 🩷 in Palestine - © 2026 PalBook. All Rights Reserved
           </p>
         </div>
       </div>

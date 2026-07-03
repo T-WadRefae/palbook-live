@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { FiUpload, FiBookOpen, FiBarChart2, FiPlus } from 'react-icons/fi';
+import { FiUpload, FiBookOpen, FiPlus, FiEye, FiFlag, FiLayers } from 'react-icons/fi';
 import PageTransition from '../../components/common/PageTransition';
 import Loader from '../../components/common/Loader';
 import { useAuth } from '../../contexts/AuthContext';
-import { getLessons } from '../../firebase/lessons';
+import { getMergedLessons } from '../../firebase/lessons';
 
 const TeacherDashboard = () => {
   const { t } = useTranslation();
@@ -17,7 +17,7 @@ const TeacherDashboard = () => {
   useEffect(() => {
   (async () => {
     try {
-      const lessonsData = await getLessons({});
+      const lessonsData = await getMergedLessons({}, { force: true });
       setLessons(lessonsData);
     } catch (err) {
       console.error(err);
@@ -30,34 +30,38 @@ const TeacherDashboard = () => {
 
   if (loading) return <Loader />;
 
-  const palbookCount = lessons.filter((l) => l.section === 'palbook').length;
-  const generalCount = lessons.filter((l) => l.section === 'general').length;
-  const totalViews = lessons.reduce((sum, l) => sum + (l.views || 0), 0);
+  // Registered = in Firestore; unregistered arrived via git push and are only
+  // discovered in the GitHub repo until the teacher registers them.
+  const registered = lessons.filter((l) => !l.discovered);
+  const unregistered = lessons.filter((l) => l.discovered);
+  const palbookCount = registered.filter((l) => l.section === 'palbook').length;
+  const generalCount = registered.filter((l) => l.section === 'general').length;
+  const totalViews = registered.reduce((sum, l) => sum + (l.views || 0), 0);
 
   const stats = [
   {
     icon: <FiBookOpen />,
     label: 'Total Lessons',
-    value: lessons.length,
-    gradient: 'from-primary-400 to-pink-500',
+    value: registered.length,
+    gradient: 'from-sky-400 to-sky-600',
   },
   {
-    icon: <FiBarChart2 />,
+    icon: <FiEye />,
     label: 'Total Views',
     value: totalViews,
-    gradient: 'from-violet-400 to-purple-500',
+    gradient: 'from-secondary-400 to-secondary-600',
   },
   {
-    icon: <FiBarChart2 />,
-    label: 'PalBook Lessons',
+    icon: <FiFlag />,
+    label: 'PalBook Live',
     value: palbookCount,
-    gradient: 'from-accent-400 to-orange-500',
+    gradient: 'from-sky-500 to-sky-700',
   },
   {
-    icon: <FiBarChart2 />,
-    label: 'General Lessons',
+    icon: <FiLayers />,
+    label: 'General',
     value: generalCount,
-    gradient: 'from-secondary-400 to-emerald-500',
+    gradient: 'from-secondary-500 to-secondary-700',
   },
 ];
 
@@ -74,7 +78,7 @@ const TeacherDashboard = () => {
           <h1 className="text-3xl md:text-4xl font-extrabold mt-1">
             {profile?.displayName || 'T. Wad Refae'}
           </h1>
-          <p className="text-white/90 mt-2 text-sm">🇵🇸 PalBook Live</p>
+          <p className="text-white/90 mt-2 text-sm">🇵🇸 PalBook</p>
 
           <div className="flex flex-wrap gap-2 mt-4">
             <Link to="/teacher/upload" className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-white text-primary-600 font-bold text-sm hover:scale-105 transition-transform">
@@ -86,6 +90,25 @@ const TeacherDashboard = () => {
           </div>
         </div>
       </motion.div>
+
+      {/* Lessons that arrived via git push and are waiting for registration */}
+      {unregistered.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="g-blue rounded-3xl p-5 mb-8 shadow-kid flex flex-wrap items-center justify-between gap-3"
+        >
+          <div>
+            <p className="font-extrabold">
+              🆕 {unregistered.length} {t('dashboard.newFromGithub')}
+            </p>
+            <p className="text-sm opacity-80 mt-0.5">{t('dashboard.newFromGithubHint')}</p>
+          </div>
+          <Link to="/teacher/lessons?filter=new" className="btn-secondary !py-2 !text-sm">
+            {t('dashboard.reviewRegister')}
+          </Link>
+        </motion.div>
+      )}
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {stats.map((s, i) => (
@@ -128,11 +151,11 @@ const TeacherDashboard = () => {
       </div>
 
       {/* Recent lessons preview */}
-      {lessons.length > 0 && (
+      {registered.length > 0 && (
         <div className="mt-8">
           <h2 className="text-xl font-bold mb-4">📚 Recent Lessons</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {lessons.slice(0, 6).map((l) => (
+            {registered.slice(0, 6).map((l) => (
               <div key={l.id} className="card !p-4 flex items-center gap-3">
                 <div className="text-3xl">{l.thumbnail || '📚'}</div>
                 <div className="min-w-0 flex-1">

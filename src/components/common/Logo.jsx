@@ -23,11 +23,11 @@ const Logo = ({ size = 'md', linkTo = '/', showTagline = false }) => {
         transition={{ duration: 0.5 }}
         className={`${dotSize[size]} flex items-center justify-center relative`}
       >
-        <img src="/logo.png" alt="PalBook Live" className="w-full h-full object-contain drop-shadow" />
+        <img src="/logo.png" alt="PalBook" className="w-full h-full object-contain drop-shadow" />
       </motion.div>
       <div className="leading-tight">
         <div className={`font-display font-extrabold ${sizeClasses[size]} gradient-text`}>
-          PalBook<span className="text-secondary-500">Live</span>
+          PalBook
         </div>
         
       </div>

@@ -41,13 +41,19 @@ const LessonCard = ({
 
         {lesson.section === 'palbook' && (
           <span className="badge bg-secondary-100 text-secondary-700 mb-2">
-            🇵🇸 PalBook
+            🇵🇸 PalBook Live
           </span>
         )}
 
         {lesson.section === 'general' && (
           <span className="badge bg-primary-100 text-primary-700 mb-2">
             ✨ General
+          </span>
+        )}
+
+        {lesson.discovered && (
+          <span className="badge bg-sky-100 text-sky-700 mb-2 ms-1.5">
+            🆕 {t('dashboard.unregistered')}
           </span>
         )}
       </div>
@@ -113,16 +119,18 @@ const LessonCard = ({
             >
               <FiEdit2 />
             </button>
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                onDelete?.(lesson);
-              }}
-              className="w-10 h-10 rounded-xl bg-red-100 hover:bg-red-200 text-red-600 flex items-center justify-center transition-colors"
-              aria-label="Delete"
-            >
-              <FiTrash2 />
-            </button>
+            {!lesson.discovered && (
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onDelete?.(lesson);
+                }}
+                className="w-10 h-10 rounded-xl bg-red-100 hover:bg-red-200 text-red-600 flex items-center justify-center transition-colors"
+                aria-label="Delete"
+              >
+                <FiTrash2 />
+              </button>
+            )}
           </>
         )}
       </div>

@@ -21,7 +21,7 @@ const AuthLayout = () => {
       </main>
 
       <footer className="text-center py-4 text-xs text-slate-500 dark:text-slate-400">
-        © 2026 PalBook Live • T. Wad Refae 🇵🇸
+        © 2026 PalBook • T. Wad Refae 🇵🇸
       </footer>
     </div>
   );

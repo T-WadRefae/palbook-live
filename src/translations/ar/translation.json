@@ -1,7 +1,7 @@
 
   {
   "app": {
-    "name": "PalBook Live",
+    "name": "PalBook",
     "tagline": "من تصميم المعلمة وعد رفاعي   🇵🇸"
   },
   "footer": {
@@ -25,10 +25,11 @@
     "theme": "المظهر"
   },
  "home": {
-    "welcome": "أهلاً بك في PalBook Live",
+    "welcome": "أهلاً بك في PalBook",
     "subtitle": "تعلّم الإنجليزية بطريقة ممتعة مع المعلمة وعد رفاعي",
     "exploreSections": "استكشف أقسامنا",
-    "whyTitle": "لماذا PalBook Live؟",
+    "whyTitle": "لماذا PalBook؟",
+    "latestTitle": "أحدث دروس الصف الخامس",
     "whyDesc": "صُمّمت بحب من المعلمة وعد رفاعي لطلاب فلسطين",
     "palbookDesc": "دروس حسب المنهاج",
     "generalDesc": "قواعد، نطق، وقراءة",
@@ -46,7 +47,7 @@
   "auth": {
     "loginTitle": "أهلاً بعودتك!",
     "loginSubtitle": "سجّل الدخول لمتابعة التعلم",
-    "registerTitle": "انضم إلى PalBook Live!",
+    "registerTitle": "انضم إلى PalBook!",
     "registerSubtitle": "ابدأ مغامرة التعلم",
     "email": "البريد الإلكتروني",
     "password": "كلمة المرور",
@@ -122,7 +123,14 @@
     "continueLearning": "تابع التعلم",
     "completedLessons": "الدروس المكتملة",
     "currentLesson": "الدرس الحالي",
-    "noProgress": "ابدأ درساً لرؤية تقدّمك هنا!"
+    "noProgress": "ابدأ درساً لرؤية تقدّمك هنا!",
+    "newFromGithub": "دروس جديدة من GitHub",
+    "newFromGithubHint": "وصلت عبر الرفع (push) إلى مستودع الدروس — سجّليها لتعديل تفاصيلها.",
+    "reviewRegister": "مراجعة وتسجيل",
+    "unregistered": "غير مسجّل",
+    "register": "تسجيل",
+    "registerLesson": "تسجيل الدرس",
+    "registerAll": "تسجيل الكل"
   },
   "upload": {
     "title": "رفع درس جديد",

@@ -182,7 +182,7 @@ const RegisterPage = () => {
       </div>
 
       <p className="text-center text-xs text-slate-400 mt-4">
-        🇵🇸 PalBook Live by T. Wad Refae
+        🇵🇸 PalBook by T. Wad Refae
       </p>
     </motion.div>
   );

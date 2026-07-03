@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
@@ -10,10 +10,13 @@ import GradeMultiSelect from '../../components/common/GradeMultiSelect';
 import LessonViewer from '../../components/common/LessonViewer';
 import Loader from '../../components/common/Loader';
 import EmptyState from '../../components/common/EmptyState';
-import { getLessons, deleteLesson, updateLesson, setLesson } from '../../firebase/lessons';
-import { GRAMMAR_LESSONS } from '../../data/grammarLessons';
-import { READING_LESSONS } from '../../data/readingLessons';
-import { WRITING_LESSONS } from '../../data/writingLessons';
+import {
+  getMergedLessons,
+  addLesson,
+  deleteLesson,
+  updateLesson,
+  setLesson,
+} from '../../firebase/lessons';
 import {
   SECTIONS,
   GENERAL_SUBSECTIONS,
@@ -23,30 +26,41 @@ import {
   LESSON_EMOJIS,
 } from '../../utils/constants';
 
-// Auto-published lessons shipped with the app (served from GitHub Pages).
-// They appear on the public General pages without a Firestore document, so we
-// also surface them here as editable cards. Editing one writes a Firestore
-// override keyed by the static lesson's id.
-const STATIC_LESSONS = [...GRAMMAR_LESSONS, ...READING_LESSONS, ...WRITING_LESSONS];
+// Firestore payload for registering a lesson that was discovered in the repo
+const buildLessonDoc = (l) => ({
+  section: l.section,
+  title: l.title || '',
+  titleAr: l.titleAr || '',
+  description: l.description || '',
+  thumbnail: l.thumbnail || '📚',
+  fileUrl: l.fileUrl,
+  teacher: 'T. Wad Refae',
+  subsection: l.section === SECTIONS.GENERAL ? l.subsection || null : null,
+  grades: l.section === SECTIONS.GENERAL ? l.grades || [] : null,
+  grade: l.section === SECTIONS.PALBOOK ? l.grade ?? null : null,
+  unit: l.section === SECTIONS.PALBOOK ? l.unit ?? null : null,
+  lesson: l.section === SECTIONS.PALBOOK ? l.lesson ?? null : null,
+});
+
+const SECTION_RANK = { palbook: 0, general: 1, games: 2 };
 
 const ManageLessonsPage = () => {
   const { t } = useTranslation();
+  const [searchParams] = useSearchParams();
   const [lessons, setLessons] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
-  const [filter, setFilter] = useState('all');
+  const [filter, setFilter] = useState(searchParams.get('filter') === 'new' ? 'new' : 'all');
   const [activeLesson, setActiveLesson] = useState(null);
   const [editingLesson, setEditingLesson] = useState(null);
   const [saving, setSaving] = useState(false);
+  const [bulkSaving, setBulkSaving] = useState(false);
 
   const loadLessons = async () => {
     try {
-      const data = await getLessons({});
-      // Merge in auto-published static lessons that haven't been overridden by
-      // a Firestore document with the same id, so the teacher can edit them.
-      const firestoreIds = new Set(data.map((l) => l.id));
-      const staticFallbacks = STATIC_LESSONS.filter((l) => !firestoreIds.has(l.id));
-      setLessons([...data, ...staticFallbacks]);
+      // Firestore + auto-published static lessons + repo-discovered, merged centrally
+      const data = await getMergedLessons({}, { force: true });
+      setLessons(data);
     } catch (err) {
       console.error(err);
       toast.error('Failed to load');
@@ -60,6 +74,7 @@ const ManageLessonsPage = () => {
   }, []);
 
   const handleDelete = async (lesson) => {
+    if (lesson.discovered) return; // lives in GitHub only — nothing to delete here
     // Auto-published lessons live in the app's code, not Firestore, so there is
     // nothing to delete — it would just reappear on reload. Guide the teacher
     // to edit it instead.
@@ -135,20 +150,31 @@ const ManageLessonsPage = () => {
         updates.grades = null;
       }
 
-      // An auto-published static lesson has no Firestore document yet, so the
-      // first edit creates an override keyed by its id; later edits update it.
-      if (editingLesson.static) {
+      if (editingLesson.discovered) {
+        // First save of a lesson that arrived via git push — register it
+        await addLesson({ ...updates, teacher: 'T. Wad Refae' });
+        toast.success('Registered!');
+        setEditingLesson(null);
+        await loadLessons();
+      } else if (editingLesson.static) {
+        // An auto-published static lesson has no Firestore document yet, so the
+        // first edit creates an override keyed by its id; later edits update it.
         await setLesson(editingLesson.id, updates);
+        toast.success('Updated successfully!');
+        setLessons((prev) =>
+          prev.map((l) =>
+            l.id === editingLesson.id ? { ...l, ...updates, static: false } : l
+          )
+        );
+        setEditingLesson(null);
       } else {
         await updateLesson(editingLesson.id, updates);
+        toast.success('Updated successfully!');
+        setLessons((prev) =>
+          prev.map((l) => (l.id === editingLesson.id ? { ...l, ...updates } : l))
+        );
+        setEditingLesson(null);
       }
-      toast.success('Updated successfully!');
-      setLessons((prev) =>
-        prev.map((l) =>
-          l.id === editingLesson.id ? { ...l, ...updates, static: false } : l
-        )
-      );
-      setEditingLesson(null);
     } catch (err) {
       toast.error(err.message);
     } finally {
@@ -156,15 +182,47 @@ const ManageLessonsPage = () => {
     }
   };
 
-  const filtered = lessons.filter((l) => {
-    const term = search.toLowerCase();
-    const matchesSearch =
-      !term ||
-      l.title?.toLowerCase().includes(term) ||
-      l.titleAr?.includes(search);
-    const matchesFilter = filter === 'all' || l.section === filter;
-    return matchesSearch && matchesFilter;
-  });
+  const handleRegisterAll = async () => {
+    const targets = lessons.filter((l) => l.discovered);
+    if (targets.length === 0) return;
+    if (!window.confirm(`Register ${targets.length} lessons from GitHub?`)) return;
+    setBulkSaving(true);
+    let ok = 0;
+    for (const l of targets) {
+      try {
+        await addLesson(buildLessonDoc(l));
+        ok += 1;
+      } catch (err) {
+        console.error('Failed to register', l.fileUrl, err);
+      }
+    }
+    toast[ok === targets.length ? 'success' : 'error'](`Registered ${ok}/${targets.length}`);
+    await loadLessons();
+    setBulkSaving(false);
+  };
+
+  const unregisteredCount = lessons.filter((l) => l.discovered).length;
+
+  const filtered = lessons
+    .filter((l) => {
+      const term = search.toLowerCase();
+      const matchesSearch =
+        !term ||
+        l.title?.toLowerCase().includes(term) ||
+        l.titleAr?.includes(search);
+      const matchesFilter =
+        filter === 'new' ? !!l.discovered : filter === 'all' || l.section === filter;
+      return matchesSearch && matchesFilter;
+    })
+    .sort(
+      (a, b) =>
+        (a.discovered ? 0 : 1) - (b.discovered ? 0 : 1) ||
+        (SECTION_RANK[a.section] ?? 3) - (SECTION_RANK[b.section] ?? 3) ||
+        (a.grade ?? 99) - (b.grade ?? 99) ||
+        (a.unit ?? 99) - (b.unit ?? 99) ||
+        (a.lesson ?? 99) - (b.lesson ?? 99) ||
+        (a.title || '').localeCompare(b.title || '')
+    );
 
   return (
     <PageTransition>
@@ -177,9 +235,24 @@ const ManageLessonsPage = () => {
             Manage all your content • by T. Wad Refae
           </p>
         </div>
-        <Link to="/teacher/upload" className="btn-primary">
-          <FiPlus /> Add New
-        </Link>
+        <div className="flex flex-wrap gap-2">
+          {unregisteredCount > 0 && (
+            <button
+              onClick={handleRegisterAll}
+              disabled={bulkSaving}
+              className="btn-secondary !py-2.5"
+            >
+              {bulkSaving ? (
+                <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+              ) : (
+                <>🆕 {t('dashboard.registerAll')} ({unregisteredCount})</>
+              )}
+            </button>
+          )}
+          <Link to="/teacher/upload" className="btn-primary">
+            <FiPlus /> Add New
+          </Link>
+        </div>
       </div>
 
       <div className="flex flex-col md:flex-row gap-3 mb-6">
@@ -196,7 +269,8 @@ const ManageLessonsPage = () => {
         <div className="flex gap-2 flex-wrap">
           {[
             { v: 'all', label: 'All', emoji: '🌟' },
-            { v: 'palbook', label: 'PalBook', emoji: '🇵🇸' },
+            { v: 'new', label: t('dashboard.unregistered'), emoji: '🆕' },
+            { v: 'palbook', label: 'PalBook Live', emoji: '🇵🇸' },
             { v: 'general', label: 'General', emoji: '✨' },
             { v: 'games', label: 'Games', emoji: '🎮' },
           ].map((f) => (
@@ -268,7 +342,9 @@ const ManageLessonsPage = () => {
               {/* Header */}
               <div className="sticky top-0 bg-white dark:bg-slate-900 z-10 flex justify-between items-center p-5 border-b border-slate-200 dark:border-slate-700">
                 <h2 className="text-xl font-bold gradient-text">
-                  Edit {editingLesson.section === 'games' ? 'Game' : 'Lesson'}
+                  {editingLesson.discovered
+                    ? `🆕 ${t('dashboard.registerLesson')}`
+                    : `Edit ${editingLesson.section === 'games' ? 'Game' : 'Lesson'}`}
                 </h2>
                 <button
                   onClick={() => setEditingLesson(null)}
@@ -284,7 +360,7 @@ const ManageLessonsPage = () => {
                   <label className="label">Section</label>
                   <div className="grid grid-cols-3 gap-2">
                     {[
-                      { v: SECTIONS.PALBOOK, label: 'PalBook', emoji: '🇵🇸' },
+                      { v: SECTIONS.PALBOOK, label: 'PalBook Live', emoji: '🇵🇸' },
                       { v: SECTIONS.GENERAL, label: 'General', emoji: '✨' },
                       { v: SECTIONS.GAMES, label: 'Games', emoji: '🎮' },
                     ].map((s) => (
@@ -491,7 +567,8 @@ const ManageLessonsPage = () => {
                     </>
                   ) : (
                     <>
-                      <FiSave /> Save Changes
+                      <FiSave />{' '}
+                      {editingLesson.discovered ? t('dashboard.register') : 'Save Changes'}
                     </>
                   )}
                 </button>
