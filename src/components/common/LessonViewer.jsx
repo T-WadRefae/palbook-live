@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { FiX, FiMaximize2, FiMinimize2, FiExternalLink } from 'react-icons/fi';
@@ -24,12 +25,16 @@ const LessonViewer = ({ lesson, onClose }) => {
   if (!lesson) return null;
   const title = isAr && lesson.titleAr ? lesson.titleAr : lesson.title;
 
-  return (
+  // Rendered through a portal on <body>: the page content sits inside a
+  // stacking context (<main className="relative z-10">), so a modal rendered
+  // in place would be painted *under* the sticky navbar and its toolbar
+  // (fullscreen / open / close) would be covered.
+  return createPortal(
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-2 md:p-6"
+      className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-2 md:p-6"
     >
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
@@ -88,7 +93,8 @@ const LessonViewer = ({ lesson, onClose }) => {
           />
         </div>
       </motion.div>
-    </motion.div>
+    </motion.div>,
+    document.body
   );
 };
 
