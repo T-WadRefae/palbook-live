@@ -8,15 +8,21 @@ import LessonViewer from '../../components/common/LessonViewer';
 import Loader from '../../components/common/Loader';
 import EmptyState from '../../components/common/EmptyState';
 import { getMergedLessons } from '../../firebase/lessons';
+import useUrlState from '../../hooks/useUrlState';
 import { GRADES } from '../../utils/constants';
 
 const PalBookPage = () => {
   const { t } = useTranslation();
   const [lessons, setLessons] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [grade, setGrade] = useState(null);
-  const [unit, setUnit] = useState(null);
-  const [activeLesson, setActiveLesson] = useState(null);
+
+  // Where the student is (grade → unit → lesson) lives in the URL, so every
+  // step is its own history entry and the device Back button returns to the
+  // unit instead of leaving PalBook for the home page.
+  const { params, push, back } = useUrlState();
+  const grade = params.get('grade') ? Number(params.get('grade')) : null;
+  const unit = params.get('unit') ? Number(params.get('unit')) : null;
+  const lessonId = params.get('lesson');
 
   useEffect(() => {
     (async () => {
@@ -50,6 +56,11 @@ const PalBookPage = () => {
       .sort((a, b) => (Number(a.lesson) || 0) - (Number(b.lesson) || 0));
   }, [lessons, grade, unit]);
 
+  const activeLesson = useMemo(
+    () => (lessonId ? lessons.find((l) => String(l.id) === lessonId) || null : null),
+    [lessons, lessonId]
+  );
+
   const lessonsCountByGrade = (g) =>
     lessons.filter((l) => Number(l.grade) === Number(g)).length;
 
@@ -73,10 +84,7 @@ const PalBookPage = () => {
       {(grade || unit) && (
         <div className="flex items-center gap-2 mb-6 text-sm">
           <button
-            onClick={() => {
-              setGrade(null);
-              setUnit(null);
-            }}
+            onClick={() => push({})}
             className="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700"
           >
             🇵🇸 PalBook Live
@@ -85,7 +93,7 @@ const PalBookPage = () => {
             <>
               <span className="text-slate-400">/</span>
               <button
-                onClick={() => setUnit(null)}
+                onClick={() => push({ grade })}
                 className="px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700"
               >
                 {t('palbook.grade')} {grade}
@@ -129,7 +137,7 @@ const PalBookPage = () => {
                       transition={{ delay: i * 0.05 }}
                       whileHover={{ y: -8, scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      onClick={() => setGrade(g)}
+                      onClick={() => push({ grade: g })}
                       className={`${i % 2 === 0 ? 'g-blue' : 'g-olive'} w-36 sm:w-40 aspect-square rounded-3xl shadow-kid flex flex-col items-center justify-center font-extrabold relative overflow-hidden`}
                     >
                       <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
@@ -164,7 +172,7 @@ const PalBookPage = () => {
                   emoji="📭"
                   title={t('palbook.noUnits')}
                   action={
-                    <button onClick={() => setGrade(null)} className="btn-primary">
+                    <button onClick={() => push({})} className="btn-primary">
                       <FiArrowLeft className="rtl-flip" /> {t('common.back')}
                     </button>
                   }
@@ -184,7 +192,7 @@ const PalBookPage = () => {
                         transition={{ delay: i * 0.05 }}
                         whileHover={{ y: -6, scale: 1.03 }}
                         whileTap={{ scale: 0.97 }}
-                        onClick={() => setUnit(u)}
+                        onClick={() => push({ grade, unit: u })}
                         className={`${grad} w-44 p-6 rounded-3xl shadow-kid text-start`}
                       >
                         <div className="text-4xl mb-2">📖</div>
@@ -223,7 +231,7 @@ const PalBookPage = () => {
                       key={l.id}
                       lesson={l}
                       index={i}
-                      onOpen={setActiveLesson}
+                      onOpen={(l) => push({ grade, unit, lesson: l.id })}
                     />
                   ))}
                 </div>
@@ -234,7 +242,10 @@ const PalBookPage = () => {
       )}
 
       {activeLesson && (
-        <LessonViewer lesson={activeLesson} onClose={() => setActiveLesson(null)} />
+        <LessonViewer
+          lesson={activeLesson}
+          onClose={() => back({ grade, unit })}
+        />
       )}
     </PageTransition>
   );

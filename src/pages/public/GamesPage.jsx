@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { FiSearch } from 'react-icons/fi';
@@ -8,6 +8,7 @@ import LessonViewer from '../../components/common/LessonViewer';
 import Loader from '../../components/common/Loader';
 import EmptyState from '../../components/common/EmptyState';
 import { getLessons } from '../../firebase/lessons';
+import useUrlState from '../../hooks/useUrlState';
 import { GAMES } from '../../data/gamesLessons';
 
 const GamesPage = () => {
@@ -15,7 +16,15 @@ const GamesPage = () => {
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
-  const [activeGame, setActiveGame] = useState(null);
+
+  // The open game lives in the URL, so the device Back button closes it and
+  // returns to the games list instead of leaving for the home page.
+  const { params, push, back } = useUrlState();
+  const gameId = params.get('game');
+  const activeGame = useMemo(
+    () => (gameId ? games.find((g) => String(g.id) === gameId) || null : null),
+    [games, gameId]
+  );
 
   useEffect(() => {
     (async () => {
@@ -89,14 +98,14 @@ const GamesPage = () => {
               key={g.id}
               lesson={g}
               index={i}
-              onOpen={setActiveGame}
+              onOpen={(g) => push({ game: g.id })}
             />
           ))}
         </div>
       )}
 
       {activeGame && (
-        <LessonViewer lesson={activeGame} onClose={() => setActiveGame(null)} />
+        <LessonViewer lesson={activeGame} onClose={() => back({})} />
       )}
     </PageTransition>
   );

@@ -9,6 +9,7 @@ import LessonViewer from '../common/LessonViewer';
 import Loader from '../common/Loader';
 import EmptyState from '../common/EmptyState';
 import { getLessons } from '../../firebase/lessons';
+import useUrlState from '../../hooks/useUrlState';
 import { GRADES } from '../../utils/constants';
 import { GRAMMAR_LESSONS } from '../../data/grammarLessons';
 import { READING_LESSONS } from '../../data/readingLessons';
@@ -26,9 +27,18 @@ const GeneralSection = ({ section }) => {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [gradeFilter, setGradeFilter] = useState(null); // null = all grades
-  const [activeLesson, setActiveLesson] = useState(null);
+
+  // The open lesson lives in the URL, so the device Back button closes the
+  // lesson and returns to this list instead of leaving for the home page.
+  const { params, push, back } = useUrlState();
+  const lessonId = params.get('lesson');
 
   const title = t(section.titleKey);
+
+  const activeLesson = useMemo(
+    () => (lessonId ? lessons.find((l) => String(l.id) === lessonId) || null : null),
+    [lessons, lessonId]
+  );
 
   useEffect(() => {
     (async () => {
@@ -193,7 +203,7 @@ const GeneralSection = ({ section }) => {
           ) : (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {lessonsFiltered.map((l, i) => (
-                <LessonCard key={l.id} lesson={l} index={i} onOpen={setActiveLesson} />
+                <LessonCard key={l.id} lesson={l} index={i} onOpen={(l) => push({ lesson: l.id })} />
               ))}
             </div>
           )}
@@ -201,7 +211,7 @@ const GeneralSection = ({ section }) => {
       )}
 
       {activeLesson && (
-        <LessonViewer lesson={activeLesson} onClose={() => setActiveLesson(null)} />
+        <LessonViewer lesson={activeLesson} onClose={() => back({})} />
       )}
     </PageTransition>
   );
