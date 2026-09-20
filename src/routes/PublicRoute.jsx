@@ -7,7 +7,7 @@ const PublicRoute = ({ children }) => {
 
   if (loading) return <Loader fullScreen />;
   if (isAuthenticated) {
-    return <Navigate to={isTeacher ? '/teacher' : '/student'} replace />;
+    return <Navigate to={isTeacher ? '/teacher' : '/library'} replace />;
   }
   return children;
 };

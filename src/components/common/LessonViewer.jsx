@@ -13,8 +13,9 @@ const LessonViewer = ({ lesson, onClose }) => {
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
-    // Track view when lesson opens (repo-discovered lessons have no Firestore doc)
-    if (lesson?.id && !lesson.discovered) {
+    // Track view when lesson opens (repo-discovered lessons have no Firestore
+    // doc, and shop products live in their own collection — both skip tracking)
+    if (lesson?.id && !lesson.discovered && !lesson.noTrack) {
       trackLessonView(lesson.id);
     }
     return () => {

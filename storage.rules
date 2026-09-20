@@ -3,14 +3,35 @@ service firebase.storage {
   match /b/{bucket}/o {
     // PalBook Live - Storage Security Rules
     // Created by T. Wad Refae
-    //
-    // - Anyone can read lesson files (they are served via iframe in the app)
-    // - Only authenticated teachers can upload/delete lesson files
 
+    function isTeacher() {
+      return request.auth != null
+        && firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role == 'teacher';
+    }
+
+    // Free lesson files
+    // - Anyone can read them (they are served via iframe in the app)
+    // - Only authenticated teachers can upload/delete lesson files
     match /lessons/{allPaths=**} {
       allow read: if true;
-      allow write: if request.auth != null
-        && firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role == 'teacher';
+      allow write: if isTeacher();
+    }
+
+    // Paid shop material
+    // - Readable only by a buyer holding the entitlement for this product,
+    //   which the teacher writes when confirming the iBuraq payment. The
+    //   entitlement id is rebuilt here as `<uid>_<productId>`, matching
+    //   entitlementId() in src/utils/shop.js.
+    // - A direct link is therefore useless to anyone who has not paid.
+    match /products/{productId}/{allPaths=**} {
+      allow read: if request.auth != null
+        && (
+          firestore.exists(
+            /databases/(default)/documents/entitlements/$(request.auth.uid + '_' + productId)
+          )
+          || isTeacher()
+        );
+      allow write: if isTeacher();
     }
   }
 }

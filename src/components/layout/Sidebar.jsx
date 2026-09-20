@@ -1,7 +1,16 @@
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiHome, FiUpload, FiBookOpen, FiBarChart2, FiX, FiLogOut } from 'react-icons/fi';
+import {
+  FiHome,
+  FiUpload,
+  FiBookOpen,
+  FiBarChart2,
+  FiShoppingBag,
+  FiFileText,
+  FiX,
+  FiLogOut,
+} from 'react-icons/fi';
 import toast from 'react-hot-toast';
 import { logoutUser } from '../../firebase/auth';
 import { useNavigate } from 'react-router-dom';
@@ -15,6 +24,8 @@ const Sidebar = ({ open = false, onClose }) => {
     { to: '/teacher/upload', icon: <FiUpload />, label: 'Add Lesson' },
     { to: '/teacher/lessons', icon: <FiBookOpen />, label: 'My Lessons' },
     { to: '/teacher/analytics', icon: <FiBarChart2 />, label: 'Analytics' },
+    { to: '/teacher/shop', icon: <FiShoppingBag />, label: 'Shop Products' },
+    { to: '/teacher/orders', icon: <FiFileText />, label: 'Shop Orders' },
   ];
 
   const linkClass = ({ isActive }) =>
