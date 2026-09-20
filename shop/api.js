@@ -28,8 +28,8 @@ import {
   getDownloadURL,
   deleteObject,
 } from 'firebase/storage';
-import { db, storage } from './config';
-import { STATIC_PRODUCTS } from '../data/products';
+import { db, storage } from '@/firebase/config';
+import { STATIC_PRODUCTS } from './products';
 import {
   PRODUCTS_COLLECTION,
   ORDERS_COLLECTION,
@@ -42,7 +42,7 @@ import {
   entitlementId,
   productFilePath,
   safeFileName,
-} from '../utils/shop';
+} from './constants';
 
 const byNewest = (a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0);
 

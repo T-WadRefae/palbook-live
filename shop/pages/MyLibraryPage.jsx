@@ -9,18 +9,18 @@ import {
   FiPlayCircle,
   FiShoppingBag,
 } from 'react-icons/fi';
-import PageTransition from '../../components/common/PageTransition';
-import Loader from '../../components/common/Loader';
-import EmptyState from '../../components/common/EmptyState';
-import LessonViewer from '../../components/common/LessonViewer';
-import { useAuth } from '../../contexts/AuthContext';
+import PageTransition from '@components/common/PageTransition';
+import Loader from '@components/common/Loader';
+import EmptyState from '@components/common/EmptyState';
+import LessonViewer from '@components/common/LessonViewer';
+import { useAuth } from '@contexts/AuthContext';
 import {
   downloadProductFile,
   getMyEntitlements,
   getMyOrders,
   getProductFileUrl,
   getProducts,
-} from '../../firebase/shop';
+} from '../api';
 import {
   ORDER_STATUS,
   ORDER_STATUS_META,
@@ -29,7 +29,7 @@ import {
   formatFileSize,
   formatPrice,
   localized,
-} from '../../utils/shop';
+} from '../constants';
 
 const MyLibraryPage = () => {
   const { t, i18n } = useTranslation();

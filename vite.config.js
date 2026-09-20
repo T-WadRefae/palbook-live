@@ -17,6 +17,8 @@ export default defineConfig({
       '@routes': path.resolve(__dirname, './src/routes'),
       '@translations': path.resolve(__dirname, './src/translations'),
       '@styles': path.resolve(__dirname, './src/styles'),
+      // The shop feature lives outside src, in ./shop at the repo root
+      '@shop': path.resolve(__dirname, './shop'),
     },
   },
   server: {

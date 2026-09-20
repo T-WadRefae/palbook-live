@@ -9,18 +9,18 @@ import {
   FiLock,
   FiShoppingCart,
 } from 'react-icons/fi';
-import PageTransition from '../../components/common/PageTransition';
-import Loader from '../../components/common/Loader';
-import EmptyState from '../../components/common/EmptyState';
-import { useAuth } from '../../contexts/AuthContext';
-import { getProduct, hasEntitlement } from '../../firebase/shop';
+import PageTransition from '@components/common/PageTransition';
+import Loader from '@components/common/Loader';
+import EmptyState from '@components/common/EmptyState';
+import { useAuth } from '@contexts/AuthContext';
+import { getProduct, hasEntitlement } from '../api';
 import {
   PRODUCT_TYPE_META,
   PRODUCT_TYPES,
   formatFileSize,
   formatPrice,
   localized,
-} from '../../utils/shop';
+} from '../constants';
 
 const ProductPage = () => {
   const { t, i18n } = useTranslation();

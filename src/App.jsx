@@ -19,9 +19,6 @@ import ReadingPage from './pages/public/ReadingPage';
 import WritingPage from './pages/public/WritingPage';
 import PalBookPage from './pages/public/PalBookPage';
 import GamesPage from './pages/public/GamesPage';
-import ShopPage from './pages/public/ShopPage';
-import ProductPage from './pages/public/ProductPage';
-import CheckoutPage from './pages/public/CheckoutPage';
 import NotFoundPage from './pages/public/NotFoundPage';
 import UnauthorizedPage from './pages/public/UnauthorizedPage';
 
@@ -29,16 +26,19 @@ import UnauthorizedPage from './pages/public/UnauthorizedPage';
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
 
-// Buyer pages
-import MyLibraryPage from './pages/student/MyLibraryPage';
-
 // Teacher pages
 import TeacherDashboard from './pages/teacher/TeacherDashboard';
 import UploadLessonPage from './pages/teacher/UploadLessonPage';
 import ManageLessonsPage from './pages/teacher/ManageLessonsPage';
 import AnalyticsPage from './pages/teacher/AnalyticsPage';
-import ManageProductsPage from './pages/teacher/ManageProductsPage';
-import ShopOrdersPage from './pages/teacher/ShopOrdersPage';
+
+// Shop — the whole feature lives in the /shop folder at the repo root
+import ShopPage from '@shop/pages/ShopPage';
+import ProductPage from '@shop/pages/ProductPage';
+import CheckoutPage from '@shop/pages/CheckoutPage';
+import MyLibraryPage from '@shop/pages/MyLibraryPage';
+import ManageProductsPage from '@shop/pages/teacher/ManageProductsPage';
+import ShopOrdersPage from '@shop/pages/teacher/ShopOrdersPage';
 
 import { ROLES } from './utils/constants';
 

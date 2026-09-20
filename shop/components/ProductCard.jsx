@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { FiArrowLeft, FiCheckCircle } from 'react-icons/fi';
-import { PRODUCT_TYPE_META, formatPrice, localized } from '../../utils/shop';
+import { PRODUCT_TYPE_META, formatPrice, localized } from '../constants';
 
 const ProductCard = ({ product, index = 0, owned = false, onOpen }) => {
   const { t, i18n } = useTranslation();

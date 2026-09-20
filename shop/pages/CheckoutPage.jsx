@@ -13,18 +13,18 @@ import {
   FiSend,
   FiUser,
 } from 'react-icons/fi';
-import PageTransition from '../../components/common/PageTransition';
-import Loader from '../../components/common/Loader';
-import EmptyState from '../../components/common/EmptyState';
-import { useAuth } from '../../contexts/AuthContext';
+import PageTransition from '@components/common/PageTransition';
+import Loader from '@components/common/Loader';
+import EmptyState from '@components/common/EmptyState';
+import { useAuth } from '@contexts/AuthContext';
 import {
   createOrder,
   getMyOrders,
   getProduct,
   getShopSettings,
   hasEntitlement,
-} from '../../firebase/shop';
-import { ORDER_STATUS, formatPrice, localized } from '../../utils/shop';
+} from '../api';
+import { ORDER_STATUS, formatPrice, localized } from '../constants';
 
 const CheckoutPage = () => {
   const { t, i18n } = useTranslation();

@@ -11,10 +11,10 @@ import {
   FiUploadCloud,
   FiX,
 } from 'react-icons/fi';
-import PageTransition from '../../components/common/PageTransition';
-import Loader from '../../components/common/Loader';
-import EmptyState from '../../components/common/EmptyState';
-import GradeMultiSelect from '../../components/common/GradeMultiSelect';
+import PageTransition from '@components/common/PageTransition';
+import Loader from '@components/common/Loader';
+import EmptyState from '@components/common/EmptyState';
+import GradeMultiSelect from '@components/common/GradeMultiSelect';
 import {
   deleteProduct,
   deleteProductFile,
@@ -23,7 +23,7 @@ import {
   saveProduct,
   saveShopSettings,
   uploadProductFile,
-} from '../../firebase/shop';
+} from '../../api';
 import {
   DEFAULT_SHOP_SETTINGS,
   PRODUCT_TYPES,
@@ -31,8 +31,8 @@ import {
   formatFileSize,
   formatPrice,
   slugify,
-} from '../../utils/shop';
-import { LESSON_EMOJIS } from '../../utils/constants';
+} from '../../constants';
+import { LESSON_EMOJIS } from '@utils/constants';
 
 const emptyForm = {
   id: '',

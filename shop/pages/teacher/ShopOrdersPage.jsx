@@ -9,22 +9,22 @@ import {
   FiTrash2,
   FiX,
 } from 'react-icons/fi';
-import PageTransition from '../../components/common/PageTransition';
-import Loader from '../../components/common/Loader';
-import EmptyState from '../../components/common/EmptyState';
-import { useAuth } from '../../contexts/AuthContext';
+import PageTransition from '@components/common/PageTransition';
+import Loader from '@components/common/Loader';
+import EmptyState from '@components/common/EmptyState';
+import { useAuth } from '@contexts/AuthContext';
 import {
   confirmOrder,
   deleteOrder,
   getAllOrders,
   rejectOrder,
-} from '../../firebase/shop';
+} from '../../api';
 import {
   ORDER_STATUS,
   ORDER_STATUS_META,
   formatDate,
   formatPrice,
-} from '../../utils/shop';
+} from '../../constants';
 
 const ShopOrdersPage = () => {
   const { t, i18n } = useTranslation();

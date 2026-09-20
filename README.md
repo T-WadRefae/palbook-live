@@ -171,6 +171,17 @@ palbook-live/
 │   ├── utils/                # constants, helpers
 │   ├── App.jsx               # Main router
 │   └── main.jsx              # Entry point
+├── shop/                     # 🛍️ The whole shop feature (see shop/README.md)
+│   ├── constants.js          # Product types, order statuses, price/date helpers
+│   ├── api.js                # Firestore + Storage access for the shop
+│   ├── products.js           # Static product fallback
+│   ├── components/           # ProductCard
+│   └── pages/
+│       ├── ShopPage.jsx      # /shop
+│       ├── ProductPage.jsx   # /shop/<id>
+│       ├── CheckoutPage.jsx  # /shop/<id>/checkout
+│       ├── MyLibraryPage.jsx # /library
+│       └── teacher/          # ManageProductsPage, ShopOrdersPage
 ├── .env.example
 ├── .eslintrc.cjs
 ├── .gitignore
@@ -333,6 +344,10 @@ A lesson document in the `lessons` collection looks like:
 \---
 
 ## 🛍️ Shop — palbook.ps/shop
+
+All of the shop's code lives in the top-level **`shop/`** folder — nothing of it
+sits inside `src/` except the routes in `src/App.jsx`. See
+[`shop/README.md`](shop/README.md) for the file-by-file map.
 
 Paid study material, sold from inside this same app. No extra repository and no
 payment gateway integration: the buyer pays through **iBuraq**, and

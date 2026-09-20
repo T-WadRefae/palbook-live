@@ -3,13 +3,13 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { FiSearch } from 'react-icons/fi';
-import PageTransition from '../../components/common/PageTransition';
-import ProductCard from '../../components/shop/ProductCard';
-import Loader from '../../components/common/Loader';
-import EmptyState from '../../components/common/EmptyState';
-import { useAuth } from '../../contexts/AuthContext';
-import { getProducts, getMyEntitlements } from '../../firebase/shop';
-import { GRADES } from '../../utils/constants';
+import PageTransition from '@components/common/PageTransition';
+import ProductCard from '../components/ProductCard';
+import Loader from '@components/common/Loader';
+import EmptyState from '@components/common/EmptyState';
+import { useAuth } from '@contexts/AuthContext';
+import { getProducts, getMyEntitlements } from '../api';
+import { GRADES } from '@utils/constants';
 
 const ShopPage = () => {
   const { t } = useTranslation();
