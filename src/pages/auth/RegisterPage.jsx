@@ -7,7 +7,9 @@ import { FiMail, FiLock, FiUser, FiEye, FiEyeOff, FiUserPlus } from 'react-icons
 import { registerUser } from '../../firebase/auth';
 import { ROLES } from '../../utils/constants';
 
-const RegisterPage = () => {
+// `studentOnly` powers the public /signup page: buyers always register as
+// students, so the teacher role can never be picked from the open web.
+const RegisterPage = ({ studentOnly = false }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -42,7 +44,7 @@ const RegisterPage = () => {
         role: form.role,
       });
       toast.success(t('auth.registerSuccess'));
-      navigate(form.role === ROLES.TEACHER ? '/teacher' : '/student');
+      navigate(form.role === ROLES.TEACHER ? '/teacher' : '/library');
     } catch (err) {
       toast.error(err.message || t('common.error'));
     } finally {
@@ -68,7 +70,8 @@ const RegisterPage = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Role selector */}
+          {/* Role selector — hidden on the public signup page */}
+          {!studentOnly && (
           <div>
             <label className="label">{t('auth.role')}</label>
             <div className="grid grid-cols-2 gap-2">
@@ -92,6 +95,7 @@ const RegisterPage = () => {
               ))}
             </div>
           </div>
+          )}
 
           <div>
             <label className="label">{t('auth.displayName')}</label>

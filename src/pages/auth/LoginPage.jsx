@@ -28,7 +28,7 @@ const LoginPage = () => {
       const profile = await getUserProfile(user.uid);
       toast.success(t('auth.loginSuccess'));
       const dest = location.state?.from?.pathname;
-      navigate(dest || (profile?.role === 'teacher' ? '/teacher' : '/student'));
+      navigate(dest || (profile?.role === 'teacher' ? '/teacher' : '/library'));
     } catch (err) {
       toast.error(err.message || t('common.error'));
     } finally {
@@ -129,7 +129,7 @@ const LoginPage = () => {
         <p className="text-center text-sm text-slate-500 dark:text-slate-400 mt-6">
           {t('auth.noAccount')}{' '}
           <Link
-            to="/register"
+            to="/signup"
             className="text-primary-600 font-bold hover:underline"
           >
             {t('auth.signupHere')}

@@ -24,12 +24,21 @@ import UnauthorizedPage from './pages/public/UnauthorizedPage';
 
 // Auth
 import LoginPage from './pages/auth/LoginPage';
+import RegisterPage from './pages/auth/RegisterPage';
 
 // Teacher pages
 import TeacherDashboard from './pages/teacher/TeacherDashboard';
 import UploadLessonPage from './pages/teacher/UploadLessonPage';
 import ManageLessonsPage from './pages/teacher/ManageLessonsPage';
 import AnalyticsPage from './pages/teacher/AnalyticsPage';
+
+// Shop — the whole feature lives in the /shop folder at the repo root
+import ShopPage from '@shop/pages/ShopPage';
+import ProductPage from '@shop/pages/ProductPage';
+import CheckoutPage from '@shop/pages/CheckoutPage';
+import MyLibraryPage from '@shop/pages/MyLibraryPage';
+import ManageProductsPage from '@shop/pages/teacher/ManageProductsPage';
+import ShopOrdersPage from '@shop/pages/teacher/ShopOrdersPage';
 
 import { ROLES } from './utils/constants';
 
@@ -50,10 +59,47 @@ function App() {
           <Route path="/palbook" element={<PalBookPage />} />
           <Route path="/games" element={<GamesPage />} />
           <Route path="/unauthorized" element={<UnauthorizedPage />} />
+
+          {/* Shop — browsing is open, buying and the library need an account */}
+          <Route path="/shop" element={<ShopPage />} />
+          <Route path="/shop/:productId" element={<ProductPage />} />
+          <Route
+            path="/shop/:productId/checkout"
+            element={
+              <ProtectedRoute>
+                <CheckoutPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/library"
+            element={
+              <ProtectedRoute>
+                <MyLibraryPage />
+              </ProtectedRoute>
+            }
+          />
         </Route>
 
-        {/* Secret login */}
+        {/* Buyer sign in / sign up, plus the teacher's secret login */}
         <Route element={<AuthLayout />}>
+          <Route
+            path="/login"
+            element={
+              <PublicRoute>
+                <LoginPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <PublicRoute>
+                {/* studentOnly: the teacher role is never offered on the open web */}
+                <RegisterPage studentOnly />
+              </PublicRoute>
+            }
+          />
           <Route
             path="/admin-wad-2026"
             element={
@@ -95,6 +141,22 @@ function App() {
             element={
               <ProtectedRoute role={ROLES.TEACHER}>
                 <AnalyticsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/teacher/shop"
+            element={
+              <ProtectedRoute role={ROLES.TEACHER}>
+                <ManageProductsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/teacher/orders"
+            element={
+              <ProtectedRoute role={ROLES.TEACHER}>
+                <ShopOrdersPage />
               </ProtectedRoute>
             }
           />

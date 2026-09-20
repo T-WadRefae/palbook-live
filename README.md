@@ -171,6 +171,17 @@ palbook-live/
 │   ├── utils/                # constants, helpers
 │   ├── App.jsx               # Main router
 │   └── main.jsx              # Entry point
+├── shop/                     # 🛍️ The whole shop feature (see shop/README.md)
+│   ├── constants.js          # Product types, order statuses, price/date helpers
+│   ├── api.js                # Firestore + Storage access for the shop
+│   ├── products.js           # Static product fallback
+│   ├── components/           # ProductCard
+│   └── pages/
+│       ├── ShopPage.jsx      # /shop
+│       ├── ProductPage.jsx   # /shop/<id>
+│       ├── CheckoutPage.jsx  # /shop/<id>/checkout
+│       ├── MyLibraryPage.jsx # /library
+│       └── teacher/          # ManageProductsPage, ShopOrdersPage
 ├── .env.example
 ├── .eslintrc.cjs
 ├── .gitignore
@@ -277,12 +288,13 @@ The included `vercel.json` already handles SPA routing fallback.
 
 ## 👥 First Teacher Account
 
-After deploying, register a teacher account:
+Teacher accounts are never created from the website — public sign-up always
+creates a student, and the Firestore rules refuse any attempt to self-promote.
 
-1. Click **Register**
-2. Choose **Teacher** role
-3. Use a strong password
-4. You're in — head to **Dashboard → Upload Lesson** to add your first HTML lesson!
+1. Register the account normally at `/signup`
+2. Open the Firebase console → **Firestore → `users` → your document**
+3. Change `role` from `student` to `teacher`
+4. Sign in at `/admin-wad-2026` — head to **Dashboard → Upload Lesson** to add your first HTML lesson!
 
 > 💡 \\\*\\\*Tip\\\*\\\*: Upload self-contained HTML files (no external dependencies) for the best experience. Your existing interactive lesson files from PalBook Live work perfectly.
 
@@ -330,6 +342,93 @@ A lesson document in the `lessons` collection looks like:
 ```
 
 \---
+
+## 🛍️ Shop — palbook.ps/shop
+
+All of the shop's code lives in the top-level **`shop/`** folder — nothing of it
+sits inside `src/` except the routes in `src/App.jsx`. See
+[`shop/README.md`](shop/README.md) for the file-by-file map.
+
+Paid study material, sold from inside this same app. No extra repository and no
+payment gateway integration: the buyer pays through **iBuraq**, and
+**T. Wad Refae confirms every payment by hand** from the dashboard.
+
+### How an order flows
+
+1. A buyer browses `/shop` (open to everyone) and opens a product page.
+2. Buying requires an account — `/signup` creates a **student** account.
+3. `/shop/<id>/checkout` shows the iBuraq wallet details and the amount, and
+   collects the buyer's name, phone and **transaction reference**. That creates
+   an order with status `pending`.
+4. The teacher reviews it at **Dashboard → Shop Orders** and presses
+   *Confirm payment*. That one action writes an `entitlements` document.
+5. The material appears in the buyer's **`/library`**, and only then can the
+   files be opened.
+
+### Delivery and protection
+
+Paid files live in Firebase Storage under `products/<productId>/…`, and the
+Storage rules only allow a read when `entitlements/<uid>_<productId>` exists.
+A copied link is therefore useless to anyone who has not paid.
+
+> ⚠️ **Never put paid material in the `palbook-lessons` repository.** That repo
+> is public and served on GitHub Pages — anything in it is free to the world.
+> Paid files belong in Firebase Storage only.
+
+Downloads use `getBlob()`, which keeps every request under the Storage rules.
+That needs CORS enabled on the bucket once:
+
+```bash
+cat > cors.json <<'JSON'
+[{ "origin": ["https://palbook.ps", "http://localhost:5173"],
+   "method": ["GET"],
+   "maxAgeSeconds": 3600,
+   "responseHeader": ["Content-Type", "Content-Disposition"] }]
+JSON
+gsutil cors set cors.json gs://<your-bucket>
+```
+
+Without it the app falls back to a signed download URL, which still requires the
+buyer to be entitled in order to obtain it.
+
+### Firestore collections
+
+|Collection|Written by|Purpose|
+|-|-|-|
+|`products`|teacher|Catalogue: title, price, grades, file paths|
+|`orders`|buyer creates as `pending`, teacher updates|One order per purchase attempt|
+|`entitlements`|teacher only|`<uid>_<productId>` — the proof that unlocks files|
+|`settings/shop`|teacher|iBuraq wallet name, number, WhatsApp, instructions|
+
+Deploy the rules after pulling these changes:
+
+```bash
+firebase deploy --only firestore:rules,storage
+```
+
+### Setting it up
+
+1. **Dashboard → Shop Products → Payment details**: enter the iBuraq wallet
+   name and number, a WhatsApp number, and the payment instructions in Arabic
+   and English. Buyers see exactly these at checkout.
+2. **New product**: pick an id (lowercase, dashes — it is also the Storage
+   folder name), a price in ₪, the grades it serves, titles and descriptions in
+   both languages, then upload the files. Untick *Visible in the shop* to keep
+   a product hidden while preparing it.
+3. Orders arrive under **Dashboard → Shop Orders**, filtered to *Pending* by
+   default.
+
+### Security notes
+
+- Sign-up always creates a **student**; the Firestore rules reject any other
+  role on creation and forbid a user from changing their own role afterwards.
+  Promote an account to teacher from the Firebase console only.
+- A buyer can only ever create an order as `pending` — confirming a payment is
+  the teacher's decision alone.
+- Rejecting an order also removes the entitlement, so a mistaken confirmation
+  can be taken back.
+
+---
 
 ## 🤝 Contributing
 
