@@ -7,7 +7,7 @@ import LessonCard from '../../components/common/LessonCard';
 import LessonViewer from '../../components/common/LessonViewer';
 import Loader from '../../components/common/Loader';
 import EmptyState from '../../components/common/EmptyState';
-import { getLessons } from '../../firebase/lessons';
+import { getLessons } from '../../data/lessonsService';
 import useUrlState from '../../hooks/useUrlState';
 import { GAMES } from '../../data/gamesLessons';
 

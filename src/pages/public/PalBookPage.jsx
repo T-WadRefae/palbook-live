@@ -7,7 +7,7 @@ import LessonRow from '../../components/common/LessonRow';
 import LessonViewer from '../../components/common/LessonViewer';
 import Loader from '../../components/common/Loader';
 import EmptyState from '../../components/common/EmptyState';
-import { getMergedLessons } from '../../firebase/lessons';
+import { getMergedLessons } from '../../data/lessonsService';
 import useUrlState from '../../hooks/useUrlState';
 import { GRADES } from '../../utils/constants';
 

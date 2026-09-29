@@ -8,7 +8,7 @@ import LessonCard from '../common/LessonCard';
 import LessonViewer from '../common/LessonViewer';
 import Loader from '../common/Loader';
 import EmptyState from '../common/EmptyState';
-import { getLessons } from '../../firebase/lessons';
+import { getLessons } from '../../data/lessonsService';
 import useUrlState from '../../hooks/useUrlState';
 import { GRADES } from '../../utils/constants';
 import { GRAMMAR_LESSONS } from '../../data/grammarLessons';

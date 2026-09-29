@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import PageTransition from '../../components/common/PageTransition';
 import Loader from '../../components/common/Loader';
-import { getLessons } from '../../firebase/lessons';
+import { getLessons } from '../../data/lessonsService';
 import { GRAMMAR_LESSONS } from '../../data/grammarLessons';
 import { READING_LESSONS } from '../../data/readingLessons';
 import { WRITING_LESSONS } from '../../data/writingLessons';

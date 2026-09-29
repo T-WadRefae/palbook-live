@@ -3,7 +3,6 @@ import { createPortal } from 'react-dom';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { FiX, FiMaximize2, FiMinimize2, FiExternalLink } from 'react-icons/fi';
-import { trackLessonView } from '../../firebase/lessons';
 
 const LessonViewer = ({ lesson, onClose }) => {
   const { t, i18n } = useTranslation();
@@ -13,10 +12,6 @@ const LessonViewer = ({ lesson, onClose }) => {
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
-    // Track view when lesson opens (repo-discovered lessons have no Firestore doc)
-    if (lesson?.id && !lesson.discovered) {
-      trackLessonView(lesson.id);
-    }
     return () => {
       document.body.style.overflow = '';
     };
