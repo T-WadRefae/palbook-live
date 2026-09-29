@@ -39,7 +39,6 @@
     "feature3Desc": "Arabic and English support",
     "feature4Title": "Palestinian Identity",
     "feature4Desc": "Content honoring our heritage"
-    
   },
   "auth": {
     "loginTitle": "Welcome back!",
@@ -104,7 +103,6 @@
     "subtitle": "Learn while having fun!",
     "play": "Play Now",
     "noGames": "No games available yet"
-  
   },
   "dashboard": {
     "welcomeBack": "Welcome back",
@@ -185,5 +183,9 @@
     "goHome": "Go Home",
     "unauthorized": "Unauthorized Access",
     "unauthorizedDesc": "You don't have permission to view this page."
+  },
+  "viewer": {
+    "smaller": "Smaller text",
+    "larger": "Larger text"
   }
 }
