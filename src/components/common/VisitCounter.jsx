@@ -42,7 +42,7 @@ const VisitCounter = () => {
 
   if (count === null) return null;
 
-  const label = isAr ? 'زائر' : 'visitors';
+  const label = isAr ? 'زيارة' : 'visits';
   const formatted = new Intl.NumberFormat(isAr ? 'ar-EG' : 'en-US').format(count);
 
   return (
