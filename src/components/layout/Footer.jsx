@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import Logo from '../common/Logo';
+import VisitCounter from '../common/VisitCounter';
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -43,10 +44,11 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="pt-6 border-t border-slate-700 flex flex-col md:flex-row items-center justify-between gap-2 text-xs text-slate-400">
+        <div className="pt-6 border-t border-slate-700 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-slate-400">
           <p className="flex items-center gap-1">
             Made with 🩷 in Palestine - © 2026 PalBook. All Rights Reserved
           </p>
+          <VisitCounter />
         </div>
       </div>
     </footer>

@@ -11,6 +11,13 @@ module.exports = {
   parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
   settings: { react: { version: '18.3' } },
   plugins: ['react-refresh'],
+  overrides: [
+    {
+      // Vercel serverless functions and build config run on Node, not the browser.
+      files: ['api/**/*.js', '*.config.js', 'vite.config.js'],
+      env: { node: true, browser: false },
+    },
+  ],
   rules: {
     'react-refresh/only-export-components': [
       'warn',
