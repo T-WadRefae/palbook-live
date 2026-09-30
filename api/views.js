@@ -13,9 +13,10 @@ import { Redis } from '@upstash/redis';
 
 const KEY = 'palbook:visits';
 
-// Historical visits before the counter existed (from Vercel Analytics).
-// Set VISITS_BASE in the Vercel project to change it without a code change.
-const BASE = Number(process.env.VISITS_BASE || 0) || 0;
+// Historical visits before the counter existed (real figure from Vercel
+// Analytics: ~346 visitors measured since 31 Aug 2026). Set VISITS_BASE in the
+// Vercel project to raise it later without a code change.
+const BASE = Number(process.env.VISITS_BASE || 346) || 346;
 
 const getRedis = () => {
   // Vercel's Upstash integration injects UPSTASH_REDIS_REST_URL/TOKEN; the
