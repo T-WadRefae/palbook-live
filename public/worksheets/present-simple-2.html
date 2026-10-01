@@ -1,0 +1,207 @@
+<meta charset="utf-8">
+<title>Present Simple — Level 2 | T. Wad Refae</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Patrick+Hand&family=Aref+Ruqaa:wght@400;700&family=Marhey:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#ffffff; --outer:#e8e2d2;
+    --rule:#cfe0f2; --margin:#f0a8a4;
+    --blue:#1e4e9c; --blue-d:#173e7e; --red:#c22b1c;
+    --hl-y:#fff3a1; --hl-p:#ffd9e0; --hl-g:#d8f3c9;
+    --grey:#6d6a63;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--outer)}
+  body{font-family:'Aref Ruqaa',serif;color:#222;direction:rtl}
+
+  .page{
+    position:relative;width:210mm;height:297mm;margin:12px auto;background:var(--paper);
+    background-image:repeating-linear-gradient(to bottom,transparent 0 32px,var(--rule) 32px 33px);
+    box-shadow:0 6px 22px rgba(0,0,0,.18);overflow:hidden;padding:13mm 13mm 9mm 19mm;
+  }
+  .page::before{content:"";position:absolute;top:0;bottom:0;right:13mm;width:2px;background:var(--margin)}
+  .holes{position:absolute;left:5mm;top:0;bottom:0;width:8mm;display:flex;flex-direction:column;justify-content:space-around;align-items:center;padding:22px 0}
+  .holes span{width:11px;height:11px;border-radius:50%;background:var(--outer);box-shadow:inset 0 0 0 2px #d8d1bf}
+  .washi{position:absolute;top:4mm;left:50%;transform:translateX(-50%) rotate(-2deg);width:140px;height:22px;background:repeating-linear-gradient(45deg,#bcd7c4 0 10px,#a9c9b3 10px 20px);opacity:.85;border-radius:2px;box-shadow:0 2px 4px rgba(0,0,0,.12)}
+
+  .content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column}
+
+  .lesson-head{text-align:center;margin-top:4px}
+  h1{font-family:'Caveat',cursive;color:var(--blue);font-size:42px;margin:2px 0 1px;text-align:center;direction:ltr;line-height:1.05}
+  .subtitle{font-family:'Marhey',cursive;text-align:center;color:var(--red);font-size:14px;margin:0 0 2px}
+  .squiggle{display:block;margin:0 auto 5px;width:280px;height:11px}
+  .levelline{font-family:'Caveat',cursive;color:var(--red);font-weight:700;font-size:23px;direction:ltr;margin:1px 0 4px;text-align:center}
+  .namedate{display:flex;justify-content:center;gap:46px;direction:ltr;font-family:'Patrick Hand',cursive;font-size:15px;color:#333;
+    border-top:1px dashed #cbb8b5;border-bottom:1px dashed #cbb8b5;padding:5px 0;margin:0 0 3px}
+
+  .ptitle{font-family:'Caveat',cursive;color:var(--blue);font-size:30px;text-align:center;direction:ltr;margin:4px 0 1px}
+
+  .section,.q{position:relative;margin:7px 0;break-inside:avoid;page-break-inside:avoid}
+  .sec-head{display:flex;align-items:center;gap:9px;margin-bottom:4px;direction:ltr;text-align:left}
+  .badge{flex:none;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-family:'Caveat',cursive;font-weight:700;font-size:18px;color:#fff;box-shadow:0 2px 4px rgba(0,0,0,.2)}
+  .badge.red{background:var(--red)} .badge.blue{background:var(--blue)}
+  .sec-title{font-family:'Marhey',cursive;font-size:17px;color:var(--blue-d)}
+
+  .box{background:#fff;border:2px solid var(--blue);padding:8px 12px;margin:5px 0;break-inside:avoid;
+    border-radius:255px 15px 225px 15px/15px 225px 15px 255px}
+  .box.soft{border-color:#c9b9a0;border-style:solid}
+  .formula{font-family:'Patrick Hand',cursive;direction:ltr;text-align:center;font-size:17px;color:var(--red);
+    border:2px dashed var(--red);padding:5px 10px;border-radius:15px 225px 15px 255px/255px 15px 225px 15px;background:#fff;margin-top:5px}
+  .def{font-size:14.5px;line-height:1.65;color:#333;margin:0}
+  .def .en-fact{margin-top:2px}
+
+  .hl-y{background:var(--hl-y);padding:0 3px;border-radius:4px}
+  .hl-p{background:var(--hl-p);padding:0 3px;border-radius:4px}
+  .hl-g{background:var(--hl-g);padding:0 3px;border-radius:4px}
+  .en{direction:ltr;text-align:left;font-family:'Patrick Hand',cursive}
+  .ing{color:var(--red);font-weight:700}
+  .en-fact{display:block;direction:ltr;text-align:left;font-family:'Patrick Hand',cursive;color:var(--blue-d);font-size:12px;line-height:1.35}
+
+  ul.facts{list-style:none;margin:4px 0;padding:0}
+  ul.facts li{position:relative;padding:2px 20px 3px 0;font-size:13px;line-height:1.45}
+  ul.facts li::before{content:"\2605";position:absolute;right:0;color:var(--red);font-size:12px;top:4px}
+
+  table{width:100%;border-collapse:collapse;margin:6px 0;font-size:12px;background:#fff}
+  th,td{border:2px solid var(--blue);padding:4px 6px;text-align:center}
+  th{background:#eaf1fb;font-family:'Marhey',cursive;color:var(--blue-d)}
+  td .en{display:inline-block}
+
+  .examples{display:flex;flex-direction:column;gap:6px;margin-top:5px}
+  .ex{position:relative;border:2px dashed var(--blue);border-radius:14px;padding:10px 12px 6px;background:#fff;break-inside:avoid}
+  .ex .tag{position:absolute;top:-12px;right:14px;background:var(--red);color:#fff;font-family:'Marhey',cursive;
+    font-size:11px;padding:2px 10px;border-radius:10px;box-shadow:0 2px 3px rgba(0,0,0,.2)}
+  .ex .flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;direction:ltr}
+  .ex .base{font-family:'Patrick Hand',cursive;font-size:14px;color:#555}
+  .ex .arrow{color:var(--red);font-size:19px}
+  .ex .after{font-family:'Patrick Hand',cursive;font-size:15px;color:var(--blue)}
+
+  .sticky{background:var(--hl-y);width:84%;margin:7px auto 2px;padding:9px 16px;transform:rotate(-1.5deg);
+    box-shadow:2px 4px 8px rgba(0,0,0,.18);border-radius:4px 4px 10px 4px}
+  .sticky .lbl{font-family:'Marhey',cursive;color:var(--red);font-size:14px;margin-bottom:3px}
+  .sticky .txt{font-size:14px;line-height:1.75}
+
+  .q-instr{margin-bottom:4px;direction:ltr;text-align:left}
+  .q-instr .en-line{display:block;font-family:'Patrick Hand',cursive;color:var(--blue-d);font-size:13.5px;line-height:1.4}
+  .q-instr .ar-line{display:block;direction:rtl;text-align:left;font-size:13.5px;line-height:1.45;color:#333;margin-top:1px}
+  .q-instr .en{display:inline}
+  ol.enlist{direction:ltr;text-align:left;font-family:'Patrick Hand',cursive;font-size:15px;line-height:1.95;padding-left:24px;margin:4px 0}
+  ol.enlist li{margin-bottom:1px}
+  .choices{direction:ltr;text-align:left;font-family:'Patrick Hand',cursive;font-size:14px}
+  .choices .opt{display:inline-block;margin-right:15px}
+  .blank{display:inline-block;min-width:82px;border-bottom:2px dotted var(--blue);margin:0 4px}
+  .wordbank{border:2px dashed var(--red);border-radius:12px;padding:6px 12px;margin:6px 0;background:#fff;
+    direction:ltr;text-align:center;font-family:'Patrick Hand',cursive;font-size:14px;color:var(--blue-d)}
+  .wordbank b{font-family:'Marhey',cursive;color:var(--red);font-size:11px;display:block;margin-bottom:2px;direction:rtl}
+  .match{display:flex;gap:20px;direction:ltr;font-family:'Patrick Hand',cursive;font-size:15px}
+  .match .col{flex:1}
+  .match .col .row{padding:5px 0;border-bottom:1px dotted #bbb;display:flex;justify-content:space-between}
+  .writeline{border-bottom:2px dotted var(--blue);height:21px;margin:7px 0}
+  .para{border:2px solid #c9b9a0;border-radius:12px;padding:11px 14px;background:#fff;direction:ltr;text-align:left;
+    font-family:'Patrick Hand',cursive;font-size:15px;line-height:2.0;color:#333}
+
+  .answerkey{border:3px double var(--red);border-radius:14px;padding:14px 18px;margin-top:8px;background:#fffdf5;break-inside:avoid}
+  .answerkey .ak-title{font-family:'Marhey',cursive;color:var(--red);font-size:19px;margin-bottom:10px;text-align:center}
+  .ak-row{direction:ltr;text-align:left;margin-bottom:9px;font-size:14px;line-height:1.9;color:#333}
+  .ak-row .n{font-family:'Marhey',cursive;color:var(--blue);font-size:13px;direction:rtl;display:inline-block;margin-left:6px}
+  .ak-row .v{font-family:'Patrick Hand',cursive}
+
+  .foot{margin-top:auto;border-top:2px dashed #cbb8b5;padding-top:5px;display:flex;justify-content:space-between;align-items:center;
+    direction:ltr;font-family:'Marhey',cursive;font-size:11px;color:var(--grey)}
+  .foot .nm{font-family:'Caveat',cursive;color:var(--grey);font-size:18px}
+
+  @media print{
+    html,body{background:#fff}
+    .page{margin:0;box-shadow:none;page-break-after:always}
+    .page:last-child{page-break-after:auto}
+  }
+  @page{size:A4;margin:0}
+</style>
+<div class="page">
+<div class="washi"></div>
+<div class="holes"><span></span><span></span><span></span><span></span><span></span></div>
+<div class="content">
+<div class="lesson-head">
+<h1>Present Simple</h1>
+<p class="subtitle">حقائق وأفعال ثابتة — Facts & State Verbs</p>
+<svg class="squiggle" viewBox="0 0 280 11"><path d="M2 6 Q 16 0 30 6 T 58 6 T 86 6 T 114 6 T 142 6 T 170 6 T 198 6 T 226 6 T 254 6 T 278 6" fill="none" stroke="#c22b1c" stroke-width="2.5" stroke-linecap="round"/></svg>
+<p class="levelline">Level 2 — Facts & States</p>
+<div class="namedate"><span>Name: ______________</span><span>Date: ______________</span></div>
+</div>
+<div class="section">
+<div class="sec-head"><div class="badge red">1</div><div class="sec-title">Definition · التعريف</div></div>
+<div class="box"><p class="def">إضافةً للعادات، نستخدم المضارع البسيط لـ<span class="hl-y">الحقائق الثابتة والعامة</span> ولـ<span class="hl-g">الأفعال الثابتة (أفعال الحالة)</span>.<span class="en-fact">Besides habits, the present simple states permanent facts / general truths and uses state verbs.</span></p><div class="formula">Fact: The sun <b>rises</b> in the east. &nbsp;|&nbsp; State verb: I <b>like</b> tea.</div></div></div>
+<div class="section">
+<div class="sec-head"><div class="badge red">2</div><div class="sec-title">Key Facts · حقائق أساسية</div></div>
+<ul class="facts"><li>الحقائق الثابتة والعامة لا تتغيّر.<span class="en-fact">Permanent facts & general truths: Water boils at 100°C.</span></li><li>أفعال الحالة (الثابتة) لا تُصاغ مستمرة: <span class="en">like, love, want, know, believe, understand, have(=own)</span>.<span class="en-fact">State verbs are never in the continuous.</span></li><li>حتى لو «الآن»، فعل الحالة يبقى بسيطًا.<span class="en-fact">Even with “now”, a state verb stays simple: I want tea now.</span></li></ul><table><tr><th>Type · النوع</th><th>Example</th></tr><tr><td>حقيقة عامة</td><td class="en">The sun rises in the east.</td></tr><tr><td>حقيقة علمية</td><td class="en">Water boils at 100°C.</td></tr><tr><td>فعل حالة</td><td class="en">She loves music.</td></tr><tr><td>حقيقة دائمة</td><td class="en">Olives grow in Palestine.</td></tr></table></div>
+<div class="section">
+<div class="sec-head"><div class="badge red">3</div><div class="sec-title">Steps · خطوات النجاح</div></div>
+<div class="box soft"><p class="def">اسأل/ي: هل الجملة <span class="hl-p">حقيقة ثابتة</span> أو <span class="hl-p">فعل حالة</span>؟ إن نعم → مضارع بسيط دائمًا.<span class="en-fact">Ask: is it a permanent fact or a state verb? If yes → always present simple.</span></p></div><div class="examples"><div class="ex"><span class="tag">حقيقة · fact</span><div class="flow"><span class="after">The Dead Sea <b>is</b> very salty.</span></div></div><div class="ex"><span class="tag">فعل حالة · state</span><div class="flow"><span class="after">I <b>know</b> the answer.</span></div></div><div class="ex"><span class="tag">فعل حالة · state</span><div class="flow"><span class="after">My grandfather <b>loves</b> old songs.</span></div></div></div></div>
+<div class="section">
+<div class="sec-head"><div class="badge red">4</div><div class="sec-title">Summary · الخلاصة</div></div>
+<div class="sticky"><div class="lbl">✦ تذكّر/ي دائمًا · Remember</div><div class="txt">المضارع البسيط ليس للعادات فقط، بل لـ<span class="hl-y">الحقائق الثابتة</span> و<span class="hl-g">أفعال الحالة</span> (<span class="en">like/know/want</span>) — دائمًا بسيط.</div></div></div>
+<div class="foot"><span class="nm">T. Wad Refae</span><span>Present Simple · Level 2 · صفحة ١ من ٤</span></div>
+
+</div>
+</div>
+<div class="page">
+<div class="washi"></div>
+<div class="holes"><span></span><span></span><span></span><span></span><span></span></div>
+<div class="content">
+<div class="ptitle">Let's Practice!</div>
+<svg class="squiggle" viewBox="0 0 280 11"><path d="M2 6 Q 16 0 30 6 T 58 6 T 86 6 T 114 6 T 142 6 T 170 6 T 198 6 T 226 6 T 254 6 T 278 6" fill="none" stroke="#1e4e9c" stroke-width="2.5" stroke-linecap="round"/></svg>
+<div class="q">
+<div class="sec-head"><div class="badge blue">1</div><div class="sec-title">Recognize · تعرّف</div></div>
+<p class="q-instr"><span class="en-line">Classify: habit or permanent fact?</span><span class="ar-line">صنّف/ي: عادة أم حقيقة ثابتة؟</span></p>
+<ol class="enlist"><li>Water freezes at 0°C. <span class="choices">( habit / fact )</span></li><li>I brush my teeth every morning. <span class="choices">( habit / fact )</span></li><li>The earth goes around the sun. <span class="choices">( habit / fact )</span></li><li>We visit grandmother on Fridays. <span class="choices">( habit / fact )</span></li></ol></div>
+<div class="q">
+<div class="sec-head"><div class="badge blue">2</div><div class="sec-title">Multiple Choice · اختيار من متعدد</div></div>
+<p class="q-instr"><span class="en-line">Choose the correct form (state verbs stay simple).</span><span class="ar-line">اختر/ي الصيغة الصحيحة (فعل الحالة يبقى بسيطًا).</span></p>
+<ol class="enlist"><li>I ____ this song. <span class="choices"><span class="opt">a) like</span><span class="opt">b) am liking</span></span></li><li>She ____ the answer. <span class="choices"><span class="opt">a) is knowing</span><span class="opt">b) knows</span></span></li><li>The sun ____ in the east. <span class="choices"><span class="opt">a) rises</span><span class="opt">b) is rising</span></span></li></ol></div>
+<div class="q">
+<div class="sec-head"><div class="badge blue">3</div><div class="sec-title">Fill in · إكمال الفراغ</div></div>
+<p class="q-instr"><span class="en-line">Put the verb into the present simple.</span><span class="ar-line">ضع/ي الفعل في المضارع البسيط.</span></p>
+<ol class="enlist"><li>Ali __________ (want) some water now.</li><li>Olive trees __________ (grow) in Palestine.</li><li>I __________ (believe) you.</li><li>Ice __________ (melt) in the sun.</li></ol></div>
+<div class="q">
+<div class="sec-head"><div class="badge blue">4</div><div class="sec-title">Match · توصيل</div></div>
+<p class="q-instr"><span class="en-line">Match each sentence with its type — write the number.</span><span class="ar-line">صِل/ي الجملة بنوعها — اكتب/ي الرقم.</span></p>
+<div class="match"><div class="col"><div class="row"><span>1) Water boils at 100°.</span><span>____</span></div><div class="row"><span>2) I love my country.</span><span>____</span></div><div class="row"><span>3) The sun rises in the east.</span><span>____</span></div></div><div class="col"><div class="row"><span>( ) general truth</span></div><div class="row"><span>( ) scientific fact</span></div><div class="row"><span>( ) state verb</span></div></div></div></div>
+<div class="foot"><span></span><span>Present Simple · Level 2 · صفحة ٢ من ٤</span></div>
+
+</div>
+</div>
+<div class="page">
+<div class="washi"></div>
+<div class="holes"><span></span><span></span><span></span><span></span><span></span></div>
+<div class="content">
+<div class="ptitle">Keep Going!</div>
+<svg class="squiggle" viewBox="0 0 280 11"><path d="M2 6 Q 16 0 30 6 T 58 6 T 86 6 T 114 6 T 142 6 T 170 6 T 198 6 T 226 6 T 254 6 T 278 6" fill="none" stroke="#1e4e9c" stroke-width="2.5" stroke-linecap="round"/></svg>
+<div class="q">
+<div class="sec-head"><div class="badge blue">5</div><div class="sec-title">Transform · تحويل</div></div>
+<p class="q-instr"><span class="en-line">Rewrite correctly (state verbs are not continuous).</span><span class="ar-line">أعِد/ي الكتابة بشكل صحيح (فعل الحالة لا يُصاغ مستمرًا).</span></p>
+<ol class="enlist"><li>I am wanting tea. → <span class="writeline" style="display:inline-block;width:54%"></span></li><li>She is knowing him. → <span class="writeline" style="display:inline-block;width:54%"></span></li></ol></div>
+<div class="q">
+<div class="sec-head"><div class="badge blue">6</div><div class="sec-title">Correct · تصحيح خطأ</div></div>
+<p class="q-instr"><span class="en-line">Each sentence has one mistake. Correct it.</span><span class="ar-line">في كل جملة خطأ واحد. صحّح/يه.</span></p>
+<ol class="enlist"><li>Water boil at 100°C. → <span class="writeline" style="display:inline-block;width:52%"></span></li><li>I am liking this book. → <span class="writeline" style="display:inline-block;width:52%"></span></li><li>The sun rise in the east. → <span class="writeline" style="display:inline-block;width:52%"></span></li></ol></div>
+<div class="q">
+<div class="sec-head"><div class="badge blue">7</div><div class="sec-title">In Context · توظيف سياقي</div></div>
+<p class="q-instr"><span class="en-line">Put each verb into the present simple.</span><span class="ar-line">ضع/ي الفعل بين القوسين في المضارع البسيط.</span></p>
+<div class="para">Palestine (1) __________ (have) a warm climate. Olive trees (2) __________ (grow) everywhere. Many people (3) __________ (love) za'atar. The sun (4) __________ (rise) early in summer. I (5) __________ (believe) it is a beautiful land.</div></div>
+<div class="q">
+<div class="sec-head"><div class="badge blue">8</div><div class="sec-title">Create · تحدٍ إبداعي</div></div>
+<p class="q-instr"><span class="en-line">Write 3 permanent facts about Palestine (nature · food · weather).</span><span class="ar-line">اكتب/ي ٣ حقائق ثابتة عن فلسطين (طبيعة · طعام · طقس).</span></p>
+<div class="writeline"></div><div class="writeline"></div><div class="writeline"></div></div>
+<div class="foot"><span></span><span>Present Simple · Level 2 · صفحة ٣ من ٤</span></div>
+
+</div>
+</div>
+<div class="page">
+<div class="washi"></div>
+<div class="holes"><span></span><span></span><span></span><span></span><span></span></div>
+<div class="content">
+<div class="ptitle" style="color:var(--red)">Answer Key</div>
+<svg class="squiggle" viewBox="0 0 280 11"><path d="M2 6 Q 16 0 30 6 T 58 6 T 86 6 T 114 6 T 142 6 T 170 6 T 198 6 T 226 6 T 254 6 T 278 6" fill="none" stroke="#c22b1c" stroke-width="2.5" stroke-linecap="round"/></svg>
+<div class="answerkey"><div class="ak-title">🔑 Answer Key · مفتاح الإجابات للمعلمة</div><div class="ak-row"><span class="n">تمرين ١:</span> <span class="v">fact · habit · fact · habit</span></div><div class="ak-row"><span class="n">تمرين ٢:</span> <span class="v">a) like · b) knows · a) rises</span></div><div class="ak-row"><span class="n">تمرين ٣:</span> <span class="v">wants · grow · believe · melts</span></div><div class="ak-row"><span class="n">تمرين ٤:</span> <span class="v">1 → scientific fact · 2 → state verb · 3 → general truth</span></div><div class="ak-row"><span class="n">تمرين ٥:</span> <span class="v">I want tea. · She knows him.</span></div><div class="ak-row"><span class="n">تمرين ٦:</span> <span class="v">Water boils at 100°C. · I like this book. · The sun rises in the east.</span></div><div class="ak-row"><span class="n">تمرين ٧:</span> <span class="v">1 has · 2 grow · 3 love · 4 rises · 5 believe</span></div><div class="ak-row"><span class="n">تمرين ٨:</span> <span class="v"><span style="direction:rtl;text-align:right;font-family:'Aref Ruqaa',serif">إجابات مفتوحة (حقائق بالمضارع البسيط).</span></span></div></div><div class="foot"><span class="nm">T. Wad Refae</span><span>Present Simple · Level 2 · صفحة ٤ من ٤</span></div>
+
+</div>
+</div>
