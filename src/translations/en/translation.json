@@ -29,6 +29,7 @@
     "whyTitle": "Why PalBook?",
     "whyDesc": "Crafted with love by T. Wad Refae for Palestinian students learning English",
     "palbookDesc": "Lessons aligned with the curriculum",
+    "worksheetsDesc": "Printable worksheets by level",
     "generalDesc": "Grammar, pronunciation, and reading",
     "gamesDesc": "Fun educational games",
     "feature1Title": "Rich Lessons",
@@ -106,6 +107,13 @@
     "subtitle": "Learn while having fun!",
     "play": "Play Now",
     "noGames": "No games available yet"
+  },
+  "worksheets": {
+    "title": "Worksheets",
+    "subtitle": "Printable PDF worksheets, by level",
+    "level": "Level",
+    "openPdf": "Open PDF",
+    "view": "View"
   },
   "dashboard": {
     "welcomeBack": "Welcome back",

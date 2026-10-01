@@ -18,18 +18,25 @@ const HomePage = () => {
       grad: 'g-olive',
     },
     {
+      to: '/worksheets',
+      emoji: '📝',
+      title: t('worksheets.title'),
+      desc: t('home.worksheetsDesc'),
+      grad: 'g-blue',
+    },
+    {
       to: '/general',
       emoji: '✨',
       title: 'General',
       desc: t('home.generalDesc'),
-      grad: 'g-blue',
+      grad: 'g-olive',
     },
     {
       to: '/games',
       emoji: '🎮',
       title: 'Games',
       desc: t('home.gamesDesc'),
-      grad: 'g-olive',
+      grad: 'g-blue',
     },
   ];
 
@@ -73,7 +80,7 @@ const HomePage = () => {
         <h2 className="text-center text-xl md:text-2xl font-display font-extrabold text-secondary-800 dark:text-secondary-300 mb-7">
           🧭 {t('home.exploreSections')}
         </h2>
-        <div className="flex flex-wrap justify-center gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-[660px] mx-auto">
           {sections.map((s, i) => (
             <motion.button
               key={s.to}
@@ -84,7 +91,7 @@ const HomePage = () => {
               whileHover={{ y: -8, scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => navigate(s.to)}
-              className={`${s.grad} relative overflow-hidden w-[300px] max-w-full rounded-[26px] p-6 text-start shadow-kid group`}
+              className={`${s.grad} relative overflow-hidden w-full rounded-[26px] p-6 text-start shadow-kid group`}
             >
               <span className="absolute -top-8 -end-8 w-28 h-28 bg-white/25 rounded-full" />
               <span className="relative block text-5xl mb-2.5 group-hover:scale-110 transition-transform">
