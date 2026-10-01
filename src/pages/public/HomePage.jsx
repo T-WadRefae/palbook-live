@@ -80,7 +80,7 @@ const HomePage = () => {
         <h2 className="text-center text-xl md:text-2xl font-display font-extrabold text-secondary-800 dark:text-secondary-300 mb-7">
           🧭 {t('home.exploreSections')}
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-[660px] mx-auto">
+        <div className="grid grid-cols-2 gap-4 sm:gap-5 max-w-[660px] mx-auto">
           {sections.map((s, i) => (
             <motion.button
               key={s.to}
@@ -91,14 +91,14 @@ const HomePage = () => {
               whileHover={{ y: -8, scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => navigate(s.to)}
-              className={`${s.grad} relative overflow-hidden w-full rounded-[26px] p-6 text-start shadow-kid group`}
+              className={`${s.grad} relative overflow-hidden w-full rounded-[22px] sm:rounded-[26px] p-4 sm:p-6 text-start shadow-kid group`}
             >
-              <span className="absolute -top-8 -end-8 w-28 h-28 bg-white/25 rounded-full" />
-              <span className="relative block text-5xl mb-2.5 group-hover:scale-110 transition-transform">
+              <span className="absolute -top-8 -end-8 w-24 h-24 sm:w-28 sm:h-28 bg-white/25 rounded-full" />
+              <span className="relative block text-4xl sm:text-5xl mb-2 sm:mb-2.5 group-hover:scale-110 transition-transform">
                 {s.emoji}
               </span>
-              <h3 className="relative text-xl font-extrabold mb-1">{s.title}</h3>
-              <p className="relative text-sm opacity-90 mb-3.5">{s.desc}</p>
+              <h3 className="relative text-lg sm:text-xl font-extrabold mb-1">{s.title}</h3>
+              <p className="relative text-[13px] sm:text-sm opacity-90 mb-3 sm:mb-3.5 leading-snug">{s.desc}</p>
               <span className="relative inline-flex items-center gap-1.5 text-sm font-extrabold">
                 {t('common.explore')} <FiArrowLeft className="rtl-flip" />
               </span>
