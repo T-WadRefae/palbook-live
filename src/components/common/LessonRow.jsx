@@ -14,7 +14,9 @@ const LessonRow = ({ lesson, onOpen, index = 0 }) => {
   // everything else keeps its own title/description.
   const meta = getPeriodMeta(lesson.grade, lesson.unit, lesson.lesson);
   const title = meta
-    ? `${t('palbook.period')} ${lesson.lesson} · ${t('palbook.page')} ${meta.page}`
+    ? meta.page
+      ? `${t('palbook.period')} ${lesson.lesson} · ${t('palbook.page')} ${meta.page}`
+      : `${t('palbook.period')} ${lesson.lesson}`
     : isAr && lesson.titleAr
       ? lesson.titleAr
       : lesson.title;
