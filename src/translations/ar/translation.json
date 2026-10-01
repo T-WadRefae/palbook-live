@@ -173,6 +173,7 @@
   "common": {
     "loading": "جاري التحميل...",
     "search": "ابحث عن دروس...",
+    "searchPlaceholder": "ابحث...",
     "noResults": "لا توجد نتائج",
     "save": "حفظ",
     "cancel": "إلغاء",

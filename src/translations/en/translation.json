@@ -173,6 +173,7 @@
   "common": {
     "loading": "Loading...",
     "search": "Search lessons...",
+    "searchPlaceholder": "Search...",
     "noResults": "No results found",
     "save": "Save",
     "cancel": "Cancel",
