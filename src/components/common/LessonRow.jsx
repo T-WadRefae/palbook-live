@@ -1,14 +1,24 @@
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { FiPlayCircle, FiEye, FiChevronLeft } from 'react-icons/fi';
+import { getPeriodMeta } from '../../data/palbookMeta';
 
 const LessonRow = ({ lesson, onOpen, index = 0 }) => {
   const { t, i18n } = useTranslation();
   const isAr = i18n.language === 'ar';
 
-  const title = isAr && lesson.titleAr ? lesson.titleAr : lesson.title;
   const views = lesson.views || 0;
   const lessonNo = lesson.lesson ?? index + 1;
+
+  // Curriculum lessons with book metadata show "Period N · Page X" + the skill;
+  // everything else keeps its own title/description.
+  const meta = getPeriodMeta(lesson.grade, lesson.unit, lesson.lesson);
+  const title = meta
+    ? `${t('palbook.period')} ${lesson.lesson} · ${t('palbook.page')} ${meta.page}`
+    : isAr && lesson.titleAr
+      ? lesson.titleAr
+      : lesson.title;
+  const subtitle = meta ? meta.skill : lesson.description;
 
   return (
     <motion.div
@@ -35,9 +45,9 @@ const LessonRow = ({ lesson, onOpen, index = 0 }) => {
           {title}
         </h3>
 
-        {lesson.description && (
-          <p className="hidden sm:block text-xs text-slate-500 dark:text-slate-400 line-clamp-1 mt-0.5">
-            {lesson.description}
+        {subtitle && (
+          <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-1 mt-0.5">
+            {subtitle}
           </p>
         )}
 
@@ -53,7 +63,7 @@ const LessonRow = ({ lesson, onOpen, index = 0 }) => {
               {t('palbook.unit')} {lesson.unit}
             </span>
           )}
-          {lesson.lesson && (
+          {!meta && lesson.lesson && (
             <span className="px-2 py-0.5 bg-white/60 dark:bg-black/25 text-secondary-800 dark:text-secondary-200 rounded-md font-semibold">
               {t('palbook.lesson')} {lesson.lesson}
             </span>

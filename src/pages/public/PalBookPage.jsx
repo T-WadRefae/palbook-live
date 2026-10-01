@@ -8,6 +8,7 @@ import LessonViewer from '../../components/common/LessonViewer';
 import Loader from '../../components/common/Loader';
 import EmptyState from '../../components/common/EmptyState';
 import { getMergedLessons } from '../../data/lessonsService';
+import { getUnitMeta } from '../../data/palbookMeta';
 import useUrlState from '../../hooks/useUrlState';
 import { GRADES } from '../../utils/constants';
 
@@ -23,6 +24,10 @@ const PalBookPage = () => {
   const grade = params.get('grade') ? Number(params.get('grade')) : null;
   const unit = params.get('unit') ? Number(params.get('unit')) : null;
   const lessonId = params.get('lesson');
+
+  // When a unit with book metadata is open, the hero shows that unit instead
+  // of the generic PalBook title.
+  const unitMeta = grade && unit ? getUnitMeta(grade, unit) : null;
 
   useEffect(() => {
     (async () => {
@@ -71,13 +76,29 @@ const PalBookPage = () => {
         animate={{ opacity: 1, y: 0 }}
         className="mb-10 text-center"
       >
-        <div className="text-6xl mb-3 animate-float">🇵🇸</div>
-        <h1 className="text-4xl font-display font-extrabold gradient-text">
-          {t('palbook.title')}
-        </h1>
-        <p className="text-slate-600 dark:text-slate-300 mt-2">
-          {t('palbook.subtitle')} • by T. Wad Refae
-        </p>
+        {unitMeta ? (
+          <>
+            <div className="text-sm font-extrabold uppercase tracking-[0.2em] text-secondary-600 dark:text-secondary-300">
+              {t('palbook.unit')} {unit}
+            </div>
+            <h1 className="text-4xl font-display font-extrabold gradient-text mt-1">
+              {unitMeta.emoji} {unitMeta.title} {unitMeta.emoji}
+            </h1>
+            <p className="text-slate-600 dark:text-slate-300 mt-2">
+              📖 {t('palbook.pages')} {unitMeta.pageStart}–{unitMeta.pageEnd}
+            </p>
+          </>
+        ) : (
+          <>
+            <div className="text-6xl mb-3 animate-float">🇵🇸</div>
+            <h1 className="text-4xl font-display font-extrabold gradient-text">
+              {t('palbook.title')}
+            </h1>
+            <p className="text-slate-600 dark:text-slate-300 mt-2">
+              {t('palbook.subtitle')} • by T. Wad Refae
+            </p>
+          </>
+        )}
       </motion.div>
 
       {/* Breadcrumbs */}

@@ -39,7 +39,6 @@
     "feature3Desc": "Arabic and English support",
     "feature4Title": "Palestinian Identity",
     "feature4Desc": "Content honoring our heritage"
-    
   },
   "auth": {
     "loginTitle": "Welcome back!",
@@ -97,14 +96,16 @@
     "back": "Back",
     "openLesson": "Open Lesson",
     "noUnits": "No units available for this grade yet",
-    "noLessons": "No lessons available for this unit yet"
+    "noLessons": "No lessons available for this unit yet",
+    "period": "Period",
+    "page": "Page",
+    "pages": "Pages"
   },
   "games": {
     "title": "Educational Games",
     "subtitle": "Learn while having fun!",
     "play": "Play Now",
     "noGames": "No games available yet"
-  
   },
   "dashboard": {
     "welcomeBack": "Welcome back",
