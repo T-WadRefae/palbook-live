@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitcher from '../common/LanguageSwitcher';
 import ThemeToggle from '../common/ThemeToggle';
+import SearchBar from '../common/SearchBar';
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -13,9 +14,10 @@ const Navbar = () => {
         style={{ direction: 'ltr' }}
         className="max-w-7xl mx-auto px-4 py-2.5 grid grid-cols-[1fr_auto_1fr] items-center gap-3"
       >
-        {/* Left: language switch */}
-        <div className="justify-self-start">
+        {/* Left: language switch + search (search is inline on tablet/laptop) */}
+        <div className="justify-self-start flex items-center gap-2 min-w-0">
           <LanguageSwitcher />
+          <SearchBar className="hidden md:block w-44 lg:w-56" />
         </div>
 
         {/* Center: logo + Home */}
@@ -35,6 +37,11 @@ const Navbar = () => {
           <ThemeToggle />
         </div>
       </nav>
+
+      {/* Mobile: search on its own row below the bar */}
+      <div className="md:hidden px-4 pb-2.5">
+        <SearchBar />
+      </div>
     </header>
   );
 };

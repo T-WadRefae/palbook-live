@@ -13,6 +13,7 @@ import ReadingPage from './pages/public/ReadingPage';
 import WritingPage from './pages/public/WritingPage';
 import PalBookPage from './pages/public/PalBookPage';
 import GamesPage from './pages/public/GamesPage';
+import WorksheetsPage from './pages/public/WorksheetsPage';
 import NotFoundPage from './pages/public/NotFoundPage';
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path="/general/reading" element={<ReadingPage />} />
           <Route path="/general/writing" element={<WritingPage />} />
           <Route path="/palbook" element={<PalBookPage />} />
+          <Route path="/worksheets" element={<WorksheetsPage />} />
           <Route path="/games" element={<GamesPage />} />
         </Route>
 

@@ -65,7 +65,7 @@ const GeneralPage = () => {
           <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center">
             {t('general.chooseSection')}
           </h2>
-          <div className="flex flex-wrap justify-center gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-md sm:max-w-3xl mx-auto">
             {GENERAL_SECTION_LIST.map((card, i) => {
               const count = countForSubsection(card.subsection);
               return (
@@ -79,7 +79,7 @@ const GeneralPage = () => {
                 >
                   <Link
                     to={`/general/${card.slug}`}
-                    className={`${i % 2 === 0 ? 'g-blue' : 'g-olive'} w-40 sm:w-44 aspect-square rounded-3xl shadow-kid flex flex-col items-center justify-center font-extrabold relative overflow-hidden`}
+                    className={`${i % 2 === 0 ? 'g-blue' : 'g-olive'} w-full aspect-square rounded-3xl shadow-kid flex flex-col items-center justify-center font-extrabold relative overflow-hidden`}
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
                     <div className="text-4xl mb-1 relative">{card.emoji}</div>

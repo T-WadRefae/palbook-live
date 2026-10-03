@@ -29,6 +29,7 @@
     "whyTitle": "لماذا PalBook؟",
     "whyDesc": "صُمّمت بحب من المعلمة وعد رفاعي لطلاب فلسطين",
     "palbookDesc": "دروس حسب المنهاج",
+    "worksheetsDesc": "أوراق عمل جاهزة للطباعة حسب المستوى",
     "generalDesc": "قواعد، نطق، وقراءة",
     "gamesDesc": "ألعاب تعليمية ممتعة",
     "feature1Title": "دروس غنية",
@@ -107,6 +108,13 @@
     "play": "العب الآن",
     "noGames": "لا توجد ألعاب متاحة حالياً"
   },
+  "worksheets": {
+    "title": "أوراق العمل",
+    "subtitle": "أوراق عمل PDF جاهزة للطباعة، حسب المستوى",
+    "level": "المستوى",
+    "openPdf": "فتح PDF",
+    "view": "عرض"
+  },
   "dashboard": {
     "welcomeBack": "أهلاً بعودتك",
     "teacherDashboard": "لوحة المعلم",
@@ -165,6 +173,7 @@
   "common": {
     "loading": "جاري التحميل...",
     "search": "ابحث عن دروس...",
+    "searchPlaceholder": "ابحث...",
     "noResults": "لا توجد نتائج",
     "save": "حفظ",
     "cancel": "إلغاء",
