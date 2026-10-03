@@ -14,12 +14,14 @@ import { PALBOOK_LESSONS } from './palbookLessons';
 import { GRAMMAR_LESSONS } from './grammarLessons';
 import { READING_LESSONS } from './readingLessons';
 import { WRITING_LESSONS } from './writingLessons';
+import { PHONICS_LESSONS } from './phonicsLessons';
 import { GAMES } from './gamesLessons';
 
 // Auto-published lessons shipped with the app (served from GitHub Pages).
 const STATIC_LESSONS = [
   ...PALBOOK_LESSONS,
   ...GRAMMAR_LESSONS,
+  ...PHONICS_LESSONS,
   ...READING_LESSONS,
   ...WRITING_LESSONS,
   ...GAMES,
