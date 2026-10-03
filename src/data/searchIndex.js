@@ -1,11 +1,13 @@
 // Lightweight, offline search index built from the app's static content:
-// General section pages, General lessons (grammar / reading / writing),
+// General section pages, General lessons (grammar / phonics / reading / writing), games,
 // PalBook curriculum lessons, and the printable worksheets.
 import { WORKSHEET_TOPICS } from './worksheets';
 import { PALBOOK_LESSONS } from './palbookLessons';
 import { GRAMMAR_LESSONS } from './grammarLessons';
 import { READING_LESSONS } from './readingLessons';
 import { WRITING_LESSONS } from './writingLessons';
+import { PHONICS_LESSONS } from './phonicsLessons';
+import { GAMES } from './gamesLessons';
 
 // lesson.subsection -> /general/<slug>
 const SUB_SLUG = {
@@ -28,8 +30,8 @@ const items = [];
   items.push({ type: 'section', typeEn: 'Section', typeAr: 'قسم', titleEn, titleAr, emoji, to })
 );
 
-// General lessons served statically (grammar + reading + writing)
-[...GRAMMAR_LESSONS, ...READING_LESSONS, ...WRITING_LESSONS].forEach((l) => {
+// General lessons served statically (grammar + phonics + reading + writing)
+[...GRAMMAR_LESSONS, ...PHONICS_LESSONS, ...READING_LESSONS, ...WRITING_LESSONS].forEach((l) => {
   const slug = SUB_SLUG[l.subsection] || 'grammar';
   items.push({
     type: 'lesson',
@@ -39,6 +41,19 @@ const items = [];
     titleAr: l.titleAr,
     emoji: l.thumbnail || '📝',
     to: `/general/${slug}?lesson=${encodeURIComponent(l.id)}`,
+  });
+});
+
+// Games
+GAMES.forEach((g) => {
+  items.push({
+    type: 'lesson',
+    typeEn: 'Game',
+    typeAr: 'لعبة',
+    titleEn: g.title,
+    titleAr: g.titleAr,
+    emoji: g.thumbnail || '🎮',
+    to: `/games?game=${encodeURIComponent(g.id)}`,
   });
 });
 
