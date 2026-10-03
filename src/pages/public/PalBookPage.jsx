@@ -81,8 +81,11 @@ const PalBookPage = () => {
             <div className="text-sm font-extrabold uppercase tracking-[0.2em] text-secondary-600 dark:text-secondary-300">
               {t('palbook.unit')} {unit}
             </div>
-            <h1 className="text-4xl font-display font-extrabold gradient-text mt-1">
-              {unitMeta.emoji} {unitMeta.title} {unitMeta.emoji}
+            {/* Solid colour (no gradient): a gradient text-fill tints and flattens emoji */}
+            <h1 className="text-4xl font-display font-extrabold text-slate-800 dark:text-white mt-1">
+              <span aria-hidden="true">{unitMeta.emoji}</span>{' '}
+              {unitMeta.title}{' '}
+              <span aria-hidden="true">{unitMeta.emoji}</span>
             </h1>
             <p className="text-slate-600 dark:text-slate-300 mt-2">
               📖 {t('palbook.pages')} {unitMeta.pageStart}–{unitMeta.pageEnd}
