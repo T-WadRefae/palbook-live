@@ -5,8 +5,9 @@
 // book's language overview table).
 // Per period (lesson): its main skill, plus the Pupil's Book page when the
 // Teacher's Book states it. Grades 5–7 list "Period N – PB page M" for every
-// period, so those show a page. Grades 8–9 don't map periods to pages one to
-// one, so they show the unit's page range only.
+// period. Grade 9 follows the same one-page-per-period order (page = unit start
+// + period - 1), as confirmed by the teacher. Grade 8's 12 periods don't map to
+// pages one to one, so it shows the unit's page range only.
 // Skill labels are each lesson's main focus, drafted from its activities.
 //
 // Units not listed keep their previous title/description. Partial units list
@@ -276,18 +277,18 @@ export const PALBOOK_META = {
       emoji: '✈️',
       pageStart: 4, pageEnd: 15,
       periods: {
-        1: { skill: 'Vocabulary & Listening' },
-        2: { skill: 'Listening & Speaking' },
-        3: { skill: 'Grammar' },
-        4: { skill: 'Vocabulary' },
-        5: { skill: 'Reading comprehension' },
-        6: { skill: 'Reading & Speaking' },
-        7: { skill: 'Grammar' },
-        8: { skill: 'Grammar' },
-        9: { skill: 'Grammar' },
-        10: { skill: 'Listening & Pronunciation' },
-        11: { skill: 'Writing' },
-        12: { skill: 'Writing' },
+        1: { page: 4, skill: 'Vocabulary & Listening' },
+        2: { page: 5, skill: 'Listening & Speaking' },
+        3: { page: 6, skill: 'Grammar' },
+        4: { page: 7, skill: 'Vocabulary' },
+        5: { page: 8, skill: 'Reading comprehension' },
+        6: { page: 9, skill: 'Reading & Speaking' },
+        7: { page: 10, skill: 'Grammar' },
+        8: { page: 11, skill: 'Grammar' },
+        9: { page: 12, skill: 'Grammar' },
+        10: { page: 13, skill: 'Listening & Pronunciation' },
+        11: { page: 14, skill: 'Writing' },
+        12: { page: 15, skill: 'Writing' },
       },
     },
     2: {
@@ -295,18 +296,18 @@ export const PALBOOK_META = {
       emoji: '🏠',
       pageStart: 16, pageEnd: 27,
       periods: {
-        1: { skill: 'Vocabulary & Listening' },
-        2: { skill: 'Listening & Speaking' },
-        3: { skill: 'Grammar' },
-        4: { skill: 'Vocabulary' },
-        5: { skill: 'Reading comprehension' },
-        6: { skill: 'Reading comprehension' },
-        7: { skill: 'Vocabulary' },
-        8: { skill: 'Grammar' },
-        9: { skill: 'Grammar' },
-        10: { skill: 'Poem & Vocabulary' },
-        11: { skill: 'Writing' },
-        12: { skill: 'Writing' },
+        1: { page: 16, skill: 'Vocabulary & Listening' },
+        2: { page: 17, skill: 'Listening & Speaking' },
+        3: { page: 18, skill: 'Grammar' },
+        4: { page: 19, skill: 'Vocabulary' },
+        5: { page: 20, skill: 'Reading comprehension' },
+        6: { page: 21, skill: 'Reading comprehension' },
+        7: { page: 22, skill: 'Vocabulary' },
+        8: { page: 23, skill: 'Grammar' },
+        9: { page: 24, skill: 'Grammar' },
+        10: { page: 25, skill: 'Poem & Vocabulary' },
+        11: { page: 26, skill: 'Writing' },
+        12: { page: 27, skill: 'Writing' },
       },
     },
     3: {
@@ -314,18 +315,18 @@ export const PALBOOK_META = {
       emoji: '💪',
       pageStart: 28, pageEnd: 39,
       periods: {
-        1: { skill: 'Vocabulary & Listening' },
-        2: { skill: 'Listening & Speaking' },
-        3: { skill: 'Grammar' },
-        4: { skill: 'Vocabulary & Listening' },
-        5: { skill: 'Reading comprehension' },
-        6: { skill: 'Reading comprehension' },
-        7: { skill: 'Vocabulary' },
-        8: { skill: 'Grammar' },
-        9: { skill: 'Writing' },
-        10: { skill: 'Listening & Pronunciation' },
-        11: { skill: 'Writing' },
-        12: { skill: 'Writing' },
+        1: { page: 28, skill: 'Vocabulary & Listening' },
+        2: { page: 29, skill: 'Listening & Speaking' },
+        3: { page: 30, skill: 'Grammar' },
+        4: { page: 31, skill: 'Vocabulary & Listening' },
+        5: { page: 32, skill: 'Reading comprehension' },
+        6: { page: 33, skill: 'Reading comprehension' },
+        7: { page: 34, skill: 'Vocabulary' },
+        8: { page: 35, skill: 'Grammar' },
+        9: { page: 36, skill: 'Writing' },
+        10: { page: 37, skill: 'Listening & Pronunciation' },
+        11: { page: 38, skill: 'Writing' },
+        12: { page: 39, skill: 'Writing' },
       },
     },
     10: {
@@ -333,7 +334,7 @@ export const PALBOOK_META = {
       emoji: '🐋',
       pageStart: 28, pageEnd: 39,
       periods: {
-        5: { skill: 'Reading comprehension' },
+        5: { page: 32, skill: 'Reading comprehension' },
       },
     },
     12: {
@@ -341,9 +342,9 @@ export const PALBOOK_META = {
       emoji: '😊',
       pageStart: 52, pageEnd: 63,
       periods: {
-        4: { skill: 'Vocabulary' },
-        7: { skill: 'Grammar — prepositions' },
-        8: { skill: 'Grammar — connectors of cause & result' },
+        4: { page: 55, skill: 'Vocabulary' },
+        7: { page: 58, skill: 'Grammar — prepositions' },
+        8: { page: 59, skill: 'Grammar — connectors of cause & result' },
       },
     },
   },
