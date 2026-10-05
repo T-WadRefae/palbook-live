@@ -63,6 +63,36 @@ export const WORKSHEET_TOPICS = [
       },
     ],
   },
+  {
+    id: 'past-simple',
+    titleEn: 'Past Simple',
+    titleAr: 'الماضي البسيط',
+    emoji: '📙',
+    grad: 'g-blue',
+    levels: [
+      {
+        level: 1,
+        en: 'Foundation — regular verbs (-ed) & past routines',
+        ar: 'تأسيسي — الأفعال المنتظمة (-ed) والروتين الماضي',
+        pdf: '/worksheets/past-simple-1.pdf',
+        html: '/worksheets/past-simple-1.html',
+      },
+      {
+        level: 2,
+        en: 'Irregular verbs — went, ate, saw…',
+        ar: 'الأفعال الشاذة — went, ate, saw…',
+        pdf: '/worksheets/past-simple-2.pdf',
+        html: '/worksheets/past-simple-2.html',
+      },
+      {
+        level: 3,
+        en: 'Negatives, questions (did / didn\'t) & was / were',
+        ar: 'النفي والسؤال (did / didn\'t) و was / were والسرد',
+        pdf: '/worksheets/past-simple-3.pdf',
+        html: '/worksheets/past-simple-3.html',
+      },
+    ],
+  },
 ];
 
 export default WORKSHEET_TOPICS;
