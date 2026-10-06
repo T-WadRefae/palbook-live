@@ -93,6 +93,36 @@ export const WORKSHEET_TOPICS = [
       },
     ],
   },
+  {
+    id: 'future',
+    titleEn: 'Future',
+    titleAr: 'المستقبل',
+    emoji: '🔮',
+    grad: 'g-olive',
+    levels: [
+      {
+        level: 1,
+        en: "Foundation — 'will': predictions, promises & decisions",
+        ar: 'تأسيسي — will: تنبؤات ووعود وقرارات لحظية',
+        pdf: '/worksheets/future-1.pdf',
+        html: '/worksheets/future-1.html',
+      },
+      {
+        level: 2,
+        en: "'be going to' — plans, intentions & evidence",
+        ar: 'be going to — خطط ونوايا وتنبؤ بدليل',
+        pdf: '/worksheets/future-2.pdf',
+        html: '/worksheets/future-2.html',
+      },
+      {
+        level: 3,
+        en: 'will vs be going to + wh-questions',
+        ar: 'الاختيار بين will و be going to + أسئلة wh',
+        pdf: '/worksheets/future-3.pdf',
+        html: '/worksheets/future-3.html',
+      },
+    ],
+  },
 ];
 
 export default WORKSHEET_TOPICS;
