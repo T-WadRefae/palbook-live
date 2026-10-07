@@ -113,6 +113,8 @@ CSS = r'''
   .foot{margin-top:auto;border-top:2px dashed #cbb8b5;padding-top:5px;display:flex;justify-content:space-between;align-items:center;
     direction:ltr;font-family:'Marhey',cursive;font-size:11px;color:var(--grey)}
   .foot .nm{font-family:'Caveat',cursive;color:var(--grey);font-size:18px}
+  .foot .lic{flex:1;text-align:center;font-size:9px;padding:0 8px;white-space:nowrap;color:var(--grey)}
+  .foot .lic a{color:inherit;text-decoration:none}
 
   @media print{
     html,body{background:#fff}
@@ -154,7 +156,8 @@ def q(num, title, instr_en, instr_ar, body):
 
 def foot(name, label):
     left = '<span class="nm">T. Wad Refae</span>' if name else '<span></span>'
-    return '<div class="foot">%s<span>%s</span></div>\n' % (left, label)
+    lic = '<span class="lic">© 2026 T. Wad Refae · <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a></span>'
+    return '<div class="foot">%s%s<span>%s</span></div>\n' % (left, lic, label)
 
 def wl(w):
     return '<span class="writeline" style="display:inline-block;width:%s"></span>' % w

@@ -113,6 +113,10 @@ CSS = r'''
   .foot{margin-top:auto;border-top:2px dashed #cbb8b5;padding-top:5px;display:flex;justify-content:space-between;align-items:center;
     direction:ltr;font-family:'Marhey',cursive;font-size:11px;color:var(--grey)}
   .foot .nm{font-family:'Caveat',cursive;color:var(--grey);font-size:18px}
+  .foot .lic{flex:1;text-align:center;font-size:9px;padding:0 8px;white-space:nowrap;color:var(--grey)}
+  .foot .lic a{color:inherit;text-decoration:none}
+  .page.tight .section,.page.tight .q{margin:5px 0}
+  .page.tight .writeline{margin:4px 0;height:19px}
 
   @media print{
     html,body{background:#fff}
@@ -128,9 +132,9 @@ SQ_B = SQ_R.replace('#c22b1c', '#1e4e9c')
 def head(title):
     return '<meta charset="utf-8">\n<title>' + title + '</title>\n' + LINK + '\n<style>' + CSS + '</style>\n'
 
-def page(inner):
+def page(inner, cls=''):
     holes = '<div class="holes">' + '<span></span>' * 5 + '</div>'
-    return '<div class="page">\n<div class="washi"></div>\n' + holes + '\n<div class="content">\n' + inner + '\n</div>\n</div>\n'
+    return '<div class="page%s">\n<div class="washi"></div>\n' % ((' ' + cls) if cls else '') + holes + '\n<div class="content">\n' + inner + '\n</div>\n</div>\n'
 
 def lesson_head(subtitle, level):
     return ('<div class="lesson-head">\n<h1>Past Simple</h1>\n'
@@ -154,7 +158,8 @@ def q(num, title, instr_en, instr_ar, body):
 
 def foot(name, label):
     left = '<span class="nm">T. Wad Refae</span>' if name else '<span></span>'
-    return '<div class="foot">%s<span>%s</span></div>\n' % (left, label)
+    lic = '<span class="lic">© 2026 T. Wad Refae · <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a></span>'
+    return '<div class="foot">%s%s<span>%s</span></div>\n' % (left, lic, label)
 
 def wl(w):
     return '<span class="writeline" style="display:inline-block;width:%s"></span>' % w
@@ -430,7 +435,7 @@ key = akbox([
 docs['past-simple-3'] = head('Past Simple — Level 3 | T. Wad Refae') + \
     page(s + foot(True, 'Past Simple · Level 3 · صفحة ١ من ٤')) + \
     page(ptitle("Let's Practice!") + e1 + e2 + e3 + e4 + foot(False, 'Past Simple · Level 3 · صفحة ٢ من ٤')) + \
-    page(ptitle("Keep Going!") + e5 + e6 + e7 + e8 + foot(False, 'Past Simple · Level 3 · صفحة ٣ من ٤')) + \
+    page(ptitle("Keep Going!") + e5 + e6 + e7 + e8 + foot(False, 'Past Simple · Level 3 · صفحة ٣ من ٤'), 'tight') + \
     page(ptitle('Answer Key', 'var(--red)') + key + foot(True, 'Past Simple · Level 3 · صفحة ٤ من ٤'))
 
 for name, html in docs.items():

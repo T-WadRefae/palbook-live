@@ -45,8 +45,17 @@ const Footer = () => {
         </div>
 
         <div className="pt-6 border-t border-slate-700 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-slate-400">
-          <p className="flex items-center gap-1">
-            Made with 🩷 in Palestine - © 2026 PalBook. All Rights Reserved
+          <p className="flex flex-wrap items-center justify-center gap-x-1 text-center md:text-start">
+            <span>Made with 🩷 in Palestine · © 2026 T. Wad Refae ·</span>
+            <a
+              href="https://creativecommons.org/licenses/by-nc-nd/4.0/"
+              target="_blank"
+              rel="license noopener noreferrer"
+              title="Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International"
+              className="underline underline-offset-2 hover:text-accent-400 transition-colors"
+            >
+              CC BY-NC-ND 4.0
+            </a>
           </p>
           <VisitCounter />
         </div>
