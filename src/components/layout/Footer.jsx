@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import Logo from '../common/Logo';
 import VisitCounter from '../common/VisitCounter';
+import CCBadge from '../common/CCBadge';
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -45,7 +46,7 @@ const Footer = () => {
         </div>
 
         <div className="pt-6 border-t border-slate-700 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-slate-400">
-          <p className="flex flex-wrap items-center justify-center gap-x-1 text-center md:text-start">
+          <p dir="ltr" className="flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1 text-center">
             <span>Made with 🩷 in Palestine · © 2026 T. Wad Refae ·</span>
             <a
               href="https://creativecommons.org/licenses/by-nc-nd/4.0/"
@@ -56,6 +57,7 @@ const Footer = () => {
             >
               CC BY-NC-ND 4.0
             </a>
+            <CCBadge className="ms-0.5" />
           </p>
           <VisitCounter />
         </div>
