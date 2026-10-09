@@ -10,16 +10,23 @@ const WorksheetsPage = () => {
 
   return (
     <PageTransition className="max-w-5xl mx-auto px-4 py-10">
+      {/* Hero — wide banner image (same style as the Grammar / Reading pages) */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-10"
+        className="mb-10"
       >
-        <div className="text-7xl mb-3 animate-wiggle inline-block">📝</div>
-        <h1 className="text-4xl md:text-5xl font-display font-extrabold gradient-text">
-          {t('worksheets.title')}
-        </h1>
-        <p className="text-slate-600 dark:text-slate-300 mt-2">
+        <div className="relative overflow-hidden rounded-3xl shadow-kid">
+          <img
+            src="/worksheets-hero.png"
+            alt={t('worksheets.title')}
+            loading="eager"
+            decoding="async"
+            className="w-full h-auto block"
+          />
+        </div>
+        <h1 className="sr-only">{t('worksheets.title')}</h1>
+        <p className="text-center text-slate-600 dark:text-slate-300 mt-4">
           {t('worksheets.subtitle')} • by T. Wad Refae
         </p>
       </motion.div>
