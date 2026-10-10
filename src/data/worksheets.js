@@ -123,6 +123,36 @@ export const WORKSHEET_TOPICS = [
       },
     ],
   },
+  {
+    id: 'question-words',
+    titleEn: 'Wh- Questions',
+    titleAr: 'أدوات الاستفهام',
+    emoji: '❓',
+    grad: 'g-blue',
+    levels: [
+      {
+        level: 1,
+        en: 'Foundation — who, what, where, when, why, how',
+        ar: 'تأسيسي — أدوات الاستفهام الستّ وما تسأل عنه',
+        pdf: '/worksheets/question-words-1.pdf',
+        html: '/worksheets/question-words-1.html',
+      },
+      {
+        level: 2,
+        en: 'Forming wh- questions across tenses',
+        ar: 'تكوين الأسئلة عبر الأزمنة (be / do / did / will)',
+        pdf: '/worksheets/question-words-2.pdf',
+        html: '/worksheets/question-words-2.html',
+      },
+      {
+        level: 3,
+        en: 'How many/much, Which, Whose & subject questions',
+        ar: 'How many/much، Which، Whose وأسئلة الفاعل والمفعول',
+        pdf: '/worksheets/question-words-3.pdf',
+        html: '/worksheets/question-words-3.html',
+      },
+    ],
+  },
 ];
 
 export default WORKSHEET_TOPICS;
