@@ -112,6 +112,7 @@
     "title": "Worksheets",
     "subtitle": "Printable PDF worksheets, by level",
     "level": "Level",
+    "type": "Type",
     "openPdf": "Open PDF",
     "view": "View"
   },

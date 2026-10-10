@@ -1,0 +1,209 @@
+<meta charset="utf-8">
+<title>Conditionals — Third (Type 3) | T. Wad Refae</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Patrick+Hand&family=Aref+Ruqaa:wght@400;700&family=Marhey:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#ffffff; --outer:#e8e2d2;
+    --rule:#cfe0f2; --margin:#f0a8a4;
+    --blue:#1e4e9c; --blue-d:#173e7e; --red:#c22b1c;
+    --hl-y:#fff3a1; --hl-p:#ffd9e0; --hl-g:#d8f3c9;
+    --grey:#6d6a63;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--outer)}
+  body{font-family:'Aref Ruqaa',serif;color:#222;direction:rtl}
+
+  .page{
+    position:relative;width:210mm;height:297mm;margin:12px auto;background:var(--paper);
+    background-image:repeating-linear-gradient(to bottom,transparent 0 32px,var(--rule) 32px 33px);
+    box-shadow:0 6px 22px rgba(0,0,0,.18);overflow:hidden;padding:13mm 13mm 9mm 19mm;
+  }
+  .page::before{content:"";position:absolute;top:0;bottom:0;right:13mm;width:2px;background:var(--margin)}
+  .holes{position:absolute;left:5mm;top:0;bottom:0;width:8mm;display:flex;flex-direction:column;justify-content:space-around;align-items:center;padding:22px 0}
+  .holes span{width:11px;height:11px;border-radius:50%;background:var(--outer);box-shadow:inset 0 0 0 2px #d8d1bf}
+  .washi{position:absolute;top:4mm;left:50%;transform:translateX(-50%) rotate(-2deg);width:140px;height:22px;background:repeating-linear-gradient(45deg,#bcd7c4 0 10px,#a9c9b3 10px 20px);opacity:.85;border-radius:2px;box-shadow:0 2px 4px rgba(0,0,0,.12)}
+
+  .content{position:relative;z-index:2;height:100%;display:flex;flex-direction:column}
+
+  .lesson-head{text-align:center;margin-top:4px}
+  h1{font-family:'Caveat',cursive;color:var(--blue);font-size:42px;margin:2px 0 1px;text-align:center;direction:ltr;line-height:1.05}
+  .subtitle{font-family:'Marhey',cursive;text-align:center;color:var(--red);font-size:14px;margin:0 0 2px}
+  .squiggle{display:block;margin:0 auto 5px;width:280px;height:11px}
+  .levelline{font-family:'Caveat',cursive;color:var(--red);font-weight:700;font-size:23px;direction:ltr;margin:1px 0 4px;text-align:center}
+  .namedate{display:flex;justify-content:center;gap:46px;direction:ltr;font-family:'Patrick Hand',cursive;font-size:15px;color:#333;
+    border-top:1px dashed #cbb8b5;border-bottom:1px dashed #cbb8b5;padding:5px 0;margin:0 0 3px}
+
+  .ptitle{font-family:'Caveat',cursive;color:var(--blue);font-size:30px;text-align:center;direction:ltr;margin:4px 0 1px}
+
+  .section,.q{position:relative;margin:7px 0;break-inside:avoid;page-break-inside:avoid}
+  .sec-head{display:flex;align-items:center;gap:9px;margin-bottom:4px;direction:ltr;text-align:left}
+  .badge{flex:none;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-family:'Caveat',cursive;font-weight:700;font-size:18px;color:#fff;box-shadow:0 2px 4px rgba(0,0,0,.2)}
+  .badge.red{background:var(--red)} .badge.blue{background:var(--blue)}
+  .sec-title{font-family:'Marhey',cursive;font-size:17px;color:var(--blue-d)}
+
+  .box{background:#fff;border:2px solid var(--blue);padding:8px 12px;margin:5px 0;break-inside:avoid;
+    border-radius:255px 15px 225px 15px/15px 225px 15px 255px}
+  .box.soft{border-color:#c9b9a0;border-style:solid}
+  .formula{font-family:'Patrick Hand',cursive;direction:ltr;text-align:center;font-size:17px;color:var(--red);
+    border:2px dashed var(--red);padding:5px 10px;border-radius:15px 225px 15px 255px/255px 15px 225px 15px;background:#fff;margin-top:5px}
+  .def{font-size:14.5px;line-height:1.65;color:#333;margin:0}
+  .def .en-fact{margin-top:2px}
+
+  .hl-y{background:var(--hl-y);padding:0 3px;border-radius:4px}
+  .hl-p{background:var(--hl-p);padding:0 3px;border-radius:4px}
+  .hl-g{background:var(--hl-g);padding:0 3px;border-radius:4px}
+  .en{direction:ltr;text-align:left;font-family:'Patrick Hand',cursive}
+  .ing{color:var(--red);font-weight:700}
+  .en-fact{display:block;direction:ltr;text-align:left;font-family:'Patrick Hand',cursive;color:var(--blue-d);font-size:12px;line-height:1.35}
+
+  ul.facts{list-style:none;margin:4px 0;padding:0}
+  ul.facts li{position:relative;padding:2px 20px 3px 0;font-size:13px;line-height:1.45}
+  ul.facts li::before{content:"\2605";position:absolute;right:0;color:var(--red);font-size:12px;top:4px}
+
+  table{width:100%;border-collapse:collapse;margin:6px 0;font-size:12px;background:#fff}
+  th,td{border:2px solid var(--blue);padding:4px 6px;text-align:center}
+  th{background:#eaf1fb;font-family:'Marhey',cursive;color:var(--blue-d)}
+  td .en{display:inline-block}
+
+  .examples{display:flex;flex-direction:column;gap:6px;margin-top:5px}
+  .ex{position:relative;border:2px dashed var(--blue);border-radius:14px;padding:10px 12px 6px;background:#fff;break-inside:avoid}
+  .ex .tag{position:absolute;top:-12px;right:14px;background:var(--red);color:#fff;font-family:'Marhey',cursive;
+    font-size:11px;padding:2px 10px;border-radius:10px;box-shadow:0 2px 3px rgba(0,0,0,.2)}
+  .ex .flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;direction:ltr}
+  .ex .base{font-family:'Patrick Hand',cursive;font-size:14px;color:#555}
+  .ex .arrow{color:var(--red);font-size:19px}
+  .ex .after{font-family:'Patrick Hand',cursive;font-size:15px;color:var(--blue)}
+
+  .sticky{background:var(--hl-y);width:84%;margin:7px auto 2px;padding:9px 16px;transform:rotate(-1.5deg);
+    box-shadow:2px 4px 8px rgba(0,0,0,.18);border-radius:4px 4px 10px 4px}
+  .sticky .lbl{font-family:'Marhey',cursive;color:var(--red);font-size:14px;margin-bottom:3px}
+  .sticky .txt{font-size:14px;line-height:1.75}
+
+  .q-instr{margin-bottom:4px;direction:ltr;text-align:left}
+  .q-instr .en-line{display:block;font-family:'Patrick Hand',cursive;color:var(--blue-d);font-size:13.5px;line-height:1.4}
+  .q-instr .ar-line{display:block;direction:rtl;text-align:left;font-size:13.5px;line-height:1.45;color:#333;margin-top:1px}
+  .q-instr .en{display:inline}
+  ol.enlist{direction:ltr;text-align:left;font-family:'Patrick Hand',cursive;font-size:15px;line-height:1.95;padding-left:24px;margin:4px 0}
+  ol.enlist li{margin-bottom:1px}
+  .choices{direction:ltr;text-align:left;font-family:'Patrick Hand',cursive;font-size:14px}
+  .choices .opt{display:inline-block;margin-right:15px}
+  .blank{display:inline-block;min-width:82px;border-bottom:2px dotted var(--blue);margin:0 4px}
+  .wordbank{border:2px dashed var(--red);border-radius:12px;padding:6px 12px;margin:6px 0;background:#fff;
+    direction:ltr;text-align:center;font-family:'Patrick Hand',cursive;font-size:14px;color:var(--blue-d)}
+  .wordbank b{font-family:'Marhey',cursive;color:var(--red);font-size:11px;display:block;margin-bottom:2px;direction:rtl}
+  .match{display:flex;gap:20px;direction:ltr;font-family:'Patrick Hand',cursive;font-size:15px}
+  .match .col{flex:1}
+  .match .col .row{padding:5px 0;border-bottom:1px dotted #bbb;display:flex;justify-content:space-between}
+  .writeline{border-bottom:2px dotted var(--blue);height:21px;margin:7px 0}
+  .para{border:2px solid #c9b9a0;border-radius:12px;padding:11px 14px;background:#fff;direction:ltr;text-align:left;
+    font-family:'Patrick Hand',cursive;font-size:15px;line-height:2.0;color:#333}
+
+  .answerkey{border:3px double var(--red);border-radius:14px;padding:14px 18px;margin-top:8px;background:#fffdf5;break-inside:avoid}
+  .answerkey .ak-title{font-family:'Marhey',cursive;color:var(--red);font-size:19px;margin-bottom:10px;text-align:center}
+  .ak-row{direction:ltr;text-align:left;margin-bottom:9px;font-size:14px;line-height:1.9;color:#333}
+  .ak-row .n{font-family:'Marhey',cursive;color:var(--blue);font-size:13px;direction:rtl;display:inline-block;margin-left:6px}
+  .ak-row .v{font-family:'Patrick Hand',cursive}
+
+  .foot{margin-top:auto;border-top:2px dashed #cbb8b5;padding-top:5px;display:flex;justify-content:space-between;align-items:center;
+    direction:ltr;font-family:'Marhey',cursive;font-size:11px;color:var(--grey)}
+  .foot .nm{font-family:'Caveat',cursive;color:var(--grey);font-size:18px}
+  .foot .lic{flex:1;text-align:center;font-size:9px;padding:0 8px;white-space:nowrap;color:var(--grey)}
+  .foot .lic a{color:inherit;text-decoration:none}
+
+  @media print{
+    html,body{background:#fff}
+    .page{margin:0;box-shadow:none;page-break-after:always}
+    .page:last-child{page-break-after:auto}
+  }
+  @page{size:A4;margin:0}
+</style>
+<div class="page">
+<div class="washi"></div>
+<div class="holes"><span></span><span></span><span></span><span></span><span></span></div>
+<div class="content">
+<div class="lesson-head">
+<h1>Conditionals</h1>
+<p class="subtitle">الماضي والندم — Third Conditional</p>
+<svg class="squiggle" viewBox="0 0 280 11"><path d="M2 6 Q 16 0 30 6 T 58 6 T 86 6 T 114 6 T 142 6 T 170 6 T 198 6 T 226 6 T 254 6 T 278 6" fill="none" stroke="#c22b1c" stroke-width="2.5" stroke-linecap="round"/></svg>
+<p class="levelline">Type 3 — Third Conditional</p>
+<div class="namedate"><span>Name: ______________</span><span>Date: ______________</span></div>
+</div>
+<div class="section">
+<div class="sec-head"><div class="badge red">1</div><div class="sec-title">Definition · التعريف</div></div>
+<div class="box"><p class="def">الشرطية الثالثة لموقف <span class="hl-y">خيالي في الماضي</span> لم يحدث — غالبًا للندم أو تخيّل نتيجة مختلفة.<span class="en-fact">The third conditional is for an unreal past that did not happen — often regret.</span></p><div class="formula">If + had + V3 , would have + V3</div></div></div>
+<div class="section">
+<div class="sec-head"><div class="badge red">2</div><div class="sec-title">Key Facts · حقائق أساسية</div></div>
+<ul class="facts"><li>جزء <span class="en">If</span>: <span class="en">had + تصريف ثالث</span> (past perfect).<span class="en-fact">If-clause: had + past participle (past perfect).</span></li><li>النتيجة: <span class="en">would have + تصريف ثالث</span>.<span class="en-fact">Result: would have + past participle.</span></li><li>نستخدمها <span class="hl-p">للندم</span> أو لنتيجة مختلفة لو تغيّر الماضي.<span class="en-fact">Used for regret or a different past result.</span></li></ul><table><tr><th>If-clause (had + V3)</th><th>Main clause (would have + V3)</th></tr><tr><td class="en">If I had studied,</td><td class="en">I would have passed.</td></tr><tr><td class="en">If we had left early,</td><td class="en">we wouldn't have missed the bus.</td></tr><tr><td class="en">If she had called,</td><td class="en">I would have helped.</td></tr></table></div>
+<div class="section">
+<div class="sec-head"><div class="badge red">3</div><div class="sec-title">Steps · خطوات النجاح</div></div>
+<div class="box soft"><p class="def">جزء <span class="en">If</span>: <span class="en">had + V3</span>؛ النتيجة: <span class="hl-p">would have + V3</span> — كل شيء في الماضي.<span class="en-fact">If-clause: had + V3; result: would have + V3 — all in the past.</span></p></div><div class="examples"><div class="ex"><span class="tag">ندم</span><div class="flow"><span class="after">If I <b>had woken</b> up early, I <b>would have caught</b> the bus.</span></div></div><div class="ex"><span class="tag">نتيجة مختلفة</span><div class="flow"><span class="after">If it <b>had rained</b>, the plants <b>would have grown</b>.</span></div></div><div class="ex"><span class="tag">ندم</span><div class="flow"><span class="after">If you <b>had asked</b>, I <b>would have helped</b> you.</span></div></div></div></div>
+<div class="section">
+<div class="sec-head"><div class="badge red">4</div><div class="sec-title">Summary · الخلاصة</div></div>
+<div class="sticky"><div class="lbl">✦ تذكّر/ي دائمًا · Remember</div><div class="txt">Third = <span class="en">If + had + V3 , would have + V3</span> ← ماضٍ خيالي / ندم.</div></div></div>
+<div class="foot"><span class="nm">T. Wad Refae</span><span class="lic">© 2026 T. Wad Refae · <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a></span><span>Conditionals · Type 3 · صفحة ١ من ٤</span></div>
+
+</div>
+</div>
+<div class="page">
+<div class="washi"></div>
+<div class="holes"><span></span><span></span><span></span><span></span><span></span></div>
+<div class="content">
+<div class="ptitle">Let's Practice!</div>
+<svg class="squiggle" viewBox="0 0 280 11"><path d="M2 6 Q 16 0 30 6 T 58 6 T 86 6 T 114 6 T 142 6 T 170 6 T 198 6 T 226 6 T 254 6 T 278 6" fill="none" stroke="#1e4e9c" stroke-width="2.5" stroke-linecap="round"/></svg>
+<div class="q">
+<div class="sec-head"><div class="badge blue">1</div><div class="sec-title">Recognize · تعرّف</div></div>
+<p class="q-instr"><span class="en-line">Choose the correct form.</span><span class="ar-line">اختر/ي الصيغة الصحيحة.</span></p>
+<ol class="enlist"><li>If I had studied, I ____ the exam. <span class="choices">( would pass / would have passed )</span></li><li>If we ____ early, we wouldn't have missed the bus. <span class="choices">( left / had left )</span></li><li>She would have helped if you ____ her. <span class="choices">( called / had called )</span></li><li>If they had known, they ____. <span class="choices">( would come / would have come )</span></li></ol></div>
+<div class="q">
+<div class="sec-head"><div class="badge blue">2</div><div class="sec-title">Multiple Choice · اختيار من متعدد</div></div>
+<p class="q-instr"><span class="en-line">Choose the correct answer.</span><span class="ar-line">اختر/ي الإجابة الصحيحة.</span></p>
+<ol class="enlist"><li>If I had seen you, I ____ hello. <span class="choices"><span class="opt">a) would have said</span><span class="opt">b) would say</span><span class="opt">c) said</span></span></li><li>If he ____ harder, he would have won. <span class="choices"><span class="opt">a) had trained</span><span class="opt">b) trained</span><span class="opt">c) trains</span></span></li><li>We would have arrived on time if the car ____ down. <span class="choices"><span class="opt">a) hadn't broken</span><span class="opt">b) didn't break</span><span class="opt">c) doesn't break</span></span></li></ol></div>
+<div class="q">
+<div class="sec-head"><div class="badge blue">3</div><div class="sec-title">Fill in · إكمال الفراغ</div></div>
+<p class="q-instr"><span class="en-line">Use had + V3 in the if-clause and would have + V3 in the result.</span><span class="ar-line">استخدم/ي had + V3 في الشرط و would have + V3 في النتيجة.</span></p>
+<ol class="enlist"><li>If I __________ (know), I __________ (tell) you.</li><li>If they __________ (leave) earlier, they __________ (arrive) on time.</li><li>If she __________ (study), she __________ (pass).</li></ol></div>
+<div class="q">
+<div class="sec-head"><div class="badge blue">4</div><div class="sec-title">Match · توصيل</div></div>
+<p class="q-instr"><span class="en-line">Match each if-clause with its result — write the letter.</span><span class="ar-line">صِل/ي جملة الشرط بنتيجتها — اكتب/ي الحرف.</span></p>
+<div class="match"><div class="col"><div class="row"><span>1) If I had saved money,</span><span>____</span></div><div class="row"><span>2) If you had asked,</span><span>____</span></div><div class="row"><span>3) If it had rained,</span><span>____</span></div></div><div class="col"><div class="row"><span>a) I would have helped.</span></div><div class="row"><span>b) the plants would have grown.</span></div><div class="row"><span>c) I would have bought a bike.</span></div></div></div></div>
+<div class="foot"><span></span><span class="lic">© 2026 T. Wad Refae · <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a></span><span>Conditionals · Type 3 · صفحة ٢ من ٤</span></div>
+
+</div>
+</div>
+<div class="page">
+<div class="washi"></div>
+<div class="holes"><span></span><span></span><span></span><span></span><span></span></div>
+<div class="content">
+<div class="ptitle">Keep Going!</div>
+<svg class="squiggle" viewBox="0 0 280 11"><path d="M2 6 Q 16 0 30 6 T 58 6 T 86 6 T 114 6 T 142 6 T 170 6 T 198 6 T 226 6 T 254 6 T 278 6" fill="none" stroke="#1e4e9c" stroke-width="2.5" stroke-linecap="round"/></svg>
+<div class="q">
+<div class="sec-head"><div class="badge blue">5</div><div class="sec-title">Transform · تحويل</div></div>
+<p class="q-instr"><span class="en-line">Make a third conditional (regret) from the facts.</span><span class="ar-line">كوّن/ي شرطية ثالثة (ندم) من الحقائق.</span></p>
+<ol class="enlist"><li>I didn't study, so I failed. → <span class="writeline" style="display:inline-block;width:54%"></span></li><li>We didn't hurry, so we missed the train. → <span class="writeline" style="display:inline-block;width:52%"></span></li></ol></div>
+<div class="q">
+<div class="sec-head"><div class="badge blue">6</div><div class="sec-title">Correct · تصحيح خطأ</div></div>
+<p class="q-instr"><span class="en-line">Each sentence has one mistake. Correct it.</span><span class="ar-line">في كل جملة خطأ واحد. صحّح/يه.</span></p>
+<ol class="enlist"><li>If I had study, I would have passed. → <span class="writeline" style="display:inline-block;width:50%"></span></li><li>If you asked, I would have helped. → <span class="writeline" style="display:inline-block;width:50%"></span></li><li>If she had called, I would helped. → <span class="writeline" style="display:inline-block;width:50%"></span></li></ol></div>
+<div class="q">
+<div class="sec-head"><div class="badge blue">7</div><div class="sec-title">In Context · توظيف سياقي</div></div>
+<p class="q-instr"><span class="en-line">Complete with the third conditional.</span><span class="ar-line">أكمِل/ي بالشرطية الثالثة.</span></p>
+<div class="para">Yesterday was a hard day. If I (1) __________ (set) my alarm, I (2) __________ (not / miss) the bus. If I (3) __________ (take) my umbrella, I (4) __________ (not / get) wet. If my friend (5) __________ (call) me, I would have waited for her.</div></div>
+<div class="q">
+<div class="sec-head"><div class="badge blue">8</div><div class="sec-title">Create · تحدٍ إبداعي</div></div>
+<p class="q-instr"><span class="en-line">Write 3 third conditionals about things you regret.</span><span class="ar-line">اكتب/ي ٣ جمل شرطية ثالثة عن أشياء تندم/ين عليها.</span></p>
+<div class="writeline"></div><div class="writeline"></div><div class="writeline"></div></div>
+<div class="foot"><span></span><span class="lic">© 2026 T. Wad Refae · <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a></span><span>Conditionals · Type 3 · صفحة ٣ من ٤</span></div>
+
+</div>
+</div>
+<div class="page">
+<div class="washi"></div>
+<div class="holes"><span></span><span></span><span></span><span></span><span></span></div>
+<div class="content">
+<div class="ptitle" style="color:var(--red)">Answer Key</div>
+<svg class="squiggle" viewBox="0 0 280 11"><path d="M2 6 Q 16 0 30 6 T 58 6 T 86 6 T 114 6 T 142 6 T 170 6 T 198 6 T 226 6 T 254 6 T 278 6" fill="none" stroke="#c22b1c" stroke-width="2.5" stroke-linecap="round"/></svg>
+<div class="answerkey"><div class="ak-title">🔑 Answer Key · مفتاح الإجابات للمعلمة</div><div class="ak-row"><span class="n">تمرين ١:</span> <span class="v">would have passed · had left · had called · would have come</span></div><div class="ak-row"><span class="n">تمرين ٢:</span> <span class="v">a) would have said · a) had trained · a) hadn't broken</span></div><div class="ak-row"><span class="n">تمرين ٣:</span> <span class="v">had known / would have told · had left / would have arrived · had studied / would have passed</span></div><div class="ak-row"><span class="n">تمرين ٤:</span> <span class="v">1 → c · 2 → a · 3 → b</span></div><div class="ak-row"><span class="n">تمرين ٥:</span> <span class="v">If I had studied, I would have passed. · If we had hurried, we wouldn't have missed the train.</span></div><div class="ak-row"><span class="n">تمرين ٦:</span> <span class="v">If I had studied, ... · If you had asked, ... · I would have helped.</span></div><div class="ak-row"><span class="n">تمرين ٧:</span> <span class="v">1 had set · 2 wouldn't have missed · 3 had taken · 4 wouldn't have got · 5 had called</span></div><div class="ak-row"><span class="n">تمرين ٨:</span> <span class="v"><span style="direction:rtl;text-align:right;font-family:'Aref Ruqaa',serif">إجابات مفتوحة (If + had + V3, would have + V3).</span></span></div></div><div class="foot"><span class="nm">T. Wad Refae</span><span class="lic">© 2026 T. Wad Refae · <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC BY-NC-ND 4.0</a></span><span>Conditionals · Type 3 · صفحة ٤ من ٤</span></div>
+
+</div>
+</div>

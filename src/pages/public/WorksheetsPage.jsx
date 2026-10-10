@@ -52,7 +52,7 @@ const WorksheetsPage = () => {
                   <div
                     className={`${topic.grad} inline-flex items-center justify-center self-start px-3.5 h-9 rounded-xl text-white text-sm font-extrabold shadow-kid mb-3`}
                   >
-                    {t('worksheets.level')} {lv.level}
+                    {topic.badge === 'type' ? t('worksheets.type') : t('worksheets.level')} {lv.level}
                   </div>
                   <p className="flex-1 text-sm text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
                     {isAr ? lv.ar : lv.en}

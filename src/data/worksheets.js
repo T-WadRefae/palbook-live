@@ -153,6 +153,45 @@ export const WORKSHEET_TOPICS = [
       },
     ],
   },
+  {
+    id: 'conditionals',
+    titleEn: 'Conditionals (If)',
+    titleAr: 'الجمل الشرطية (If)',
+    emoji: '🔗',
+    grad: 'g-olive',
+    // cards show "Type 0/1/2/3" instead of "Level"
+    badge: 'type',
+    levels: [
+      {
+        level: 0,
+        en: 'Zero — general truths & facts',
+        ar: 'الصفرية — الحقائق العامة والعلمية',
+        pdf: '/worksheets/conditionals-0.pdf',
+        html: '/worksheets/conditionals-0.html',
+      },
+      {
+        level: 1,
+        en: 'First — real future possibility',
+        ar: 'الأولى — المستقبل الممكن',
+        pdf: '/worksheets/conditionals-1.pdf',
+        html: '/worksheets/conditionals-1.html',
+      },
+      {
+        level: 2,
+        en: 'Second — unreal / imaginary present',
+        ar: 'الثانية — الخيال والافتراض في الحاضر',
+        pdf: '/worksheets/conditionals-2.pdf',
+        html: '/worksheets/conditionals-2.html',
+      },
+      {
+        level: 3,
+        en: 'Third — unreal past & regrets',
+        ar: 'الثالثة — الماضي الخيالي والندم',
+        pdf: '/worksheets/conditionals-3.pdf',
+        html: '/worksheets/conditionals-3.html',
+      },
+    ],
+  },
 ];
 
 export default WORKSHEET_TOPICS;
