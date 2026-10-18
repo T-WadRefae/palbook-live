@@ -289,4 +289,15 @@ export const PALBOOK_LESSONS = [
     fileUrl: `${BASE}/grade8/unit4p12.html`,
     static: true,
   },
+  // ───── Grade 9 · Unit 4 — "A great leader" ─────
+  {
+    id: 'g9-u4-p1',
+    title: 'A great leader · Period 1 — Vocabulary & Listening',
+    titleAr: 'قائد عظيم · الحصة 1 — المفردات والاستماع',
+    thumbnail: '📜',
+    section: 'palbook',
+    grade: 9, unit: 4, lesson: 1,
+    fileUrl: `${BASE}/grade9/unit4p1.html`,
+    static: true,
+  },
 ];
