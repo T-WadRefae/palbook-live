@@ -184,6 +184,21 @@ export const PALBOOK_META = {
         8: { page: 27, skill: 'Project & Speaking' },
       },
     },
+    4: {
+      title: 'Keep in touch!',
+      emoji: '📱',
+      pageStart: 28, pageEnd: 35,
+      periods: {
+        1: { page: 28, skill: 'Vocabulary & Listening' },
+        2: { page: 29, skill: 'Vocabulary & Reading' },
+        3: { page: 30, skill: 'Reading comprehension' },
+        4: { page: 31, skill: 'Pronunciation & Listening' },
+        5: { page: 32, skill: 'Speaking' },
+        6: { page: 33, skill: 'Listening & Speaking' },
+        7: { page: 34, skill: 'Writing' },
+        8: { page: 35, skill: 'Project & Listening' },
+      },
+    },
   },
   8: {
     1: {
