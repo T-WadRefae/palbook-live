@@ -192,6 +192,36 @@ export const WORKSHEET_TOPICS = [
       },
     ],
   },
+  {
+    id: 'present-perfect',
+    titleEn: 'Present Perfect',
+    titleAr: 'المضارع التام',
+    emoji: '⏳',
+    grad: 'g-blue',
+    levels: [
+      {
+        level: 1,
+        en: 'Foundation — have/has + V3 & basic use',
+        ar: 'تأسيسي — الصيغة have/has + V3 والاستخدام',
+        pdf: '/worksheets/present-perfect-1.pdf',
+        html: '/worksheets/present-perfect-1.html',
+      },
+      {
+        level: 2,
+        en: 'ever/never, already/yet/just & been vs gone',
+        ar: 'ever/never، already/yet/just، و been مقابل gone',
+        pdf: '/worksheets/present-perfect-2.pdf',
+        html: '/worksheets/present-perfect-2.html',
+      },
+      {
+        level: 3,
+        en: 'for/since & Present Perfect vs Past Simple',
+        ar: 'for/since والفرق بين المضارع التام والماضي البسيط',
+        pdf: '/worksheets/present-perfect-3.pdf',
+        html: '/worksheets/present-perfect-3.html',
+      },
+    ],
+  },
 ];
 
 export default WORKSHEET_TOPICS;
