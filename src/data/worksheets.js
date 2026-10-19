@@ -222,6 +222,36 @@ export const WORKSHEET_TOPICS = [
       },
     ],
   },
+  {
+    id: 'present-perfect-continuous',
+    titleEn: 'Present Perfect Continuous',
+    titleAr: 'المضارع التام المستمر',
+    emoji: '⏱️',
+    grad: 'g-olive',
+    levels: [
+      {
+        level: 1,
+        en: 'Foundation — have/has been + V-ing & use',
+        ar: 'تأسيسي — الصيغة have/has been + V-ing والاستخدام',
+        pdf: '/worksheets/present-perfect-continuous-1.pdf',
+        html: '/worksheets/present-perfect-continuous-1.html',
+      },
+      {
+        level: 2,
+        en: 'for/since, How long & duration',
+        ar: 'for/since و How long والتركيز على المدة',
+        pdf: '/worksheets/present-perfect-continuous-2.pdf',
+        html: '/worksheets/present-perfect-continuous-2.html',
+      },
+      {
+        level: 3,
+        en: 'Continuous vs Present Perfect Simple (+ stative verbs)',
+        ar: 'الفرق بين المستمر والتام البسيط + الأفعال الساكنة',
+        pdf: '/worksheets/present-perfect-continuous-3.pdf',
+        html: '/worksheets/present-perfect-continuous-3.html',
+      },
+    ],
+  },
 ];
 
 export default WORKSHEET_TOPICS;
