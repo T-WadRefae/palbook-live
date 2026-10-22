@@ -1,23 +1,24 @@
 // Global leaderboard for the static games served from GitHub Pages.
 //
 // Storage: the same Upstash Redis database attached to this Vercel project
-// as the visit counter. Each game+level keeps one sorted set of the best
-// score per player name, plus a hash holding that run's details.
+// as the visit counter. Each game+grade keeps one sorted set of the best
+// score per player name, plus a hash holding that run's details. Boards are
+// per school grade, so a grade 5 pupil is never ranked against a grade 8 one.
 //
-//   POST /api/scores  { game, level, name, score, correct, total }
-//   GET  /api/scores?game=verb-express&level=1&limit=50
+//   POST /api/scores  { game, grade, name, score, correct, total }
+//   GET  /api/scores?game=verb-express&grade=5&limit=50
 //
 // The games are public pages with no sign-in, so a submission is only ever
-// trusted as far as the checks below: an allow-listed game and level, a
+// trusted as far as the checks below: an allow-listed game and grade, a
 // cleaned short name, and a score that cannot exceed what the answers
 // claimed could have earned.
 import { Redis } from '@upstash/redis';
 
 const GAMES = {
-  'verb-express': { levels: [1, 2, 3], maxTotal: 20, maxPerQuestion: 200 },
+  'verb-express': { grades: [5, 6, 7, 8], maxTotal: 20, maxPerQuestion: 200 },
 };
 
-const KEEP = 200; // leaderboard rows kept per game+level
+const KEEP = 200; // leaderboard rows kept per game+grade
 const NAME_MAX = 20;
 const RATE_MAX = 120; // submissions per IP per window (a whole class shares one IP)
 const RATE_WINDOW = 600; // seconds
@@ -44,9 +45,9 @@ const asInt = (v) => {
   return Number.isFinite(n) ? Math.floor(n) : NaN;
 };
 
-const keys = (game, level) => ({
-  board: `palbook:scores:${game}:${level}`,
-  meta: `palbook:scoremeta:${game}:${level}`,
+const keys = (game, grade) => ({
+  board: `palbook:scores:${game}:g${grade}`,
+  meta: `palbook:scoremeta:${game}:g${grade}`,
 });
 
 const readMeta = (raw) => {
@@ -66,14 +67,14 @@ async function handleGet(redis, req, res) {
     res.status(400).json({ error: 'unknown-game' });
     return;
   }
-  const level = asInt(req.query.level);
-  if (!spec.levels.includes(level)) {
-    res.status(400).json({ error: 'bad-level' });
+  const grade = asInt(req.query.grade);
+  if (!spec.grades.includes(grade)) {
+    res.status(400).json({ error: 'bad-grade' });
     return;
   }
   const limit = Math.min(Math.max(asInt(req.query.limit) || 50, 1), KEEP);
 
-  const { board, meta } = keys(game, level);
+  const { board, meta } = keys(game, grade);
   const [flat, metaAll] = await Promise.all([
     redis.zrange(board, 0, limit - 1, { rev: true, withScores: true }),
     redis.hgetall(meta),
@@ -92,7 +93,7 @@ async function handleGet(redis, req, res) {
       at: Number(detail.at) || 0,
     });
   }
-  res.status(200).json({ game, level, rows });
+  res.status(200).json({ game, grade, rows });
 }
 
 async function handlePost(redis, req, res) {
@@ -115,9 +116,9 @@ async function handlePost(redis, req, res) {
     res.status(400).json({ error: 'unknown-game' });
     return;
   }
-  const level = asInt(body.level);
-  if (!spec.levels.includes(level)) {
-    res.status(400).json({ error: 'bad-level' });
+  const grade = asInt(body.grade);
+  if (!spec.grades.includes(grade)) {
+    res.status(400).json({ error: 'bad-grade' });
     return;
   }
 
@@ -153,7 +154,7 @@ async function handlePost(redis, req, res) {
     return;
   }
 
-  const { board, meta } = keys(game, level);
+  const { board, meta } = keys(game, grade);
   const prev = await redis.zscore(board, name);
   const best = prev === null || prev === undefined ? -1 : Number(prev);
   const improved = score > best;

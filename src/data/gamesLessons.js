@@ -98,7 +98,7 @@ export const GAMES = [
     title: 'Verb Express 🚂',
     titleAr: 'قطار الأفعال',
     description:
-      'The train pulls into a station and a cloud comes down carrying a verb in its base form. Write the past simple and the train sets off for the next station. Three levels (basic verbs, spelling rules, irregular verbs), Arabic meanings, a hint button, and a shared online leaderboard: every player who types a name appears in Scores.',
+      'The train pulls into a station and a cloud comes down carrying a verb in its base form. Write the past simple and the train sets off for the next station. Pick your grade (5 to 8) and every journey draws ten random verbs from it — five regular and five irregular. Arabic meanings on every cloud, a hint button, and a shared online leaderboard per grade: every player who types a name appears in Scores.',
     thumbnail: '🚂',
     section: 'games',
     grades: [5, 6, 7, 8],
