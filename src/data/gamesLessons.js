@@ -105,4 +105,16 @@ export const GAMES = [
     fileUrl: `${BASE}/VerbExpress.html`,
     static: true,
   },
+  {
+    id: 'game-which-word-first',
+    title: 'Which Word Comes First? 🌉',
+    titleAr: 'أيُّ كلمةٍ أوّلًا؟',
+    description:
+      'A climber crosses a mountain bridge one plank at a time. Put four words in alphabetical order and each correct choice locks a plank into place. Three levels: different first letters, then the same first letter, then the same first two letters. Tap a word to hear it, with an alphabet rail to help and stars for a clean run.',
+    thumbnail: '🌉',
+    section: 'games',
+    grades: [5, 6, 7, 8, 9],
+    fileUrl: `${BASE}/WhichWordFirst.html`,
+    static: true,
+  },
 ];

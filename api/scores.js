@@ -1,24 +1,30 @@
 // Global leaderboard for the static games served from GitHub Pages.
 //
 // Storage: the same Upstash Redis database attached to this Vercel project
-// as the visit counter. Each game+grade keeps one sorted set of the best
-// score per player name, plus a hash holding that run's details. Boards are
-// per school grade, so a grade 5 pupil is never ranked against a grade 8 one.
+// as the visit counter. Each game+board keeps one sorted set of the best
+// score per player name, plus a hash holding that run's details.
 //
-//   POST /api/scores  { game, grade, name, score, correct, total }
-//   GET  /api/scores?game=verb-express&grade=5&limit=50
+// A "board" is whatever that game ranks within, so like is compared with
+// like: the school grade in Verb Express (5-8), the level in Which Word
+// Comes First (1-3).
+//
+//   POST /api/scores  { game, board, name, score, correct, total }
+//   GET  /api/scores?game=verb-express&board=5&limit=50
 //
 // The games are public pages with no sign-in, so a submission is only ever
-// trusted as far as the checks below: an allow-listed game and grade, a
+// trusted as far as the checks below: an allow-listed game and board, a
 // cleaned short name, and a score that cannot exceed what the answers
 // claimed could have earned.
 import { Redis } from '@upstash/redis';
 
 const GAMES = {
-  'verb-express': { grades: [5, 6, 7, 8], maxTotal: 20, maxPerQuestion: 200 },
+  // maxPerQuestion is the most one item can be worth: a question in Verb
+  // Express, a bridge (3 stars) in Which Word Comes First.
+  'verb-express': { boards: [5, 6, 7, 8], maxTotal: 20, maxPerQuestion: 200 },
+  'which-word-first': { boards: [1, 2, 3], maxTotal: 5, maxPerQuestion: 3 },
 };
 
-const KEEP = 200; // leaderboard rows kept per game+grade
+const KEEP = 200; // leaderboard rows kept per game+board
 const NAME_MAX = 20;
 const RATE_MAX = 120; // submissions per IP per window (a whole class shares one IP)
 const RATE_WINDOW = 600; // seconds
@@ -45,10 +51,15 @@ const asInt = (v) => {
   return Number.isFinite(n) ? Math.floor(n) : NaN;
 };
 
-const keys = (game, grade) => ({
-  board: `palbook:scores:${game}:g${grade}`,
-  meta: `palbook:scoremeta:${game}:g${grade}`,
+// The `g` in the key is historical (it meant "grade"); it is just a namespace
+// character now, kept so boards recorded before the rename still resolve.
+const keys = (game, board) => ({
+  boardKey: `palbook:scores:${game}:g${board}`,
+  metaKey: `palbook:scoremeta:${game}:g${board}`,
 });
+
+// `grade` is still accepted so pages already in a pupil's browser keep working.
+const readBoard = (src) => asInt(src.board !== undefined ? src.board : src.grade);
 
 const readMeta = (raw) => {
   if (!raw) return {};
@@ -67,17 +78,17 @@ async function handleGet(redis, req, res) {
     res.status(400).json({ error: 'unknown-game' });
     return;
   }
-  const grade = asInt(req.query.grade);
-  if (!spec.grades.includes(grade)) {
-    res.status(400).json({ error: 'bad-grade' });
+  const board = readBoard(req.query);
+  if (!spec.boards.includes(board)) {
+    res.status(400).json({ error: 'bad-board' });
     return;
   }
   const limit = Math.min(Math.max(asInt(req.query.limit) || 50, 1), KEEP);
 
-  const { board, meta } = keys(game, grade);
+  const { boardKey, metaKey } = keys(game, board);
   const [flat, metaAll] = await Promise.all([
-    redis.zrange(board, 0, limit - 1, { rev: true, withScores: true }),
-    redis.hgetall(meta),
+    redis.zrange(boardKey, 0, limit - 1, { rev: true, withScores: true }),
+    redis.hgetall(metaKey),
   ]);
 
   const rows = [];
@@ -93,7 +104,7 @@ async function handleGet(redis, req, res) {
       at: Number(detail.at) || 0,
     });
   }
-  res.status(200).json({ game, grade, rows });
+  res.status(200).json({ game, board, rows });
 }
 
 async function handlePost(redis, req, res) {
@@ -116,9 +127,9 @@ async function handlePost(redis, req, res) {
     res.status(400).json({ error: 'unknown-game' });
     return;
   }
-  const grade = asInt(body.grade);
-  if (!spec.grades.includes(grade)) {
-    res.status(400).json({ error: 'bad-grade' });
+  const board = readBoard(body);
+  if (!spec.boards.includes(board)) {
+    res.status(400).json({ error: 'bad-board' });
     return;
   }
 
@@ -154,30 +165,30 @@ async function handlePost(redis, req, res) {
     return;
   }
 
-  const { board, meta } = keys(game, grade);
-  const prev = await redis.zscore(board, name);
+  const { boardKey, metaKey } = keys(game, board);
+  const prev = await redis.zscore(boardKey, name);
   const best = prev === null || prev === undefined ? -1 : Number(prev);
   const improved = score > best;
 
   if (improved) {
-    await redis.zadd(board, { score, member: name });
-    await redis.hset(meta, { [name]: JSON.stringify({ correct, total, at: Date.now() }) });
+    await redis.zadd(boardKey, { score, member: name });
+    await redis.hset(metaKey, { [name]: JSON.stringify({ correct, total, at: Date.now() }) });
 
     // Keep only the top KEEP rows, and drop the details of anyone trimmed off.
-    const removed = await redis.zremrangebyrank(board, 0, -(KEEP + 1));
+    const removed = await redis.zremrangebyrank(boardKey, 0, -(KEEP + 1));
     if (removed > 0) {
       const [alive, stored] = await Promise.all([
-        redis.zrange(board, 0, -1),
-        redis.hkeys(meta),
+        redis.zrange(boardKey, 0, -1),
+        redis.hkeys(metaKey),
       ]);
       const live = new Set(alive.map(String));
       const stale = stored.map(String).filter((k) => !live.has(k));
-      if (stale.length) await redis.hdel(meta, ...stale);
+      if (stale.length) await redis.hdel(metaKey, ...stale);
     }
   }
 
   // The rank the player now holds (1 = best).
-  const above = await redis.zcount(board, `(${Math.max(score, best)}`, '+inf');
+  const above = await redis.zcount(boardKey, `(${Math.max(score, best)}`, '+inf');
 
   res.status(200).json({
     ok: true,
