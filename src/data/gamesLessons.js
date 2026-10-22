@@ -93,4 +93,16 @@ export const GAMES = [
     fileUrl: `${BASE}/word_race_mobile.html`,
     static: true,
   },
+  {
+    id: 'game-verb-express',
+    title: 'Verb Express 🚂',
+    titleAr: 'قطار الأفعال',
+    description:
+      'The train pulls into a station and a cloud comes down carrying a verb in its base form. Write the past simple and the train sets off for the next station. Three levels (basic verbs, spelling rules, irregular verbs), Arabic meanings, a hint button, and a shared online leaderboard: every player who types a name appears in Scores.',
+    thumbnail: '🚂',
+    section: 'games',
+    grades: [5, 6, 7, 8],
+    fileUrl: `${BASE}/VerbExpress.html`,
+    static: true,
+  },
 ];
