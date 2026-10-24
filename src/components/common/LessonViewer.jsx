@@ -1,14 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { FiX, FiMaximize2, FiMinimize2, FiExternalLink } from 'react-icons/fi';
+import { FiX, FiMaximize2, FiMinimize2 } from 'react-icons/fi';
 
 const LessonViewer = ({ lesson, onClose }) => {
   const { t, i18n } = useTranslation();
   const isAr = i18n.language === 'ar';
-  const [fullscreen, setFullscreen] = useState(false);
+  // A lesson opens already filling the screen; the button shrinks it to a
+  // window and back. Browser fullscreen (which hides the browser's bars) is
+  // only requested when the button enlarges it again, because the browser
+  // only allows that straight after a tap.
+  const [fullscreen, setFullscreen] = useState(true);
   const [loading, setLoading] = useState(true);
+  const cardRef = useRef(null);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -17,13 +22,43 @@ const LessonViewer = ({ lesson, onClose }) => {
     };
   }, [lesson?.id]);
 
+  // The lesson is enlarged inside this page, never by opening its own page:
+  // that would swap the address bar's palbook link for the lesson file's
+  // GitHub address. Where the browser allows it, true fullscreen also hides
+  // the browser's bars so the lesson gets the whole screen; the layout below
+  // is the fallback for browsers (iPhone Safari) that don't.
+  useEffect(() => {
+    const onChange = () => {
+      if (!document.fullscreenElement) setFullscreen(false);
+    };
+    document.addEventListener('fullscreenchange', onChange);
+    return () => {
+      document.removeEventListener('fullscreenchange', onChange);
+      if (document.fullscreenElement) document.exitFullscreen?.().catch(() => {});
+    };
+  }, []);
+
+  const toggleFullscreen = async () => {
+    const next = !fullscreen;
+    setFullscreen(next);
+    try {
+      if (next && !document.fullscreenElement && cardRef.current?.requestFullscreen) {
+        await cardRef.current.requestFullscreen();
+      } else if (!next && document.fullscreenElement) {
+        await document.exitFullscreen();
+      }
+    } catch {
+      /* the enlarged layout still applies without the browser's fullscreen */
+    }
+  };
+
   if (!lesson) return null;
   const title = isAr && lesson.titleAr ? lesson.titleAr : lesson.title;
 
   // Rendered through a portal on <body>: the page content sits inside a
   // stacking context (<main className="relative z-10">), so a modal rendered
   // in place would be painted *under* the sticky navbar and its toolbar
-  // (fullscreen / open / close) would be covered.
+  // (fullscreen / close) would be covered.
   return createPortal(
     <motion.div
       initial={{ opacity: 0 }}
@@ -32,6 +67,7 @@ const LessonViewer = ({ lesson, onClose }) => {
       className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-2 md:p-6"
     >
       <motion.div
+        ref={cardRef}
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         className={`bg-white dark:bg-slate-900 rounded-3xl shadow-2xl flex flex-col overflow-hidden ${
@@ -47,17 +83,8 @@ const LessonViewer = ({ lesson, onClose }) => {
             </div>
           </div>
           <div className="flex items-center gap-2 shrink-0">
-            <a
-              href={lesson.fileUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="w-10 h-10 rounded-xl bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors"
-              aria-label="Open in new tab"
-            >
-              <FiExternalLink />
-            </a>
             <button
-              onClick={() => setFullscreen((f) => !f)}
+              onClick={toggleFullscreen}
               className="w-10 h-10 rounded-xl bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors"
               aria-label="Toggle fullscreen"
             >

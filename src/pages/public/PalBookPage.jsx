@@ -249,9 +249,23 @@ const PalBookPage = () => {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
             >
-              <h2 className="text-2xl font-bold text-slate-800 dark:text-white mb-6 text-center">
-                {t('palbook.selectLesson')} • {t('palbook.grade')} {grade} • {t('palbook.unit')} {unit}
-              </h2>
+              {/* The hero above carries the unit name; this keeps it in view
+                  right over the cards, compactly, while the list is scrolled. */}
+              <div className="mb-6 flex justify-center">
+                <h2 className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-full bg-white/70 dark:bg-slate-800/70 px-4 py-2 text-center text-sm font-bold text-slate-700 dark:text-slate-200 shadow-sm">
+                  {unitMeta ? (
+                    <span className="text-base">
+                      <span aria-hidden="true">{unitMeta.emoji}</span> {unitMeta.title}
+                    </span>
+                  ) : (
+                    <span className="text-base">{t('palbook.selectLesson')}</span>
+                  )}
+                  <span className="font-semibold text-slate-500 dark:text-slate-400">
+                    {t('palbook.grade')} {grade} • {t('palbook.unit')} {unit}
+                    {unitMeta ? ` • ${t('palbook.pages')} ${unitMeta.pageStart}–${unitMeta.pageEnd}` : ''}
+                  </span>
+                </h2>
+              </div>
               {lessonsForUnit.length === 0 ? (
                 <EmptyState emoji="📭" title={t('palbook.noLessons')} />
               ) : (

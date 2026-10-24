@@ -93,4 +93,28 @@ export const GAMES = [
     fileUrl: `${BASE}/word_race_mobile.html`,
     static: true,
   },
+  {
+    id: 'game-verb-express',
+    title: 'Verb Express 🚂',
+    titleAr: 'قطار الأفعال',
+    description:
+      'The train pulls into a station and a cloud comes down carrying a verb in its base form. Write the past simple and the train sets off for the next station. Pick your grade (5 to 8) and every journey draws ten random verbs from it — five regular and five irregular. Arabic meanings on every cloud, a hint button, and a shared online leaderboard per grade: every player who types a name appears in Scores.',
+    thumbnail: '🚂',
+    section: 'games',
+    grades: [5, 6, 7, 8],
+    fileUrl: `${BASE}/VerbExpress.html`,
+    static: true,
+  },
+  {
+    id: 'game-which-word-first',
+    title: 'Which Word Comes First? 🌉',
+    titleAr: 'أيُّ كلمةٍ أوّلًا؟',
+    description:
+      'A climber crosses a mountain bridge one plank at a time. Put four words in alphabetical order and each correct choice locks a plank into place. Three levels: different first letters, then the same first letter, then the same first two letters. Tap a word to hear it, with an alphabet rail to help and stars for a clean run.',
+    thumbnail: '🌉',
+    section: 'games',
+    grades: [5, 6, 7, 8, 9],
+    fileUrl: `${BASE}/WhichWordFirst.html`,
+    static: true,
+  },
 ];
