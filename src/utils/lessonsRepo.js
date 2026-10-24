@@ -5,6 +5,19 @@
 // localStorage and merged with the Firestore registry by getMergedLessons.
 
 export const LESSONS_PAGES_BASE = 'https://t-wadrefae.github.io/palbook-lessons/';
+
+// The address a person sees when they open a lesson in its own tab. Lesson
+// files live on GitHub Pages, but vercel.json serves them again under this
+// site's own /lessons/ path, so the browser bar shows palbook, not github.io.
+// Only on the deployed site: local dev and the Android shell have no such
+// route, so they keep the GitHub address.
+export const publicLessonUrl = (url) => {
+  if (typeof url !== 'string' || !url.startsWith(LESSONS_PAGES_BASE)) return url;
+  const { protocol, hostname, origin } = globalThis.location || {};
+  const deployed = /^https?:$/.test(protocol) && hostname !== 'localhost' && hostname !== '127.0.0.1';
+  return deployed ? `${origin}/lessons/${url.slice(LESSONS_PAGES_BASE.length)}` : url;
+};
+
 const MANIFEST_URL = `${LESSONS_PAGES_BASE}manifest.json`;
 const TREE_API_URL =
   'https://api.github.com/repos/t-wadrefae/palbook-lessons/git/trees/main?recursive=1';

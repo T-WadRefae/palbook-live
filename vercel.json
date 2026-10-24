@@ -2,7 +2,8 @@
   "rewrites": [
     { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
     { "source": "/robots.txt", "destination": "/robots.txt" },
-    { "source": "/((?!api|assets|.*\\..*).*)", "destination": "/" }
+    { "source": "/lessons/:path*", "destination": "https://t-wadrefae.github.io/palbook-lessons/:path*" },
+    { "source": "/((?!api|assets|lessons|.*\\..*).*)", "destination": "/" }
   ],
   "headers": [
     {

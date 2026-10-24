@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { FiX, FiMaximize2, FiMinimize2, FiExternalLink } from 'react-icons/fi';
+import { publicLessonUrl } from '../../utils/lessonsRepo';
 
 const LessonViewer = ({ lesson, onClose }) => {
   const { t, i18n } = useTranslation();
@@ -48,7 +49,7 @@ const LessonViewer = ({ lesson, onClose }) => {
           </div>
           <div className="flex items-center gap-2 shrink-0">
             <a
-              href={lesson.fileUrl}
+              href={publicLessonUrl(lesson.fileUrl)}
               target="_blank"
               rel="noreferrer"
               className="w-10 h-10 rounded-xl bg-white/20 hover:bg-white/30 flex items-center justify-center transition-colors"
