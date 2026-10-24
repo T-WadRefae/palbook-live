@@ -7,7 +7,11 @@ import { FiX, FiMaximize2, FiMinimize2 } from 'react-icons/fi';
 const LessonViewer = ({ lesson, onClose }) => {
   const { t, i18n } = useTranslation();
   const isAr = i18n.language === 'ar';
-  const [fullscreen, setFullscreen] = useState(false);
+  // A lesson opens already filling the screen; the button shrinks it to a
+  // window and back. Browser fullscreen (which hides the browser's bars) is
+  // only requested when the button enlarges it again, because the browser
+  // only allows that straight after a tap.
+  const [fullscreen, setFullscreen] = useState(true);
   const [loading, setLoading] = useState(true);
   const cardRef = useRef(null);
 
