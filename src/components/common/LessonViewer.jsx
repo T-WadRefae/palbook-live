@@ -110,6 +110,7 @@ const LessonViewer = ({ lesson, onClose }) => {
             src={lesson.fileUrl}
             title={title}
             sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+            allow="autoplay; encrypted-media"
             className="w-full h-full border-0"
             onLoad={() => setLoading(false)}
           />
