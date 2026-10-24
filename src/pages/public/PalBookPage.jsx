@@ -93,11 +93,17 @@ const PalBookPage = () => {
           </>
         ) : (
           <>
-            <div className="text-6xl mb-3 animate-float">🇵🇸</div>
-            <h1 className="text-4xl font-display font-extrabold gradient-text">
-              {t('palbook.title')}
-            </h1>
-            <p className="text-slate-600 dark:text-slate-300 mt-2">
+            <div className="relative overflow-hidden rounded-3xl shadow-kid">
+              <img
+                src="/palbook-hero.png"
+                alt={t('palbook.title')}
+                loading="eager"
+                decoding="async"
+                className="w-full h-auto block"
+              />
+            </div>
+            <h1 className="sr-only">{t('palbook.title')}</h1>
+            <p className="text-slate-600 dark:text-slate-300 mt-4">
               {t('palbook.subtitle')} • by T. Wad Refae
             </p>
           </>
