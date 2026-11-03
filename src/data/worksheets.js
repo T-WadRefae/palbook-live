@@ -94,6 +94,29 @@ export const WORKSHEET_TOPICS = [
     ],
   },
   {
+    id: 'past-continuous',
+    titleEn: 'Past Continuous',
+    titleAr: 'الماضي المستمر',
+    emoji: '🎬',
+    grad: 'g-olive',
+    levels: [
+      {
+        level: 1,
+        en: 'Foundation — was/were + V-ing, an action in progress',
+        ar: 'تأسيسي — was/were + V-ing، حدثٌ كان جاريًا في الماضي',
+        pdf: '/worksheets/past-continuous-1.pdf',
+        html: '/worksheets/past-continuous-1.html',
+      },
+      {
+        level: 2,
+        en: 'with Past Simple — when / while & interrupted actions',
+        ar: 'مع الماضي البسيط — when / while والأحداث المُقاطَعة',
+        pdf: '/worksheets/past-continuous-2.pdf',
+        html: '/worksheets/past-continuous-2.html',
+      },
+    ],
+  },
+  {
     id: 'future',
     titleEn: 'Future',
     titleAr: 'المستقبل',
