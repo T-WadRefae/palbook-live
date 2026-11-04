@@ -261,33 +261,118 @@ docs['past-continuous-1'] = head('Past Continuous — Level 1 | T. Wad Refae') +
     page(ptitle('Answer Key', 'var(--red)') + key + foot(True, 'Past Continuous · Level 1 · صفحة ٤ من ٤'))
 
 # =========================================================================
-# SHEET 2 — Past Continuous + Past Simple with when / while (interrupted actions)
+# SHEET 2 — with Past Simple: WHEN only (interrupted actions)
 # =========================================================================
-s = lesson_head('when / while مع الماضي البسيط — Interrupted Actions', 'Level 2 — with Past Simple')
+s = lesson_head('الحدث المُقاطِع — Past Continuous + when', 'Level 2 — with when')
 s += sec('red', '1', 'Definition · التعريف',
-    '<div class="box"><p class="def">حدثٌ طويل كان جاريًا (<span class="hl-y">ماضٍ مستمر</span>) <span class="hl-p">يقطعه</span> حدثٌ قصير وقع فجأة (<span class="hl-g">ماضٍ بسيط</span>).'
-    '<span class="en-fact">A longer action in progress (past continuous) is interrupted by a shorter action (past simple).</span></p>'
+    '<div class="box"><p class="def">حدثٌ طويل كان جاريًا (<span class="hl-y">ماضٍ مستمر</span>) <span class="hl-p">يقطعه</span> حدثٌ قصير وقع فجأة (<span class="hl-g">ماضٍ بسيط</span>)، ونربط بينهما بـ <span class="en">when</span>.'
+    '<span class="en-fact">A long action in progress (past continuous) is interrupted by a short action (past simple), joined with when.</span></p>'
     '<div class="formula">was / were + V-ing &nbsp;+&nbsp; when &nbsp;+&nbsp; past simple</div></div>')
 s += sec('red', '2', 'Key Facts · حقائق أساسية',
     '<ul class="facts">'
     + fact('الحدث الطويل الجاري &larr; <span class="hl-g">ماضٍ مستمر</span> · الحدث القصير المُقاطِع &larr; <span class="hl-p">ماضٍ بسيط</span>.', 'Long background action = past continuous; short interrupting action = past simple.')
-    + fact('<span class="en">when</span> + ماضٍ بسيط (الحدث القصير) · <span class="en">while</span> + ماضٍ مستمر (الحدث الطويل).', 'when + past simple (short action); while + past continuous (long action).')
-    + fact('حدثان طويلان معًا: <span class="en">While I was cooking, he was cleaning.</span>', 'Two long actions together: use while + past continuous for both.')
-    + fact('إذا بدأت الجملة بـ <span class="en">When/While</span> نضع <span class="hl-y">فاصلة</span> بعد العبارة.', 'When the sentence starts with When/While, put a comma after that clause.')
+    + fact('<span class="en">when</span> يسبق <span class="hl-y">الحدث القصير</span> في الماضي البسيط.', 'when comes before the short action in the past simple.')
+    + fact('ترتيبان للجملة: <span class="en">[continuous + when + simple]</span> أو <span class="en">[When + simple, continuous]</span>.', 'Two orders: continuous + when + simple, OR When + simple, continuous.')
+    + fact('إذا بدأت الجملة بـ <span class="en">When</span> نضع <span class="hl-y">فاصلة</span> بعد العبارة الأولى.', 'When the sentence starts with When, put a comma after the first clause.')
+    + '</ul>'
+    '<table><tr><th>continuous + when + simple</th><th>When + simple, continuous</th></tr>'
+    '<tr><td class="en">I was sleeping when the alarm rang.</td><td class="en">When the alarm rang, I was sleeping.</td></tr>'
+    '<tr><td class="en">She was cooking when I arrived.</td><td class="en">When I arrived, she was cooking.</td></tr></table>')
+s += sec('red', '3', 'Steps · خطوات النجاح',
+    '<div class="box soft"><p class="def">الخلفية الطويلة &rarr; <span class="hl-p en">was/were + V-ing</span>. المقاطعة القصيرة بعد <span class="en">when</span> &rarr; <span class="hl-g en">past simple</span>.'
+    '<span class="en-fact">Long background &rarr; was/were + V-ing. Short interruption after when &rarr; past simple.</span></p></div>'
+    '<div class="examples">'
+    '<div class="ex"><span class="tag">مقاطعة</span><div class="flow"><span class="after">I <b>was reading</b> when the lights <b>went</b> out.</span></div></div>'
+    '<div class="ex"><span class="tag">مقاطعة</span><div class="flow"><span class="after">She <b>was cooking</b> when the guests <b>arrived</b>.</span></div></div>'
+    '<div class="ex"><span class="tag">بادئة بـ When</span><div class="flow"><span class="after"><b>When</b> the teacher <b>came</b> in, we <b>were talking</b>.</span></div></div></div>')
+s += sec('red', '4', 'Summary · الخلاصة',
+    '<div class="sticky"><div class="lbl">&#10022; تذكّر/ي دائمًا · Remember</div>'
+    '<div class="txt"><span class="en">was/were + V-ing</span> + <span class="en">when</span> + <span class="en">past simple</span> &larr; حدثٌ طويل قطعه حدثٌ قصير.</div></div>')
+e1 = q('1', 'Recognize · تعرّف', 'Choose the past continuous (long) or the past simple (short).', 'اختر/ي الماضي المستمر (الطويل) أو البسيط (القصير).',
+    '<ol class="enlist">'
+    '<li>I ____ TV when she called. <span class="choices">( was watching / watched )</span></li>'
+    '<li>The phone rang when I ____ . <span class="choices">( was sleeping / slept )</span></li>'
+    '<li>When the bell ____ , we were leaving. <span class="choices">( was ringing / rang )</span></li>'
+    '<li>They ____ when it started to rain. <span class="choices">( were playing / played )</span></li></ol>')
+e2 = q('2', 'Multiple Choice · اختيار من متعدد', 'Choose the correct verb form.', 'اختر/ي صيغة الفعل الصحيحة.',
+    '<ol class="enlist">'
+    '<li>I was cooking when the phone ____ . <span class="choices"><span class="opt">a) was ringing</span><span class="opt">b) rang</span></span></li>'
+    '<li>When the rain started, we ____ outside. <span class="choices"><span class="opt">a) were playing</span><span class="opt">b) played</span></span></li>'
+    '<li>She ____ a letter when I arrived. <span class="choices"><span class="opt">a) was writing</span><span class="opt">b) wrote</span></span></li></ol>')
+e3 = q('3', 'Fill in · إكمال الفراغ', 'Use the past continuous for the long action and the past simple for the short one.', 'استخدم/ي الماضي المستمر للحدث الطويل والبسيط للقصير.',
+    '<ol class="enlist">'
+    '<li>I __________ (sleep) when the earthquake __________ (happen).</li>'
+    '<li>We __________ (have) dinner when you __________ (call).</li>'
+    '<li>When the teacher __________ (enter), the students __________ (talk).</li>'
+    '<li>She __________ (read) when the lights __________ (go) out.</li></ol>')
+e4 = q('4', 'Match · توصيل', 'Match each clause with its ending — write the letter.', 'صِل/ي كل بداية بنهايتها — اكتب/ي الحرف.',
+    '<div class="match"><div class="col">'
+    '<div class="row"><span>1) I was riding my bike</span><span>____</span></div>'
+    '<div class="row"><span>2) We were sleeping</span><span>____</span></div>'
+    '<div class="row"><span>3) When the bell rang,</span><span>____</span></div></div>'
+    '<div class="col">'
+    '<div class="row"><span>a) when the phone rang.</span></div>'
+    '<div class="row"><span>b) when I fell down.</span></div>'
+    '<div class="row"><span>c) we were leaving class.</span></div></div></div>')
+e5 = q('5', 'Transform · تحويل', 'Join the two sentences with when.', 'اربط/ي الجملتين بـ when.',
+    '<ol class="enlist">'
+    '<li>I was cooking. The phone rang. &rarr; ' + wl('50%') + '</li>'
+    '<li>We were walking home. It started to rain. &rarr; ' + wl('50%') + '</li></ol>')
+e6 = q('6', 'Correct · تصحيح خطأ', 'Each sentence has one mistake. Correct it.', 'في كل جملة خطأ واحد. صحّح/يه.',
+    '<ol class="enlist">'
+    '<li>I was read when she called. &rarr; ' + wl('50%') + '</li>'
+    '<li>They was playing when it started to snow. &rarr; ' + wl('50%') + '</li>'
+    '<li>When I was cooking, I was cutting my finger. &rarr; ' + wl('50%') + '</li></ol>')
+e7 = q('7', 'In Context · توظيف سياقي', 'Use the past continuous or the past simple for each verb.', 'استخدم/ي الماضي المستمر أو البسيط لكل فعل.',
+    '<div class="para">Last night our street was quiet. I (1) __________ (do) my homework when the lights suddenly '
+    '(2) __________ (go) off. My mother (3) __________ (look) for a candle when my father '
+    '(4) __________ (come) home. We (5) __________ (sit) together when the power finally (6) __________ (return).</div>')
+e8 = q('8', 'Create · تحدٍ إبداعي', 'Write 2 sentences with when about yesterday.', 'اكتب/ي جملتين بـ when عن أمس.',
+    '<div class="writeline"></div><div class="writeline"></div><div class="writeline"></div>')
+key = akbox([
+    ('تمرين ١:', 'was watching · was sleeping · rang · were playing'),
+    ('تمرين ٢:', 'b) rang · a) were playing · a) was writing'),
+    ('تمرين ٣:', 'was sleeping / happened · were having / called · entered / were talking · was reading / went'),
+    ('تمرين ٤:', '1 &rarr; b · 2 &rarr; a · 3 &rarr; c'),
+    ('تمرين ٥:', 'I was cooking when the phone rang. · We were walking home when it started to rain.'),
+    ('تمرين ٦:', 'I was reading when she called. · They were playing when it started to snow. · When I was cooking, I cut my finger.'),
+    ('تمرين ٧:', '1 was doing · 2 went · 3 was looking · 4 came · 5 were sitting · 6 returned'),
+    ('تمرين ٨:', OPEN % 'إجابات مفتوحة (continuous + when + past simple).'),
+])
+docs['past-continuous-2'] = head('Past Continuous — Level 2 | T. Wad Refae') + \
+    page(s + foot(True, 'Past Continuous · Level 2 · صفحة ١ من ٤')) + \
+    page(ptitle("Let's Practice!") + e1 + e2 + e3 + e4 + foot(False, 'Past Continuous · Level 2 · صفحة ٢ من ٤')) + \
+    page(ptitle("Keep Going!") + e5 + e6 + e7 + e8 + foot(False, 'Past Continuous · Level 2 · صفحة ٣ من ٤')) + \
+    page(ptitle('Answer Key', 'var(--red)') + key + foot(True, 'Past Continuous · Level 2 · صفحة ٤ من ٤'))
+
+# =========================================================================
+# SHEET 3 — when AND while (interrupted + parallel actions)
+# =========================================================================
+s = lesson_head('when / while — Interrupted & Parallel', 'Level 3 — when & while')
+s += sec('red', '1', 'Definition · التعريف',
+    '<div class="box"><p class="def">نختار بين <span class="en">when</span> و <span class="en">while</span> حسب الفعل: <span class="hl-g">when + ماضٍ بسيط</span> (حدث قصير)، و<span class="hl-y">while + ماضٍ مستمر</span> (حدث طويل جارٍ).'
+    '<span class="en-fact">Choose when or while by the verb: when + past simple (short), while + past continuous (long).</span></p>'
+    '<div class="formula">While + was/were V-ing &nbsp;…&nbsp; / &nbsp;… when + past simple</div></div>')
+s += sec('red', '2', 'Key Facts · حقائق أساسية',
+    '<ul class="facts">'
+    + fact('<span class="en">when</span> + ماضٍ بسيط (القصير) · <span class="en">while</span> + ماضٍ مستمر (الطويل الجاري).', 'when + past simple (short); while + past continuous (long).')
+    + fact('المعنى نفسه بصياغتين: <span class="en">I was reading when the phone rang</span> = <span class="en">While I was reading, the phone rang</span>.', 'Same meaning both ways (when / while).')
+    + fact('حدثان طويلان متوازيان: <span class="en">While I was cooking, he was cleaning.</span>', 'Two long parallel actions: while + past continuous for both.')
+    + fact('فاصلة إذا بدأت الجملة بـ <span class="en">When/While</span>.', 'Comma when the sentence starts with When/While.')
     + '</ul>'
     '<table><tr><th>when + past simple</th><th>while + past continuous</th></tr>'
     '<tr><td class="en">When the phone rang, I was reading.</td><td class="en">While I was reading, the phone rang.</td></tr>'
-    '<tr><td class="en">I was sleeping when it happened.</td><td class="en">It happened while I was sleeping.</td></tr></table>')
+    '<tr><td class="en">I was sleeping when it happened.</td><td class="en">While I was cooking, he was cleaning.</td></tr></table>')
 s += sec('red', '3', 'Steps · خطوات النجاح',
-    '<div class="box soft"><p class="def">الخلفية الطويلة &rarr; <span class="hl-p en">was/were + V-ing</span>. المقاطعة القصيرة &rarr; <span class="hl-g en">past simple</span>. اربط/ي بـ <span class="en">when/while</span>.'
-    '<span class="en-fact">Long background &rarr; was/were + V-ing. Short interruption &rarr; past simple. Join with when/while.</span></p></div>'
+    '<div class="box soft"><p class="def">فعل قصير مفاجئ؟ &rarr; <span class="hl-g en">when + past simple</span>. فعل طويل جارٍ؟ &rarr; <span class="hl-y en">while + was/were V-ing</span>.'
+    '<span class="en-fact">Short sudden action? &rarr; when + past simple. Long ongoing action? &rarr; while + was/were V-ing.</span></p></div>'
     '<div class="examples">'
-    '<div class="ex"><span class="tag">مقاطعة</span><div class="flow"><span class="after">I <b>was sleeping</b> when the alarm <b>rang</b>.</span></div></div>'
     '<div class="ex"><span class="tag">while</span><div class="flow"><span class="after"><b>While</b> we <b>were walking</b>, it <b>started</b> to rain.</span></div></div>'
-    '<div class="ex"><span class="tag">حدثان طويلان</span><div class="flow"><span class="after"><b>While</b> my mother <b>was cooking</b>, I <b>was helping</b> her.</span></div></div></div>')
+    '<div class="ex"><span class="tag">when</span><div class="flow"><span class="after">I <b>was studying</b> when my friend <b>arrived</b>.</span></div></div>'
+    '<div class="ex"><span class="tag">متوازيان</span><div class="flow"><span class="after"><b>While</b> my mother <b>was cooking</b>, I <b>was helping</b> her.</span></div></div></div>')
 s += sec('red', '4', 'Summary · الخلاصة',
     '<div class="sticky"><div class="lbl">&#10022; تذكّر/ي دائمًا · Remember</div>'
-    '<div class="txt"><span class="en">while</span> + جارٍ طويل · <span class="en">when</span> + حدث قصير · فاصلة إذا بدأت الجملة بالعبارة.</div></div>')
+    '<div class="txt"><span class="en">when</span> + قصير (بسيط) · <span class="en">while</span> + طويل (مستمر) · فاصلة إذا بدأت بالعبارة.</div></div>')
 e1 = q('1', 'Recognize · تعرّف', 'Choose the past continuous or the past simple.', 'اختر/ي الماضي المستمر أو الماضي البسيط.',
     '<ol class="enlist">'
     '<li>While I ____ , I saw a friend. <span class="choices">( was walking / walked )</span></li>'
@@ -298,13 +383,13 @@ e2 = q('2', 'Multiple Choice · اختيار من متعدد', 'Choose when or w
     '<ol class="enlist">'
     '<li>____ I was reading, the lights went out. <span class="choices"><span class="opt">a) When</span><span class="opt">b) While</span></span></li>'
     '<li>I was sleeping ____ the earthquake happened. <span class="choices"><span class="opt">a) when</span><span class="opt">b) while</span></span></li>'
-    '<li>____ the bell rang, we were leaving class. <span class="choices"><span class="opt">a) When</span><span class="opt">b) While</span></span></li></ol>')
-e3 = q('3', 'Fill in · إكمال الفراغ', 'Use the past continuous for the long action and the past simple for the short one.', 'استخدم/ي الماضي المستمر للحدث الطويل والبسيط للقصير.',
+    '<li>____ my brother was studying, I was watching TV. <span class="choices"><span class="opt">a) When</span><span class="opt">b) While</span></span></li></ol>')
+e3 = q('3', 'Fill in · إكمال الفراغ', 'Use the past continuous for long actions and the past simple for short ones.', 'استخدم/ي الماضي المستمر للأحداث الطويلة والبسيط للقصيرة.',
     '<ol class="enlist">'
     '<li>While we __________ (have) lunch, the guests __________ (arrive).</li>'
     '<li>I __________ (watch) TV when the power __________ (go) off.</li>'
-    '<li>When you called, I __________ (study) in my room.</li>'
-    '<li>While the baby __________ (sleep), my mother __________ (cook).</li></ol>')
+    '<li>While my mother __________ (cook), my father __________ (water) the plants.</li>'
+    '<li>When you __________ (call), I __________ (study) in my room.</li></ol>')
 e4 = q('4', 'Match · توصيل', 'Match each clause with its ending — write the letter.', 'صِل/ي كل بداية بنهايتها — اكتب/ي الحرف.',
     '<div class="match"><div class="col">'
     '<div class="row"><span>1) While I was studying,</span><span>____</span></div>'
@@ -314,10 +399,10 @@ e4 = q('4', 'Match · توصيل', 'Match each clause with its ending — write 
     '<div class="row"><span>a) we were playing outside.</span></div>'
     '<div class="row"><span>b) when I fell down.</span></div>'
     '<div class="row"><span>c) my brother was watching TV.</span></div></div></div>')
-e5 = q('5', 'Transform · تحويل', 'Join the two sentences with when or while.', 'اربط/ي الجملتين بـ when أو while.',
+e5 = q('5', 'Transform · تحويل', 'Join the sentences with when or while.', 'اربط/ي الجملتين بـ when أو while.',
     '<ol class="enlist">'
     '<li>I was cooking. The phone rang. &rarr; ' + wl('50%') + '</li>'
-    '<li>We were walking. It started to rain. &rarr; ' + wl('50%') + '</li></ol>')
+    '<li>My mother was cooking. My father was cleaning. &rarr; ' + wl('50%') + '</li></ol>')
 e6 = q('6', 'Correct · تصحيح خطأ', 'Each sentence has one mistake. Correct it.', 'في كل جملة خطأ واحد. صحّح/يه.',
     '<ol class="enlist">'
     '<li>I was read when she called. &rarr; ' + wl('50%') + '</li>'
@@ -331,19 +416,19 @@ e8 = q('8', 'Create · تحدٍ إبداعي', 'Write one sentence with when and
     '<div class="writeline"></div><div class="writeline"></div><div class="writeline"></div>')
 key = akbox([
     ('تمرين ١:', 'was walking · came · started · was cooking'),
-    ('تمرين ٢:', 'b) While · a) when · a) When'),
-    ('تمرين ٣:', 'were having / arrived · was watching / went · was studying · was sleeping / was cooking'),
+    ('تمرين ٢:', 'b) While · a) when · b) While'),
+    ('تمرين ٣:', 'were having / arrived · was watching / went · was cooking / was watering · called / was studying'),
     ('تمرين ٤:', '1 &rarr; c · 2 &rarr; a · 3 &rarr; b'),
-    ('تمرين ٥:', 'I was cooking when the phone rang. · While we were walking, it started to rain.'),
+    ('تمرين ٥:', 'I was cooking when the phone rang. · While my mother was cooking, my father was cleaning.'),
     ('تمرين ٦:', 'I was reading when she called. · While they were playing, it started to snow. · When I was cooking, I cut my finger.'),
     ('تمرين ٧:', '1 was telling · 2 went · 3 were sitting · 4 brought · 5 was lighting · 6 laughed'),
     ('تمرين ٨:', OPEN % 'إجابات مفتوحة (when + ماضٍ بسيط · while + ماضٍ مستمر).'),
 ])
-docs['past-continuous-2'] = head('Past Continuous — Level 2 | T. Wad Refae') + \
-    page(s + foot(True, 'Past Continuous · Level 2 · صفحة ١ من ٤')) + \
-    page(ptitle("Let's Practice!") + e1 + e2 + e3 + e4 + foot(False, 'Past Continuous · Level 2 · صفحة ٢ من ٤')) + \
-    page(ptitle("Keep Going!") + e5 + e6 + e7 + e8 + foot(False, 'Past Continuous · Level 2 · صفحة ٣ من ٤')) + \
-    page(ptitle('Answer Key', 'var(--red)') + key + foot(True, 'Past Continuous · Level 2 · صفحة ٤ من ٤'))
+docs['past-continuous-3'] = head('Past Continuous — Level 3 | T. Wad Refae') + \
+    page(s + foot(True, 'Past Continuous · Level 3 · صفحة ١ من ٤')) + \
+    page(ptitle("Let's Practice!") + e1 + e2 + e3 + e4 + foot(False, 'Past Continuous · Level 3 · صفحة ٢ من ٤')) + \
+    page(ptitle("Keep Going!") + e5 + e6 + e7 + e8 + foot(False, 'Past Continuous · Level 3 · صفحة ٣ من ٤')) + \
+    page(ptitle('Answer Key', 'var(--red)') + key + foot(True, 'Past Continuous · Level 3 · صفحة ٤ من ٤'))
 
 for name, html in docs.items():
     with open(os.path.join(OUT, name + '.html'), 'w') as f:
