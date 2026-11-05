@@ -430,4 +430,14 @@ export const PALBOOK_LESSONS = [
     fileUrl: `${BASE}/grade9/unit5p2.html`,
     static: true,
   },
+  {
+    id: 'g9-u5-p3',
+    title: 'How much? How many? · Period 3 — Grammar',
+    titleAr: 'كم؟ وكم عددُ؟ · الحصة 3 — القواعد',
+    thumbnail: '☕',
+    section: 'palbook',
+    grade: 9, unit: 5, lesson: 3,
+    fileUrl: `${BASE}/grade9/unit5p3.html`,
+    static: true,
+  },
 ];
