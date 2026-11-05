@@ -440,4 +440,14 @@ export const PALBOOK_LESSONS = [
     fileUrl: `${BASE}/grade9/unit5p3.html`,
     static: true,
   },
+  {
+    id: 'g9-u5-p4',
+    title: 'Flying over history · Period 4 — Vocabulary & Listening',
+    titleAr: 'جولةٌ فوقَ التاريخ · الحصة 4 — المفردات والاستماع',
+    thumbnail: '🚁',
+    section: 'palbook',
+    grade: 9, unit: 5, lesson: 4,
+    fileUrl: `${BASE}/grade9/unit5p4.html`,
+    static: true,
+  },
 ];
