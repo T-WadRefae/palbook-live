@@ -424,7 +424,7 @@ export const PALBOOK_LESSONS = [
     id: 'g9-u5-p2',
     title: 'A day in Istanbul · Period 2 — Vocabulary & Reading',
     titleAr: 'يومٌ في إسطنبول · الحصة 2 — المفردات والقراءة',
-    thumbnail: 'ℹ️',
+    thumbnail: '🧾',
     section: 'palbook',
     grade: 9, unit: 5, lesson: 2,
     fileUrl: `${BASE}/grade9/unit5p2.html`,
