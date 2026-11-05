@@ -409,5 +409,15 @@ export const PALBOOK_LESSONS = [
     grade: 9, unit: 4, lesson: 12,
     fileUrl: `${BASE}/grade9/unit4p12.html`,
     static: true,
+  },  // ───── Grade 9 · Unit 5 — "A day in Istanbul" ─────
+  {
+    id: 'g9-u5-p1',
+    title: 'A day in Istanbul · Period 1 — Vocabulary & Listening',
+    titleAr: 'يومٌ في إسطنبول · الحصة 1 — المفردات والاستماع',
+    thumbnail: '🕌',
+    section: 'palbook',
+    grade: 9, unit: 5, lesson: 1,
+    fileUrl: `${BASE}/grade9/unit5p1.html`,
+    static: true,
   },
 ];
