@@ -460,4 +460,14 @@ export const PALBOOK_LESSONS = [
     fileUrl: `${BASE}/grade9/unit5p5.html`,
     static: true,
   },
+  {
+    id: 'g9-u5-p6',
+    title: 'Istanbul fact file · Period 6 — Reading comprehension',
+    titleAr: 'ملفُّ حقائقِ إسطنبول · الحصة 6 — فهم المقروء',
+    thumbnail: '🗂️',
+    section: 'palbook',
+    grade: 9, unit: 5, lesson: 6,
+    fileUrl: `${BASE}/grade9/unit5p6.html`,
+    static: true,
+  },
 ];
