@@ -480,4 +480,14 @@ export const PALBOOK_LESSONS = [
     fileUrl: `${BASE}/grade9/unit5p7.html`,
     static: true,
   },
+  {
+    id: 'g9-u5-p8',
+    title: 'A, an or the? · Period 8 — Grammar',
+    titleAr: 'a أم the؟ · الحصة 8 — القواعد',
+    thumbnail: '🔦',
+    section: 'palbook',
+    grade: 9, unit: 5, lesson: 8,
+    fileUrl: `${BASE}/grade9/unit5p8.html`,
+    static: true,
+  },
 ];
