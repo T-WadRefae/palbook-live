@@ -470,4 +470,14 @@ export const PALBOOK_LESSONS = [
     fileUrl: `${BASE}/grade9/unit5p6.html`,
     static: true,
   },
+  {
+    id: 'g9-u5-p7',
+    title: 'Which way? · Period 7 — Vocabulary',
+    titleAr: 'أيُّ طريق؟ · الحصة 7 — المفردات',
+    thumbnail: '🔄',
+    section: 'palbook',
+    grade: 9, unit: 5, lesson: 7,
+    fileUrl: `${BASE}/grade9/unit5p7.html`,
+    static: true,
+  },
 ];
