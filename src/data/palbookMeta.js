@@ -137,6 +137,21 @@ export const PALBOOK_META = {
         8: { page: 35, skill: 'Project & Writing' },
       },
     },
+    6: {
+      title: 'Healthy food',
+      emoji: '🥗',
+      pageStart: 40, pageEnd: 47,
+      periods: {
+        1: { page: 40, skill: 'Vocabulary & Listening' },
+        2: { page: 41, skill: 'Reading' },
+        3: { page: 42, skill: 'Reading comprehension' },
+        4: { page: 43, skill: 'Speaking & Grammar' },
+        5: { page: 44, skill: 'Writing & Speaking' },
+        6: { page: 45, skill: 'Listening & Pronunciation' },
+        7: { page: 46, skill: 'Writing' },
+        8: { page: 47, skill: 'Project & Writing' },
+      },
+    },
   },
   7: {
     1: {
