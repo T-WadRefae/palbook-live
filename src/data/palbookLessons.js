@@ -520,4 +520,14 @@ export const PALBOOK_LESSONS = [
     fileUrl: `${BASE}/grade9/unit5p11.html`,
     static: true,
   },
+  {
+    id: 'g9-u5-p12',
+    title: 'Plan a visitor tour · Period 12 — Writing',
+    titleAr: 'خطِّطْ جولةً للزوّار · الحصة 12 — الكتابة',
+    thumbnail: '📋',
+    section: 'palbook',
+    grade: 9, unit: 5, lesson: 12,
+    fileUrl: `${BASE}/grade9/unit5p12.html`,
+    static: true,
+  },
 ];
