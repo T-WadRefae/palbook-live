@@ -490,4 +490,14 @@ export const PALBOOK_LESSONS = [
     fileUrl: `${BASE}/grade9/unit5p8.html`,
     static: true,
   },
+  {
+    id: 'g9-u5-p9',
+    title: "Let's talk! · Period 9 — Speaking",
+    titleAr: 'لنتحدّث! · الحصة 9 — المحادثة',
+    thumbnail: '💬',
+    section: 'palbook',
+    grade: 9, unit: 5, lesson: 9,
+    fileUrl: `${BASE}/grade9/unit5p9.html`,
+    static: true,
+  },
 ];
