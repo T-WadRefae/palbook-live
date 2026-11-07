@@ -500,4 +500,14 @@ export const PALBOOK_LESSONS = [
     fileUrl: `${BASE}/grade9/unit5p9.html`,
     static: true,
   },
+  {
+    id: 'g9-u5-p10',
+    title: 'Groups of sounds · Period 10 — Listening & Pronunciation',
+    titleAr: 'مجموعاتُ الأصوات · الحصة 10 — الاستماع والنطق',
+    thumbnail: '🧱',
+    section: 'palbook',
+    grade: 9, unit: 5, lesson: 10,
+    fileUrl: `${BASE}/grade9/unit5p10.html`,
+    static: true,
+  },
 ];
