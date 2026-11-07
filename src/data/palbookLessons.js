@@ -510,4 +510,14 @@ export const PALBOOK_LESSONS = [
     fileUrl: `${BASE}/grade9/unit5p10.html`,
     static: true,
   },
+  {
+    id: 'g9-u5-p11',
+    title: 'Dictation & directions · Period 11 — Writing',
+    titleAr: 'الإملاءُ وترتيبُ الإرشادات · الحصة 11 — الكتابة',
+    thumbnail: '📝',
+    section: 'palbook',
+    grade: 9, unit: 5, lesson: 11,
+    fileUrl: `${BASE}/grade9/unit5p11.html`,
+    static: true,
+  },
 ];
