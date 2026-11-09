@@ -282,6 +282,36 @@ export const WORKSHEET_TOPICS = [
       },
     ],
   },
+  {
+    id: 'comparatives-superlatives',
+    titleEn: 'Comparatives & Superlatives',
+    titleAr: 'المقارنة والتفضيل',
+    emoji: '⚖️',
+    grad: 'g-blue',
+    levels: [
+      {
+        level: 1,
+        en: 'Adjectives — -er/-est & more/most (+ than / the)',
+        ar: 'الصفات — ‎-er/-est و more/most (+ than / the)',
+        pdf: '/worksheets/comparatives-1.pdf',
+        html: '/worksheets/comparatives-1.html',
+      },
+      {
+        level: 2,
+        en: 'Adverbs — faster, more slowly, more quickly',
+        ar: 'الظروف — faster و more slowly و more quickly',
+        pdf: '/worksheets/comparatives-2.pdf',
+        html: '/worksheets/comparatives-2.html',
+      },
+      {
+        level: 3,
+        en: 'Irregular (good/well → better/best) & (not) as … as',
+        ar: 'الشاذّة (good/well → better/best) و (not) as … as',
+        pdf: '/worksheets/comparatives-3.pdf',
+        html: '/worksheets/comparatives-3.html',
+      },
+    ],
+  },
 ];
 
 export default WORKSHEET_TOPICS;
