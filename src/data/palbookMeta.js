@@ -214,6 +214,21 @@ export const PALBOOK_META = {
         8: { page: 35, skill: 'Project & Listening' },
       },
     },
+    6: {
+      title: 'Goal!',
+      emoji: '⚽',
+      pageStart: 40, pageEnd: 47,
+      periods: {
+        1: { page: 40, skill: 'Vocabulary & Listening' },
+        2: { page: 41, skill: 'Reading comprehension' },
+        3: { page: 42, skill: 'Vocabulary & Reading' },
+        4: { page: 43, skill: 'Pronunciation & Listening' },
+        5: { page: 44, skill: 'Grammar' },
+        6: { page: 45, skill: 'Listening & Speaking' },
+        7: { page: 46, skill: 'Writing' },
+        8: { page: 47, skill: 'Project & Speaking' },
+      },
+    },
   },
   8: {
     1: {
