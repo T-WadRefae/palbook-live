@@ -152,6 +152,21 @@ export const PALBOOK_META = {
         8: { page: 47, skill: 'Project & Writing' },
       },
     },
+    7: {
+      title: 'The olive trees of Palestine',
+      emoji: '🫒',
+      pageStart: 48, pageEnd: 55,
+      periods: {
+        1: { page: 48, skill: 'Vocabulary & Listening' },
+        2: { page: 49, skill: 'Reading' },
+        3: { page: 50, skill: 'Reading comprehension' },
+        4: { page: 51, skill: 'Speaking' },
+        5: { page: 52, skill: 'Writing & Speaking' },
+        6: { page: 53, skill: 'Listening & Chant' },
+        7: { page: 54, skill: 'Writing' },
+        8: { page: 55, skill: 'Spelling & Project' },
+      },
+    },
   },
   7: {
     1: {
