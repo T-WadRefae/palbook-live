@@ -429,6 +429,93 @@ docs['present-perfect-continuous-3'] = head('Present Perfect Continuous — Leve
     page(ptitle("Keep Going!") + e5 + e6 + e7 + e8 + foot(False, 'Present Perfect Continuous · Level 3 · صفحة ٣ من ٤')) + \
     page(ptitle('Answer Key', 'var(--red)') + key + foot(True, 'Present Perfect Continuous · Level 3 · صفحة ٤ من ٤'))
 
+# =========================================================================
+# LEVEL 4 — Applied: for/since, How long & describing changes (real life)
+# =========================================================================
+s = lesson_head('for / since / How long — Real-Life Situations', 'Level 4 — Applied Practice')
+s += sec('red', '1', 'Definition · التعريف',
+    '<div class="box"><p class="def">نستخدم المضارع التام المستمر مع <span class="en">for/since</span> لنصف أمورًا بدأت في الماضي <span class="hl-y">وما زالت مستمرّة الآن</span> — خاصّةً بعد <span class="hl-p">تغيُّر أو حدث</span> (منذ انتقلنا، منذ بدأ العام).'
+    '<span class="en-fact">We describe situations that began in the past and are still going on — often since a change.</span></p>'
+    '<div class="formula">have / has been + V-<span class="ing">ing</span> + for / since</div></div>')
+s += sec('red', '2', 'Key Facts · حقائق أساسية',
+    '<ul class="facts">'
+    + fact('<span class="en">for</span> + مدة (for two weeks) · <span class="en">since</span> + نقطة بداية أو حدث (since we moved).', 'for + a period; since + a starting point or event.')
+    + fact('للسؤال عن المدّة: <span class="en">How long have you been …ing?</span>', 'Ask about duration: How long have you been …ing?')
+    + fact('النفي: <span class="en">haven\'t / hasn\'t been</span> + V-ing (<span class="en">I haven\'t been sleeping well</span>).', 'Negative: haven\'t/hasn\'t been + V-ing.')
+    + fact('نصف به كيف تسير الأمور <span class="hl-g">منذ تغيُّر</span> (since they moved to the city).', 'It describes how things have been going since a change.')
+    + '</ul>'
+    '<table><tr><th>for + period</th><th>since + point / event</th></tr>'
+    '<tr><td class="en">for two weeks</td><td class="en">since we moved</td></tr>'
+    '<tr><td class="en">for a long time</td><td class="en">since last summer</td></tr>'
+    '<tr><td class="en">for a year now</td><td class="en">since the term began</td></tr></table>')
+s += sec('red', '3', 'Steps · خطوات النجاح',
+    '<div class="box soft"><p class="def">مدّة بالأرقام أو الطول؟ &rarr; <span class="hl-p en">for</span>. نقطة بداية أو حدث؟ &rarr; <span class="hl-g en">since</span>. الصيغة <span class="en">have/has been + V-ing</span>.'
+    '<span class="en-fact">A length of time &rarr; for. A starting point/event &rarr; since. Form: have/has been + V-ing.</span></p></div>'
+    '<div class="examples">'
+    '<div class="ex"><span class="tag">since + حدث</span><div class="flow"><span class="after">We <b>have been living</b> here <b>since</b> we moved from the village.</span></div></div>'
+    '<div class="ex"><span class="tag">for + مدة</span><div class="flow"><span class="after">She <b>has been studying</b> hard <b>for</b> three weeks.</span></div></div>'
+    '<div class="ex"><span class="tag">نفي</span><div class="flow"><span class="after">I <b>haven\'t been feeling</b> well <b>for</b> a few days.</span></div></div></div>')
+s += sec('red', '4', 'Summary · الخلاصة',
+    '<div class="sticky"><div class="lbl">&#10022; تذكّر/ي دائمًا · Remember</div>'
+    '<div class="txt"><span class="en">have/has been + V-ing</span> + <span class="en">for</span> (مدة) / <span class="en">since</span> (بداية) &larr; مستمرٌّ حتى الآن.</div></div>')
+e1 = q('1', 'Recognize · تعرّف', 'Choose for or since.', 'اختر/ي for أو since.',
+    '<ol class="enlist">'
+    '<li>We have been living in Nablus ____ we moved last year. <span class="choices">( for / since )</span></li>'
+    '<li>My father has been working at the school ____ ten years. <span class="choices">( for / since )</span></li>'
+    '<li>It has been snowing ____ last night. <span class="choices">( for / since )</span></li>'
+    '<li>The children have been playing ____ two hours. <span class="choices">( for / since )</span></li></ol>')
+e2 = q('2', 'Multiple Choice · اختيار من متعدد', 'Choose the correct answer.', 'اختر/ي الإجابة الصحيحة.',
+    '<ol class="enlist">'
+    '<li>____ have you been studying English? <span class="choices"><span class="opt">a) How long</span><span class="opt">b) How many</span><span class="opt">c) How much</span></span></li>'
+    '<li>They have been building the road ____ spring. <span class="choices"><span class="opt">a) since</span><span class="opt">b) for</span><span class="opt">c) at</span></span></li>'
+    '<li>She has been teaching here ____ five years. <span class="choices"><span class="opt">a) for</span><span class="opt">b) since</span><span class="opt">c) from</span></span></li></ol>')
+e3 = q('3', 'Fill in · إكمال الفراغ', 'Complete with have/has been + the -ing verb.', 'أكمِل/ي بـ have/has been + الفعل + ing.',
+    '<ol class="enlist">'
+    '<li>My brother __________ (practise) the guitar since last month.</li>'
+    '<li>We __________ (wait) for the bus for twenty minutes.</li>'
+    '<li>It __________ (rain) all morning.</li>'
+    '<li>The twins __________ (grow) quickly since they started sports.</li></ol>')
+e4 = q('4', 'Match · توصيل', 'Match each question with the best answer — write the letter.', 'صِل/ي كل سؤال بأفضل جواب — اكتب/ي الحرف.',
+    '<div class="match"><div class="col">'
+    '<div class="row"><span>1) Why are you so tired?</span><span>____</span></div>'
+    '<div class="row"><span>2) Why is the ground wet?</span><span>____</span></div>'
+    '<div class="row"><span>3) Why is your English so good?</span><span>____</span></div></div>'
+    '<div class="col">'
+    '<div class="row"><span>a) It has been raining since noon.</span></div>'
+    '<div class="row"><span>b) I\'ve been practising for years.</span></div>'
+    '<div class="row"><span>c) I\'ve been working since early morning.</span></div></div></div>')
+e5 = q('5', 'Transform · تحويل', 'Make a "How long…?" question.', 'كوّن/ي سؤالاً بـ "How long…?".',
+    '<ol class="enlist">'
+    '<li>They have been building the house. &rarr; ' + wl('54%') + '</li>'
+    '<li>She has been learning French. &rarr; ' + wl('54%') + '</li></ol>')
+e6 = q('6', 'Correct · تصحيح خطأ', 'Each sentence has one mistake. Correct it.', 'في كل جملة خطأ واحد. صحّح/يه.',
+    '<ol class="enlist">'
+    '<li>I have been living here since three years. &rarr; ' + wl('50%') + '</li>'
+    '<li>How long you have been waiting? &rarr; ' + wl('50%') + '</li>'
+    '<li>She has been study since morning. &rarr; ' + wl('50%') + '</li></ol>')
+e7 = q('7', 'In Context · توظيف سياقي', 'Put each verb into the present perfect continuous.', 'ضع/ي الفعل في المضارع التام المستمر.',
+    '<div class="para">The Khalil family moved to Ramallah last year, and life has been busy. They (1) __________ (live) '
+    'in a small flat near the park. The children (2) __________ (go) to a new school for a year now. '
+    'Mr Khalil (3) __________ (work) at a bakery since they arrived, and Mrs Khalil (4) __________ (study) '
+    'English for six months. Everyone (5) __________ (make) new friends since they came.</div>')
+e8 = q('8', 'Create · تحدٍ إبداعي', 'Write 3 sentences about yourself with for and since.', 'اكتب/ي ٣ جمل عن نفسك باستخدام for و since.',
+    '<div class="writeline"></div><div class="writeline"></div><div class="writeline"></div>')
+key = akbox([
+    ('تمرين ١:', 'since · for · since · for'),
+    ('تمرين ٢:', 'a) How long · a) since · a) for'),
+    ('تمرين ٣:', 'has been practising · have been waiting · has been raining · have been growing'),
+    ('تمرين ٤:', '1 &rarr; c · 2 &rarr; a · 3 &rarr; b'),
+    ('تمرين ٥:', 'How long have they been building the house? · How long has she been learning French?'),
+    ('تمرين ٦:', 'I have been living here for three years. · How long have you been waiting? · She has been studying since morning.'),
+    ('تمرين ٧:', '1 have been living · 2 have been going · 3 has been working · 4 has been studying · 5 has been making'),
+    ('تمرين ٨:', OPEN % 'إجابات مفتوحة (have/has been + V-ing + for/since).'),
+])
+docs['present-perfect-continuous-4'] = head('Present Perfect Continuous — Level 4 | T. Wad Refae') + \
+    page(s + foot(True, 'Present Perfect Continuous · Level 4 · صفحة ١ من ٤')) + \
+    page(ptitle("Let's Practice!") + e1 + e2 + e3 + e4 + foot(False, 'Present Perfect Continuous · Level 4 · صفحة ٢ من ٤')) + \
+    page(ptitle("Keep Going!") + e5 + e6 + e7 + e8 + foot(False, 'Present Perfect Continuous · Level 4 · صفحة ٣ من ٤')) + \
+    page(ptitle('Answer Key', 'var(--red)') + key + foot(True, 'Present Perfect Continuous · Level 4 · صفحة ٤ من ٤'))
+
 for name, html in docs.items():
     with open(os.path.join(OUT, name + '.html'), 'w') as f:
         f.write(html)

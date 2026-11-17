@@ -280,6 +280,13 @@ export const WORKSHEET_TOPICS = [
         pdf: '/worksheets/present-perfect-continuous-3.pdf',
         html: '/worksheets/present-perfect-continuous-3.html',
       },
+      {
+        level: 4,
+        en: 'Applied — for/since, How long & describing changes',
+        ar: 'تطبيقي — for/since و How long ووصف التغيّرات',
+        pdf: '/worksheets/present-perfect-continuous-4.pdf',
+        html: '/worksheets/present-perfect-continuous-4.html',
+      },
     ],
   },
   {
