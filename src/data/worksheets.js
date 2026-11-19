@@ -319,6 +319,22 @@ export const WORKSHEET_TOPICS = [
       },
     ],
   },
+  {
+    id: 'advice-suggestions',
+    titleEn: 'Advice & Suggestions',
+    titleAr: 'النصيحة والاقتراح',
+    emoji: '💡',
+    grad: 'g-olive',
+    levels: [
+      {
+        level: 1,
+        en: 'should / had better & Why don\'t you / What about / Let\'s',
+        ar: 'should / had better و Why don\'t you / What about / Let\'s',
+        pdf: '/worksheets/advice-suggestions-1.pdf',
+        html: '/worksheets/advice-suggestions-1.html',
+      },
+    ],
+  },
 ];
 
 export default WORKSHEET_TOPICS;
