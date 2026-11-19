@@ -240,13 +240,14 @@ e6 = q('6', 'Correct · تصحيح خطأ', 'Each sentence has one mistake. Corr
     '<li>You should to see a doctor. &rarr; ' + wl('50%') + '</li>'
     '<li>What about go swimming? &rarr; ' + wl('50%') + '</li>'
     '<li>You\'d better not to stay up late. &rarr; ' + wl('50%') + '</li></ol>')
-e7 = q('7', 'In Context · توظيف سياقي', 'Complete the dialogue with advice and suggestions (use the prompt).', 'أكمِل/ي الحوار بالنصيحة والاقتراح (استخدم/ي المعطى).',
-    '<div class="para">Lina: I feel so stressed before exams.<br>'
-    'You: You (1) __________ (should / sleep) early, and (2) __________ (Why don\'t you / make) a study plan?<br>'
-    'Lina: I also get hungry at night.<br>'
-    'You: (3) __________ (What about / eat) some fruit? You (4) __________ (had better / start) now!</div>')
-e8 = q('8', 'Create · تحدٍ إبداعي', 'Your friend wants to be healthier. Write 2 pieces of advice and 1 suggestion.', 'صديقك يريد أن يكون أكثر صحّة. اكتب/ي نصيحتين واقتراحًا واحدًا.',
-    '<div class="writeline"></div><div class="writeline"></div><div class="writeline"></div>')
+e7 = q('7', 'Advise or Suggest · نصيحة أم اقتراح؟', 'Read each situation. Write advice or a suggestion, as shown in brackets.', 'اقرأ/ي كل موقف. اكتب/ي نصيحة أو اقتراحًا كما هو مبيّن بين القوسين.',
+    '<ol class="enlist">'
+    '<li>You have a bad toothache. <b>(advice)</b> &rarr; ' + wl('42%') + '</li>'
+    '<li>Your friend is bored at the weekend. <b>(suggestion)</b> &rarr; ' + wl('42%') + '</li>'
+    '<li>Your brother watches TV all day. <b>(advice)</b> &rarr; ' + wl('42%') + '</li>'
+    '<li>Your class wants to do something fun. <b>(suggestion)</b> &rarr; ' + wl('42%') + '</li>'
+    '<li>You feel tired every morning. <b>(advice)</b> &rarr; ' + wl('42%') + '</li>'
+    '<li>You and a friend don\'t know what to eat. <b>(suggestion)</b> &rarr; ' + wl('42%') + '</li></ol>')
 key = akbox([
     ('تمرين ١:', '1 A · 2 S · 3 A · 4 S'),
     ('تمرين ٢:', 'a) drink · b) going · a) not be'),
@@ -254,13 +255,12 @@ key = akbox([
     ('تمرين ٤:', '1 &rarr; b · 2 &rarr; c · 3 &rarr; a'),
     ('تمرين ٥:', 'What about visiting your grandmother? · Why don\'t you drink some water? · Let\'s play football.'),
     ('تمرين ٦:', 'You should see a doctor. · What about going swimming? · You\'d better not stay up late.'),
-    ('تمرين ٧:', '1 should sleep · 2 Why don\'t you make · 3 What about eating · 4 had better start'),
-    ('تمرين ٨:', OPEN % 'إجابات مفتوحة (نصيحة: should/had better · اقتراح: why don\'t you/what about/let\'s).'),
+    ('تمرين ٧:', 'إجابات مقترحة: 1 You should see a dentist. · 2 Why don\'t you play a game? · 3 He shouldn\'t watch TV all day. · 4 Let\'s have a picnic. · 5 You\'d better sleep earlier. · 6 What about making sandwiches?'),
 ])
 docs['advice-suggestions-1'] = head('Advice & Suggestions | T. Wad Refae') + \
     page(s + foot(True, 'Advice & Suggestions · صفحة ١ من ٤')) + \
     page(ptitle("Let's Practice!") + e1 + e2 + e3 + e4 + foot(False, 'Advice & Suggestions · صفحة ٢ من ٤')) + \
-    page(ptitle("Keep Going!") + e5 + e6 + e7 + e8 + foot(False, 'Advice & Suggestions · صفحة ٣ من ٤')) + \
+    page(ptitle("Keep Going!") + e5 + e6 + e7 + foot(False, 'Advice & Suggestions · صفحة ٣ من ٤')) + \
     page(ptitle('Answer Key', 'var(--red)') + key + foot(True, 'Advice & Suggestions · صفحة ٤ من ٤'))
 
 for name, html in docs.items():
