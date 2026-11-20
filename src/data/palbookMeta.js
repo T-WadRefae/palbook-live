@@ -274,6 +274,21 @@ export const PALBOOK_META = {
         8: { page: 55, skill: 'Project & Writing' },
       },
     },
+    8: {
+      title: 'The hike',
+      emoji: '🥾',
+      pageStart: 56, pageEnd: 63,
+      periods: {
+        1: { page: 56, skill: 'Vocabulary & Listening' },
+        2: { page: 57, skill: 'Vocabulary & Reading' },
+        3: { page: 58, skill: 'Vocabulary & Reading' },
+        4: { page: 59, skill: 'Vocabulary & Poem' },
+        5: { page: 60, skill: 'Grammar' },
+        6: { page: 61, skill: 'Listening & Speaking' },
+        7: { page: 62, skill: 'Writing' },
+        8: { page: 63, skill: 'Project & Writing' },
+      },
+    },
   },
   8: {
     1: {
