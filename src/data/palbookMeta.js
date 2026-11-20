@@ -244,6 +244,21 @@ export const PALBOOK_META = {
         8: { page: 47, skill: 'Project & Speaking' },
       },
     },
+    7: {
+      title: 'The craft show',
+      emoji: '🏺',
+      pageStart: 48, pageEnd: 55,
+      periods: {
+        1: { page: 48, skill: 'Vocabulary & Listening' },
+        2: { page: 49, skill: 'Vocabulary' },
+        3: { page: 50, skill: 'Vocabulary & Reading' },
+        4: { page: 51, skill: 'Vocabulary & Pronunciation' },
+        5: { page: 52, skill: 'Grammar' },
+        6: { page: 53, skill: 'Listening & Speaking' },
+        7: { page: 54, skill: 'Writing' },
+        8: { page: 55, skill: 'Project & Writing' },
+      },
+    },
   },
   8: {
     1: {
