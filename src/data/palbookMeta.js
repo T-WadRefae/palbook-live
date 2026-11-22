@@ -75,6 +75,17 @@ export const PALBOOK_META = {
         8: { page: 35, skill: 'Project & Writing' },
       },
     },
+    5: {
+      title: 'Revision: The rabbit and the tortoise',
+      emoji: '🐢',
+      pageStart: 36, pageEnd: 39,
+      periods: {
+        1: { page: 36, skill: 'Listening & Reading' },
+        2: { page: 37, skill: 'Comprehension' },
+        3: { page: 38, skill: 'Writing' },
+        4: { page: 39, skill: 'Integrated skills' },
+      },
+    },
     6: {
       title: 'Basketball',
       emoji: '🏀',
