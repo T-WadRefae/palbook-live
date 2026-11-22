@@ -105,6 +105,21 @@ export const PALBOOK_META = {
         8: { page: 55, skill: 'Spelling & Project' },
       },
     },
+    8: {
+      title: 'What I like doing and why',
+      emoji: '🎡',
+      pageStart: 56, pageEnd: 63,
+      periods: {
+        1: { page: 56, skill: 'Vocabulary & Listening' },
+        2: { page: 57, skill: 'Reading' },
+        3: { page: 58, skill: 'Reading comprehension' },
+        4: { page: 59, skill: 'Speaking' },
+        5: { page: 60, skill: 'Writing' },
+        6: { page: 61, skill: 'Listening & Chant' },
+        7: { page: 62, skill: 'Writing' },
+        8: { page: 63, skill: 'Spelling & Project' },
+      },
+    },
   },
   6: {
     1: {
