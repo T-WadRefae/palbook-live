@@ -75,6 +75,21 @@ export const PALBOOK_META = {
         8: { page: 35, skill: 'Project & Writing' },
       },
     },
+    6: {
+      title: 'Basketball',
+      emoji: '🏀',
+      pageStart: 40, pageEnd: 47,
+      periods: {
+        1: { page: 40, skill: 'Vocabulary & Listening' },
+        2: { page: 41, skill: 'Reading' },
+        3: { page: 42, skill: 'Reading comprehension' },
+        4: { page: 43, skill: 'Speaking' },
+        5: { page: 44, skill: 'Writing' },
+        6: { page: 45, skill: 'Listening & Chant' },
+        7: { page: 46, skill: 'Writing' },
+        8: { page: 47, skill: 'Spelling & Project' },
+      },
+    },
   },
   6: {
     1: {
