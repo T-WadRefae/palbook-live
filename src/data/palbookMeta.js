@@ -120,6 +120,17 @@ export const PALBOOK_META = {
         8: { page: 63, skill: 'Spelling & Project' },
       },
     },
+    9: {
+      title: 'Revision: The cats and the monkey',
+      emoji: '🧀',
+      pageStart: 64, pageEnd: 67,
+      periods: {
+        1: { page: 64, skill: 'Listening & Reading' },
+        2: { page: 65, skill: 'Comprehension' },
+        3: { page: 66, skill: 'Writing' },
+        4: { page: 67, skill: 'Integrated skills' },
+      },
+    },
   },
   6: {
     1: {
