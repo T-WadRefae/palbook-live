@@ -151,6 +151,13 @@ export const WORKSHEET_TOPICS = [
         pdf: '/worksheets/past-perfect-3.pdf',
         html: '/worksheets/past-perfect-3.html',
       },
+      {
+        level: 4,
+        en: 'Comprehensive review of levels 1–3',
+        ar: 'مراجعة شاملة للمستويات الثلاثة',
+        pdf: '/worksheets/past-perfect-4.pdf',
+        html: '/worksheets/past-perfect-4.html',
+      },
     ],
   },
   {
