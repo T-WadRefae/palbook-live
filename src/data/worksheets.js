@@ -124,6 +124,36 @@ export const WORKSHEET_TOPICS = [
     ],
   },
   {
+    id: 'past-perfect',
+    titleEn: 'Past Perfect',
+    titleAr: 'الماضي التام',
+    emoji: '⏮️',
+    grad: 'g-blue',
+    levels: [
+      {
+        level: 1,
+        en: 'Foundation — had + V3 & the earlier past action',
+        ar: 'تأسيسي — had + V3 والحدث الأسبق',
+        pdf: '/worksheets/past-perfect-1.pdf',
+        html: '/worksheets/past-perfect-1.html',
+      },
+      {
+        level: 2,
+        en: 'vs Past Simple — which action came first (before / after)',
+        ar: 'مقابل الماضي البسيط — أيّ حدث وقع أولًا (before / after)',
+        pdf: '/worksheets/past-perfect-2.pdf',
+        html: '/worksheets/past-perfect-2.html',
+      },
+      {
+        level: 3,
+        en: 'Time connectors — before, after, as soon as, by the time',
+        ar: 'روابط الزمن — before و after و as soon as و by the time',
+        pdf: '/worksheets/past-perfect-3.pdf',
+        html: '/worksheets/past-perfect-3.html',
+      },
+    ],
+  },
+  {
     id: 'future',
     titleEn: 'Future',
     titleAr: 'المستقبل',
