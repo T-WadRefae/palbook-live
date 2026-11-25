@@ -431,6 +431,91 @@ docs['past-perfect-3'] = head('Past Perfect — Level 3 | T. Wad Refae') + \
     page(ptitle("Keep Going!") + e5 + e6 + e7 + e8 + foot(False, 'Past Perfect · Level 3 · صفحة ٣ من ٤')) + \
     page(ptitle('Answer Key', 'var(--red)') + key + foot(True, 'Past Perfect · Level 3 · صفحة ٤ من ٤'))
 
+# =========================================================================
+# LEVEL 4 — Comprehensive Review of Levels 1-3
+# =========================================================================
+s = lesson_head('مراجعة شاملة للمستويات الثلاثة — Comprehensive Review', 'Level 4 — Review')
+s += sec('red', '1', 'Definition · التعريف',
+    '<div class="box"><p class="def">مراجعة: الماضي التام <span class="hl-y">had + V3</span> للحدث <span class="hl-g">الأسبق</span>، نقارنه بالماضي البسيط للحدث الأحدث، ونربط بينهما بـ <span class="en">before · after · as soon as · by the time</span>.'
+    '<span class="en-fact">Review: had + V3 for the earlier action; past simple for the later one; link with before/after/as soon as/by the time.</span></p>'
+    '<div class="formula">had + V3 (earlier) &nbsp;|&nbsp; past simple (later) &nbsp;|&nbsp; connectors</div></div>')
+s += sec('red', '2', 'Key Facts · حقائق أساسية',
+    '<ul class="facts">'
+    + fact('الصيغة: <span class="en">had + V3</span> لكل الضمائر · النفي <span class="en">hadn\'t</span> · السؤال <span class="en">Had…?</span>', 'Form: had + V3 (all subjects); negative hadn\'t; question Had…?')
+    + fact('الحدث الأسبق &rarr; <span class="en">had + V3</span> · الأحدث &rarr; <span class="en">past simple</span>.', 'Earlier &rarr; had + V3; later &rarr; past simple.')
+    + fact('<span class="en">by the time</span> &rarr; الآخر <span class="en">had + V3</span> · <span class="en">as soon as</span> &rarr; تتابع مباشر (بسيط).', 'by the time &rarr; the other is past perfect; as soon as &rarr; immediate (past simple).')
+    + '</ul>'
+    '<table><tr><th>Point</th><th>Example</th></tr>'
+    '<tr><td class="en">Form (had + V3)</td><td class="en">She had gone / hadn\'t gone.</td></tr>'
+    '<tr><td class="en">Order (before / after)</td><td class="en">After he had eaten, he slept.</td></tr>'
+    '<tr><td class="en">by the time / as soon as</td><td class="en">By the time I came, they had left.</td></tr></table>')
+s += sec('red', '3', 'Steps · خطوات النجاح',
+    '<div class="box soft"><p class="def">اسأل/ي: أيّ حدث وقع <span class="hl-p">أوّلًا</span>؟ ← <span class="en">had + V3</span>. أيّهما تلاه؟ ← <span class="en">past simple</span>. أيّ رابط يناسب المعنى؟'
+    '<span class="en-fact">Ask: which happened first (had + V3) and which followed (past simple)? Then pick the connector.</span></p></div>'
+    '<div class="examples">'
+    '<div class="ex"><span class="tag">صيغة</span><div class="flow"><span class="after">They <b>had packed</b> everything before the trip.</span></div></div>'
+    '<div class="ex"><span class="tag">by the time</span><div class="flow"><span class="after"><b>By the time</b> the bell <b>rang</b>, we <b>had finished</b>.</span></div></div></div>')
+s += sec('red', '4', 'Summary · الخلاصة',
+    '<div class="sticky"><div class="lbl">&#10022; تذكّر/ي دائمًا · Remember</div>'
+    '<div class="txt">الأسبق <span class="en">had + V3</span> · الأحدث <span class="en">past simple</span> · <span class="en">before/after · as soon as · by the time</span>.</div></div>')
+e1 = q('1', 'Recognize · تعرّف', 'Choose the correct form.', 'اختر/ي الصيغة الصحيحة.',
+    '<ol class="enlist">'
+    '<li>By the time I woke up, the bus ____ . <span class="choices">( had gone / went )</span></li>'
+    '<li>As soon as she saw me, she ____ . <span class="choices">( had smiled / smiled )</span></li>'
+    '<li>He ____ his keys before he reached home. <span class="choices">( had lost / lost )</span></li>'
+    '<li>After the film ____ , we went home. <span class="choices">( had ended / ended )</span></li></ol>')
+e2 = q('2', 'Multiple Choice · اختيار من متعدد', 'Choose the correct answer.', 'اختر/ي الإجابة الصحيحة.',
+    '<ol class="enlist">'
+    '<li>They hadn\'t ____ the city before 1187. <span class="choices"><span class="opt">a) see</span><span class="opt">b) saw</span><span class="opt">c) seen</span></span></li>'
+    '<li>____ we arrived, the match had started. <span class="choices"><span class="opt">a) By the time</span><span class="opt">b) As soon as</span></span></li>'
+    '<li>After she ____ cooked, she served the food. <span class="choices"><span class="opt">a) had</span><span class="opt">b) has</span><span class="opt">c) was</span></span></li></ol>')
+e3 = q('3', 'Fill in · إكمال الفراغ', 'Use the past perfect or the past simple.', 'استخدم/ي الماضي التام أو البسيط.',
+    '<ol class="enlist">'
+    '<li>By the time we __________ (arrive), the guests __________ (already / leave).</li>'
+    '<li>As soon as the rain __________ (stop), the children __________ (go) out.</li>'
+    '<li>She __________ (not / finish) her book before the lesson __________ (begin).</li>'
+    '<li>After the army __________ (enter) the city, people __________ (feel) safe.</li></ol>')
+e4 = q('4', 'Match · توصيل', 'Match the two halves — write the letter.', 'صِل/ي النصفين — اكتب/ي الحرف.',
+    '<div class="match"><div class="col">'
+    '<div class="row"><span>1) By the time we got there,</span><span>____</span></div>'
+    '<div class="row"><span>2) He was tired because</span><span>____</span></div>'
+    '<div class="row"><span>3) As soon as the bell rang,</span><span>____</span></div></div>'
+    '<div class="col">'
+    '<div class="row"><span>a) he had worked all night.</span></div>'
+    '<div class="row"><span>b) the shop had closed.</span></div>'
+    '<div class="row"><span>c) the pupils ran out.</span></div></div></div>')
+e5 = q('5', 'Transform · تحويل', 'Combine using the connector given.', 'اربط/ي باستخدام الرابط المعطى.',
+    '<ol class="enlist">'
+    '<li>(after) she / finish / work / she / rest &rarr; ' + wl('42%') + '</li>'
+    '<li>(by the time) we / arrive / the train / leave &rarr; ' + wl('42%') + '</li></ol>')
+e6 = q('6', 'Correct · تصحيح خطأ', 'Each sentence has one mistake. Correct it.', 'في كل جملة خطأ واحد. صحّح/يه.',
+    '<ol class="enlist">'
+    '<li>By the time we arrived, the film has started. &rarr; ' + wl('50%') + '</li>'
+    '<li>After he had went out, it rained. &rarr; ' + wl('50%') + '</li>'
+    '<li>They had not ate before the guests came. &rarr; ' + wl('50%') + '</li></ol>')
+e7 = q('7', 'In Context · توظيف سياقي', 'Use the past perfect or the past simple for each verb.', 'استخدم/ي الماضي التام أو البسيط لكل فعل.',
+    '<div class="para">Last week we planned a trip to Jaffa. By the time we (1) __________ (reach) the station, '
+    'the train (2) __________ (already / leave). We were upset because we (3) __________ (not / check) the time. '
+    'As soon as we (4) __________ (find) a bus, we (5) __________ (take) it. '
+    'After we (6) __________ (arrive), we forgot our bad start and enjoyed the sea.</div>')
+e8 = q('8', 'Create · تحدٍ إبداعي', 'Write 3 past-perfect sentences: one with "before", one with "after", one with "by the time".', 'اكتب/ي ٣ جمل بالماضي التام: بـ "before" و"after" و"by the time".',
+    '<div class="writeline"></div><div class="writeline"></div><div class="writeline"></div>')
+key = akbox([
+    ('تمرين ١:', 'had gone · smiled · had lost · ended'),
+    ('تمرين ٢:', 'c) seen · a) By the time · a) had'),
+    ('تمرين ٣:', 'arrived / had already left · stopped / went · hadn\'t finished / began · had entered / felt'),
+    ('تمرين ٤:', '1 &rarr; b · 2 &rarr; a · 3 &rarr; c'),
+    ('تمرين ٥:', 'After she had finished work, she rested. · By the time we arrived, the train had left.'),
+    ('تمرين ٦:', 'the film had started · After he had gone out · They had not eaten'),
+    ('تمرين ٧:', '1 reached · 2 had already left · 3 had not checked · 4 found · 5 took · 6 had arrived'),
+    ('تمرين ٨:', OPEN % 'إجابات مفتوحة (before · after · by the time + had + V3).'),
+])
+docs['past-perfect-4'] = head('Past Perfect — Level 4 | T. Wad Refae') + \
+    page(s + foot(True, 'Past Perfect · Level 4 · صفحة ١ من ٤')) + \
+    page(ptitle("Let's Practice!") + e1 + e2 + e3 + e4 + foot(False, 'Past Perfect · Level 4 · صفحة ٢ من ٤')) + \
+    page(ptitle("Keep Going!") + e5 + e6 + e7 + e8 + foot(False, 'Past Perfect · Level 4 · صفحة ٣ من ٤')) + \
+    page(ptitle('Answer Key', 'var(--red)') + key + foot(True, 'Past Perfect · Level 4 · صفحة ٤ من ٤'))
+
 for name, html in docs.items():
     with open(os.path.join(OUT, name + '.html'), 'w') as f:
         f.write(html)
